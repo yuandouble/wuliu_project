@@ -1,0 +1,100 @@
+{
+  "collection": {
+   "version": "1.0",
+  "href": "http://IOLService/customers",
+  "links": [ ],
+  "items": [
+    {
+      "href": "/",
+      "data": [
+        {
+          "name": "customerId",
+          "value": "0001 "
+        },
+        {
+          "name": "customerCode",
+          "value": "0001 "
+        },
+
+        {
+          "name": "customerName",
+          "value": "北京航空航天"
+        },
+        {
+          "name": "customerPhone",
+          "value": "1343434345"
+        },
+        {
+          "name": "loadingType",
+          "value": "1"
+        },
+        {
+          "name": "customerAddress",
+          "value": "北京市北汽北郊加油站南口102"
+        },
+        {
+          "name": "source",
+          "value": "0"
+        },
+
+        {
+          "name": "totileSource ",
+          "value": "30-60%"
+        }
+      ],
+      "links": [ ]
+    }
+  ],
+  "queries": [
+    {
+      "rel": "search",
+      "href": " http://IOLService/customers",
+      "prompt": "1、条件查询",
+      "data": [
+        {
+          "name": " customerCode",
+          "value": ""
+        },{
+          "name": "customerName",
+          "value": ""
+        },
+        {
+          "name": "customerPhone",
+          "value": ""
+        },
+        {
+          "name": "contactName",
+          "value": ""
+        },
+        {
+          "name": " contactPhone ",
+          "value": ""
+        },
+        {
+          "name": "loadingType",
+          "value": ""
+        }
+
+      ]
+    }
+  ],
+  "templates" : {
+    "data" : [
+
+      {"name":" customerName ","value":"","prompt":"客户名称"},
+      {"name":" customerPhone ","value":"","prompt":"客户联系电话"},
+      {"name":"customerId","value":"","prompt":"客户编码：唯一标识"},
+      {"name":"customerAddress","value":"","prompt":"客户地址"},
+      {"name":" contactName ","value":"","prompt":"联系人姓名"},
+      {"name":" contactPhone ","value":"","prompt":"联系人电话"},
+      {"name":" contactCardId ","value":"","prompt":"联系人身份证号码"}
+    ]
+  },
+
+  "error": {
+    "code": "",
+    "message": ""
+  }
+}
+}
+

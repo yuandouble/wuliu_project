@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发货点信息维护</title>
+    <link rel="stylesheet" href="../../resources/libs/layui/css/layui.css" media="all">
+    <link href="../../resources/css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="customer-list">
+    <div><span class="nav">基础数据管理  > </span>发货点信息维护</div>
+    <div class="content">
+        <div class="tools">
+            <div class="active" id="add">新增</div>
+            <div id="save">保存</div>
+            <div>批量导入</div>
+            <div id="refresh">刷新</div>
+        </div>
+        <div>
+            <div class="search fr">
+                <div class="inp fl">
+                    <input type="text" placeholder="搜索">
+                    <div class="search-btn"></div>
+                </div>
+            </div>
+        </div>
+        <div class="cl"></div>
+        <!--表格部分-->
+        <div class="layui-form">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="150">
+                    <col width="150">
+                    <col width="100">
+                    <col width="100">
+                    <col width="100">
+                    <col width="50">
+                </colgroup>
+                <thead>
+                <tr class="head">
+                    <th><p>发货点编码</p></th>
+                    <th><p>发货点名称</p></th>
+                    <th><p>维护人</p></th>
+                    <th><p>维护时间</p></th>
+                    <th><p>启用/禁用</p></th>
+                    <th><p class="last">操作</p></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>12338746</td>
+                    <td><input type="text"></td>
+                    <td>张立新</td>
+                    <td>2018-04-10</td>
+                    <td>
+                        <div class="switch1">
+                            <div class="switch2"></div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="fl img edit">
+                            <img src="../../resources/img/edit.png" alt="">
+                        </div>
+                        <div class="fl img">
+                            <img src="../../resources/img/delete.png" alt="">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>12338746</td>
+                    <td><input type="text"></td>
+                    <td>张立新</td>
+                    <td>2018-04-10</td>
+                    <td>
+                        <div class="switch1">
+                            <div class="switch2"></div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="fl img">
+                            <img src="../../resources/img/edit.png" alt="">
+                        </div>
+                        <div class="fl img">
+                            <img src="../../resources/img/delete.png" alt="">
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+<script type="text/javascript" src="../../resources/libs/jquery.min.js"></script>
+<script type="text/javascript" src="../../resources/libs/cj-1.0.js"></script>
+<script type="text/javascript" src="../../resources/libs/messageUtil.js"></script>
+<script type="text/javascript" src="../../resources/js/deliveryPoint.js"></script>
+</body>
+</html>

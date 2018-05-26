@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>客户管理</title>
+    <link rel="stylesheet" href="../../resources/libs/layui/css/layui.css"  media="all">
+    <link href="../../resources/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="customer-list">
+        <div><span class="nav">基础数据管理  > </span>客户信息</div>
+        <div class="content">
+            <div class="tools">
+                <div class="active">新增</div>
+                <div>批量导入</div>
+                <div>ERP导入</div>
+                <div id="refresh">刷新</div>
+            </div>
+            <div class="search fr">
+            <div class="inp fl">
+            <input type="text" placeholder="搜索"><div class="search-btn"></div>
+            </div>
+            <div class="adv-search fl" id="advSearch">
+            <div class="adv-btn fl" id="advBtn">高级搜索</div>
+            <div class="adv-btns fl" id="advBtns"></div>
+            </div>
+            </div>
+
+            <div class="cl"></div>
+            <!--表格部分-->
+            <div class="layui-form">
+                <table class="layui-table" id="customerList" >
+                    <colgroup>
+                        <col width="60">
+                        <col width="125">
+                        <col width="200">
+                        <col width="110">
+                        <col width="280">
+                        <col width="100">
+                        <col width="350">
+                        <col width="125">
+                        <col width="125">
+                        <col width="125">
+                        <col width="120">
+                    </colgroup>
+                    <thead>
+                    <tr class="head">
+                        <th><p>序号</p></th>
+                        <th><p>客户编码</p></th>
+                        <th><p>客户名称</p></th>
+                        <th><p>客户联系电话</p></th>
+                        <th><p>联系人联系人电话</p></th>
+                        <th><p>装车费类型</p></th>
+                        <th><p>客户地址</p></th>
+                        <th><p>来源</p></th>
+                        <th><p>信用评分</p></th>
+                        <th><p>启用/禁用</p></th>
+                        <th><p class="last">操作</p></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td class="customer-num">12338746</td>
+                        <td  class="left">北京长城有限公司北京长城有限公司北京长城有限公司</td>
+                        <td>18611027266</td>
+                        <td>
+                            <div class="contacts">
+                                <p class="fl name">李敏</p>
+                                <p class="fl">18611027266</p>
+                                <p class="fr contacts-select"></p>
+                                <div class="cl"></div>
+                                <!--联系人联系电话下拉框-->
+                                <div class="contacts-modal">
+                                    <div>
+                                        <p class="fl name">李敏</p>
+                                        <p class="fl">18611027266</p>
+                                        <p class="fr contacts-select"></p>
+                                    </div>
+                                    <div>
+                                        <p class="fl name">李敏</p>
+                                        <p class="fl">18611027266</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </td>
+                        <td>常户</td>
+                        <td  class="left">北京市北汽北郊加油站南口102号北京市北汽北郊加油站南口102号</td>
+                        <td>ERP批量导入</td>
+                        <td>90.78</td>
+                        <td>
+                            <!--<i class="iconfont open">&#xe673;</i>-->
+                            <div class="switch1">
+                                <div class="switch2"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="fl img">
+                                <img src="../../resources/img/edit.png" alt="">
+                            </div>
+                            <div class="fl img">
+                                <img src="../../resources/img/delete.png" alt="">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td class="customer-num">12338746</td>
+                        <td  class="left">北京长城有限公司</td>
+                        <td>18611027266</td>
+                        <td>
+                            <div class="contacts">
+                                 <p class="fl name">李亚光</p>
+                                 <p class="fl">18611027266</p>
+                                 <p class="fr contacts-select"></p>
+                                <div class="cl"></div>
+                                <!--联系人联系电话下拉框-->
+                                <div class="contacts-modal">
+                                    <div>
+                                        <p class="fl name">李亚光</p>
+                                         <p class="fl">18611027266</p>
+                                         <p class="fr contacts-select"></p>
+                                    </div>
+                                    <div>
+                                        <p class="fl name">李亚光</p>
+                                        <p class="fl">18611027266</p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </td>
+                        <td>常户</td>
+                        <td  class="left">北京市北汽北郊加油站南口102号北京市北汽北郊加油站南口102号北京市北汽北郊加油站南口102号北京市北汽北郊加油站南口102号</td>
+                        <td>手工新增</td>
+                        <td>90.78</td>
+                        <td>
+                            <!--<i class="iconfont open active">&#xe673;</i>-->
+                            <div class="switch1 active">
+                                <div class="switch2 active"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="fl img">
+                                <img src="../../resources/img/edit.png" alt="">
+                            </div>
+                            <div class="fl img">
+                                <img src="../../resources/img/delete.png" alt="">
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!--分页-->
+            <div class="page-right" id="page-right">
+
+            </div>
+
+            <!--高级搜索弹窗-->
+            <div class="search-modal" id="searchModal">
+                <div class="fl title">客户名称：</div>
+                <div class="fl"><input type="text" id="customerName"></div>
+                <div class="fl title">客户编码：</div>
+                <div class="fl"><input type="text" id="customerCode"></div>
+                <div class="fl title">客户联系电话：</div>
+                <div class="fl"><input type="text" id="customerPhone"></div>
+                <div class="fl title title2">联系人：</div>
+                <div class="fl title2"><input type="text" id="contactName"></div>
+                <div class="fl title title2">联系人电话：</div>
+                <div class="fl title2"><input type="text" id="contactPhone"></div>
+                <div class="fl title title2">装车费类型：</div>
+                <div class="fl title2"><input type="text" id="loadingType"></div>
+                <div class="cl title2"></div>
+                <div class="btn fr">
+                    <div class="search-modbtn active" id="searchModbtn">查询</div>
+                    <div class="search-modbtn" id="searchClear">清除</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <script type="text/javascript" src="../../resources/libs/jquery.min.js"></script>
+    <script type="text/javascript" src="../../resources/libs/laypage.js"></script>
+    <script type="text/javascript" src="../../resources/libs/cj-1.0.js"></script>
+    <script type="text/javascript" src="../../resources/libs/messageUtil.js"></script>
+    <script type="text/javascript" src="../../resources/js/customer.js"></script>
+</body>
+</html>

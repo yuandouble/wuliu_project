@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>产品信息维护</title>
+    <link rel="stylesheet" href="../../resources/libs/layui/css/layui.css"  media="all">
+    <link href="../../resources/css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="customer-list">
+    <div><span class="nav">基础数据管理  > </span>产品信息维护</div>
+    <div class="content">
+        <div class="tools">
+            <div class="active">新增</div>
+            <div>批量导入</div>
+            <div id="refresh">刷新</div>
+        </div>
+        <div>
+            <div class="fl">
+                <div class="fl type">危化品类型：</div>
+                <div class="fl type-select">
+                    <div class="types">全部类型</div>
+                    <ul class="type-list">
+                        <li>全部类型</li>
+                        <li>普通危化品</li>
+                        <li>一般危化品</li>
+                        <li>高级危化品</li>
+                        <li>全部类型</li>
+                        <li>普通危化品</li>
+                        <li>高级危化品</li>
+                        <li>全部类型</li>
+                        <li>普通危化品</li>
+                        <li>高级危化品</li>
+                    </ul>
+                </div>
+
+
+                <!--<div class="fl">-->
+                    <!--<select class="product-type" name="" id="">-->
+                        <!--<option value="">全部类型</option>-->
+                    <!--</select>-->
+                <!--</div>-->
+            </div>
+            <div class="search fr">
+                <div class="inp fl">
+                    <input type="text" placeholder="搜索"><div class="search-btn"></div>
+                </div>
+                <div class="adv-search fl" id="advSearch">
+                    <div class="adv-btn fl" id="advBtn">高级搜索</div>
+                    <div class="adv-btns fl" id="advBtns"></div>
+                </div>
+            </div>
+        </div>
+        <div class="cl"></div>
+        <!--表格部分-->
+        <div class="layui-form">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="60">
+                    <col width="125">
+                    <col width="125">
+                    <col width="125">
+                    <col width="125">
+                    <col width="125">
+                    <col width="125">
+                    <col width="125">
+                    <col width="125">
+                    <col width="125">
+                    <col width="125">
+                    <col width="100">
+                </colgroup>
+                <thead>
+                <tr class="head">
+                    <th><p>序号</p></th>
+                    <th><p>MES物料编码</p></th>
+                    <th><p>MES物料名称</p></th>
+                    <th><p>ERP物料编码</p></th>
+                    <th><p>ERP物料名称</p></th>
+                    <th><p>LIMS物料编码</p></th>
+                    <th><p>LIMS物料名称</p></th>
+                    <th><p>危化品类型</p></th>
+                    <th><p>装车费类型</p></th>
+                    <th><p>提前结算标记</p></th>
+                    <th><p>ERP发货过账标记</p></th>
+                    <th><p class="last">操作</p></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>12338746</td>
+                    <td>97#汽油</td>
+                    <td>DS73838</td>
+                    <td>97#汽油</td>
+                    <td>DS73838</td>
+                    <td>97#汽油</td>
+                    <td class="left">普通危化品</td>
+                    <td class="left">常户</td>
+                    <td>否</td>
+                    <td>否</td>
+                    <td>
+                        <div class="fl img">
+                            <img src="../../resources/img/edit.png" alt="">
+                        </div>
+                        <div class="fl img">
+                            <img src="../../resources/img/delete.png" alt="">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="active">1</td>
+                    <td>12338746</td>
+                    <td>97#汽油</td>
+                    <td>DS73838</td>
+                    <td>97#汽油</td>
+                    <td>DS73838</td>
+                    <td>97#汽油</td>
+                    <td class="left">高级危化品</td>
+                    <td class="left">无需缴纳</td>
+                    <td>否</td>
+                    <td>否</td>
+                    <td>
+                        <div class="fl img">
+                            <img src="../../resources/img/edit.png" alt="">
+                        </div>
+                        <div class="fl img">
+                            <img src="../../resources/img/delete.png" alt="">
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!--高级搜索弹窗-->
+        <div class="search-modal" id="searchModal">
+            <div class="fl title">MES物料编码：</div>
+            <div class="fl"><input type="text"></div>
+            <div class="fl title">MES物料名称：</div>
+            <div class="fl"><input type="text"></div>
+            <div class="fl title">ERP物料编码：</div>
+            <div class="fl"><input type="text"></div>
+            <div class="fl title title2">ERP物料名称：</div>
+            <div class="fl title2"><input type="text"></div>
+            <div class="fl title title2">LIMS物料编码：</div>
+            <div class="fl title2"><input type="text"></div>
+            <div class="fl title title2">LIMS物料名称：</div>
+            <div class="fl title2"><input type="text"></div>
+            <div class="fl title title2">装车费类型：</div>
+            <div class="fl title2">
+                <!--<select name="">-->
+                    <!--<option value="">全部</option>-->
+                <!--</select>-->
+                <div class="fl select">
+                    <div class="s-types">全部类型</div>
+                    <ul class="s-type-list">
+                        <li>全部类型</li>
+                        <li>普通危化品</li>
+                        <li>高级危化品</li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="fl title title2">结算标记：</div>
+            <div class="fl title2">
+                <div class="fl select">
+                    <div class="s-types">全部类型</div>
+                    <ul class="s-type-list">
+                        <li>全部类型</li>
+                        <li>普通危化品</li>
+                        <li>高级危化品</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="fl title title2">ERP发货标记：</div>
+            <div class="fl title2">
+                <div class="fl select">
+                    <div class="s-types">全部类型</div>
+                    <ul class="s-type-list">
+                        <li>全部类型</li>
+                        <li>普通危化品</li>
+                        <li>高级危化品</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="cl"></div>
+            <div class="btn fr">
+                <div class="search-modbtn active">查询</div>
+                <div class="search-modbtn" id="searchClear">清除</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="../../resources/libs/jquery.min.js"></script>
+<script type="text/javascript" src="../../resources/libs/cj-1.0.js"></script>
+<script type="text/javascript" src="../../resources/js/ProductInfo.js"></script>
+</body>
+</html>
