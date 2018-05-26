@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>产品等级信息维护弹框</title>
+	<link rel="stylesheet" href="./../../css/common.css" />
+	<link rel="stylesheet" href="./../../css/dialog.css" />
+	<script src="./../../libs/jquery.min.js"></script>
+	<script src="./../../libs/cj-1.0.js"></script>
+	<script src="./../../js/common.js"></script>
+	<script src="./../../js/dialog.js"></script>
+	<script src="./../../js/product_level.js"></script>
+</head>
+<body>
+	<!--产品等级维护页弹框-->
+	<p style="width: 100%;" class="fl">产品等级维护页相关弹框</p>
+    <div style="width:100%; height: auto;">
+	   <buttton id="add_list_btn" class="btn_nomal blue_btn fl" style="display:block; margin:10px;">批量导入文件</buttton>
+	   <buttton id="add_infolist_btn" class="btn_nomal blue_btn fl" style="width:250px;display:block; margin:10px;">批量导入文件列表信息</buttton>
+		<button id="add_one_btn" class="btn_nomal blue_btn fl" style="display:block; margin:10px;">新增产品等级</button>	
+		<button id="edit_one_btn" class="btn_nomal blue_btn fl" style="display:block; margin:10px;">编辑产品等级</button>	
+	</div>
+
+   <!--黑色弹幕-->
+   <div class="bg_black screen_page hidden" id="screen_page"></div>
+   <!--添加单个客户弹框 start-->
+   <div class="dialog_add bg_white hidden" id="add_dialog">
+		<div class="header">
+			<span>新增客户</span>
+			<img src="./../../img/close.png" alt="关闭" class="close_btn">
+		</div>   			
+		<div class="content">
+			<div class="customer_info">
+				 <ul class="customer_info_box">
+				 	<li class="customer_info_one">
+				 		<div class="info_mark">
+				 			<span class="ft_red">*</span>物料类型：
+				 		</div>
+				 		<div class="info_box">
+				 			<input type="text" value="" id="customer_name" />
+				 		</div>
+				 	</li>
+				 	<li class="customer_info_one">
+				 		<div class="info_mark">
+				 			<span class="ft_red">*</span>MES物料编码：
+				 		</div>
+				 		<div class="info_box">
+				 			<input type="text" value="" id="customer_tel" />
+				 		</div>
+				 	</li>
+				 	<li class="customer_info_one">
+				 		<div class="info_mark">
+				 			<span class="ft_red">*</span>MES物料名称：
+				 		</div>
+				 		<div class="info_box">
+				 			<input type="text" value="" id="customer_code" />
+				 		</div>
+				 	</li>
+				 	<li class="customer_info_one" id="car_type_list">
+				 		<div class="info_mark">
+				 			<span class="ft_red">*</span>MES物料等级：
+				 		</div>
+				 		<div class="info_box">
+				 			<input type="text" value="" id="customer_code" />
+				 		</div>
+				 	</li>
+				 	<li  class="customer_info_one">
+				 		<div class="info_mark">
+				 			<span class="ft_red">*</span>ERP工厂：
+				 		</div>
+				 		<div class="info_box">
+				 			<input type="text" value=""  id="customer_addr" />
+				 		</div>
+				 	</li>
+				 	<li  class="customer_info_one">
+				 		<div class="info_mark">
+				 			<span class="ft_red">*</span>ERP评估类型：
+				 		</div>
+				 		<div class="info_box">
+				 			<input type="text" value=""  id="customer_addr" />
+				 		</div>
+				 	</li>
+				 	<li  class="customer_info_one">
+				 		<div class="info_mark">
+				 			<span class="ft_red">*</span>ERP批次0：
+				 		</div>
+				 		<div class="info_box">
+				 			<input type="text" value=""  id="customer_addr" />
+				 		</div>
+				 	</li>
+				 </ul>
+			</div>
+		</div>
+		<div class="footer">
+			<input type="button" value="继续并新增" class="add_next_btn blue_btn btn_nomal" />
+			<input type="button" value="确定" class="ensure_btn blue_btn btn_nomal" />
+			<input type="button" value="取消" class="cancel_btn gray_btn btn_nomal" />			
+		</div>
+   </div>
+   <!--添加单个客户弹框 end-->
+
+   <!--批量导入弹框 start-->
+   <div class="dialog_add_all bg_white hidden" id="dialog_add_all">
+   	     <!--导入文件部分-->
+   	     <div class="get_file_box">
+   	     	  <!--标题-->
+   	     	  <div class="header">
+				<span>批量导入信息</span>
+				<img src="./../../img/close.png" alt="关闭" class="close_btn">
+			  </div>
+			  <!--上传文件-->
+			  <div class="upload_file">
+			  	    <div class="upload_trigger hand" id="upload_file_trigger">
+			  	    	<p class="load_ts_box">
+			  	    		<img class="load_ts_icon" src="./../../img/load_file.png" alt="">
+			  	    		<span class="ft_0">文件导入</span>
+			  	    	</p>
+			  	    	<p class="ft_gray mt_0">文件格式为.xlsx</p>
+			  	    </div>
+			  	    <p class="mt_0">
+			  	    	请点击<a class="ft_green" href="javascript:;">此处</a>下载模板，若已有模板，请勿重复下载
+			  	    </p>
+			  	    <input type="file" class="file_input hidden" id="load_input" />
+			  </div>
+			  <!--上传过程-->
+			  <div class="loading_file hidden">
+			  	   <div class="progress_box">
+			  	   	    <div class="progress_num ft_white mb_0" id="progress_num">65%</div>
+			  	   	    <div class="progress_len_box">
+			  	   	    	<div class="progress_loading_cur"  id="progress_len"></div>
+			  	   	    </div>
+			  	   </div>
+			  	   <p class="ft_gray mt_0">正在导入</p>			  	   
+			  	   <p class="ft_blue mt_0 hand" id="load_cancel_btn">取消导入</p>
+			  </div>
+			  <!--上传成功-->
+			  <div class="load_success hidden">
+			  		<img src="./../../img/load_success.png" alt="" class="mt_1 mb_0">
+			  		<p class="ft_gray_2">导入成功</p>
+			  </div>
+			  <!--上传失败-->
+			  <div class="load_fail hidden">
+			  	    <p class="load_fail_ts ft_red">
+			  	    	<img src="./../../img/load_fail.png" alt="" class="load_fail_icon">
+			  	    	导入失败
+			  	    </p>
+			  	    <p class="ft_gray_2 mt_0 mb_0">请检查exsl表格</p>
+			  	    <p class="load_fail_again">
+			  	    	<span class="fl ft_blue hand" id="reload_btn">重新上传</span>
+			  	    	<span class="fr hand" id="reload_cancel_btn">取消</span>
+			  	    </p>
+			  </div>
+   	     </div>
+   </div>
+   <!--批量导入弹框 end-->
+<!--批量导入信息列表弹框 start-->
+<div class="contacts_list_box bg_white hidden" id="add_contacts_list">
+	  <!--导入信息列表展示-->
+	  <div class="header">
+			<span>批量导入信息</span>
+			<img src="./../../img/close.png" alt="关闭" class="close_btn">
+	  </div>
+	  <div class="infolist_box ml_0 mr_0">
+	  	    <div class="infolist_box_header mt_0 mb_0">
+	  	    	<div class="fl infolist_header_l tl ft_gray">详情信息显示</div>
+	  	    	<div class="fr infolist_header_r tr">
+					<input type="button" value="确认导入" class="blue_btn btn_big mr_0" id="add_contacts_sure" />
+					<input type="button" value="删除" class="gray_btn  btn_big" id="remove_contacts_sure" />
+	  	    	</div>
+	  	    </div>
+	  	    <div class="infolist_box_body mt_0" id="infolist_par">
+	  	    	 <div class="infolist_title">
+	  	    	 	  <ul class="mt_0 mb_0 tc">
+	  	    	 	  	  <li class="infolist_w_0 fl">
+	  	    	 	  	  	<input type="checkbox" id="check_all" />
+	  	    	 	  	  </li>
+	  	    	 	  	  <li class="infolist_w_1 fl">用户编码</li>
+	  	    	 	  	  <li class="infolist_w_2 fl">客户名称</li>
+						  <li class="infolist_w_3 fl">客户联系方式</li>
+						  <li class="infolist_w_4 fl">联系人及联系方式</li>
+						  <li class="infolist_w_5 fl">装车类型</li>
+						  <li class="infolist_w_6 fl">客户地址</li>
+	  	    	 	  </ul>
+	  	    	 </div>
+				 <div class="infolist_arr_list" id="infolist_arr_list">
+				 	   <div class="infolist_one mt_0 mb_0 tc">
+					 	   	<ul>
+								<li class="infolist_w0 fl"><input type="checkbox"></li>
+								<li class="infolist_w1 fl">6666</li>
+								<li class="infolist_w2 fl">北京大富贵有限公司</li>
+								<li class="infolist_w3 fl">66891167</li>
+								<li class="infolist_w4 fl">马冬梅 1382347865</li>
+								<li class="infolist_w5 fl">G1232</li>
+								<li class="infolist_w6 fl">北京朝阳区仓央路306号</li>
+					 	   	</ul>
+				 	   </div>
+				 	   <div class="infolist_one mt_0 mb_0 tc">
+					 	   	<ul>
+								<li class="infolist_w0 fl"><input type="checkbox"></li>
+								<li class="infolist_w1 fl">6666</li>
+								<li class="infolist_w2 fl">北京大富贵有限公司</li>
+								<li class="infolist_w3 fl">66891167</li>
+								<li class="infolist_w4 fl">马冬梅 1382347865</li>
+								<li class="infolist_w5 fl">G1232</li>
+								<li class="infolist_w6 fl">北京朝阳区仓央路306号</li>
+					 	   	</ul>
+				 	   </div>
+				 	   <div class="infolist_one mt_0 mb_0 tc">
+					 	   	<ul>
+								<li class="infolist_w0 fl"><input type="checkbox"></li>
+								<li class="infolist_w1 fl">6666</li>
+								<li class="infolist_w2 fl">北京大富贵有限公司</li>
+								<li class="infolist_w3 fl">66891167</li>
+								<li class="infolist_w4 fl">马冬梅 1382347865</li>
+								<li class="infolist_w5 fl">G1232</li>
+								<li class="infolist_w6 fl">北京朝阳区仓央路306号</li>
+					 	   	</ul>
+				 	   </div>
+				 </div>
+	  	    </div>
+	  </div>
+</div>
+<!--批量导入信息列表弹框 end-->
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>信息确认弹框</title>
+    <link rel="stylesheet" href="./../../css/common.css" />
+    <link rel="stylesheet" href="./../../css/dialog.css" />
+    <script src="./../../libs/jquery.min.js"></script>
+    <script src="./../../libs/cj-1.0.js"></script>
+    <script src="./../../js/common.js"></script>
+    <script src="./../../js/dialog.js"></script>
+    <script>
+    $(function(){
+        $("#show").on("click",function(){
+            console.log("1234564");
+           new dialog_message({
+                    title:"危险",
+                    content:"你真的确认删除吗？",
+                    show_all_btn:true,
+                    callback:function(){
+                        alert("已确定删除");
+                    }
+              });
+        });
+    });
+    </script>
+</head>
+<body>
+<button class="btn_nomal blue_btn hand" id="show">删除</button>
+   <!--黑色弹幕-->
+   <div class="bg_black screen_page hidden" id="dialog_message">
+        <div class="dialog_msg">
+            <div class="header">
+                <p id="dialog_message_t">信息确认标题</p>
+                <img class="close_icon hand" src="./../../img/close.png" alt="">
+            </div>
+            <div class="content tc">
+                <p class="content_main" id="dialog_message_content">信息确认内容,hello??????说句话啊，是不啊啊啊啊啊啊啊啊啊</p>
+            </div>
+            <div class="footer tc">
+                <button class="btn_nomal blue_btn mr_0">确认</button>
+                <button class="btn_nomal blue_btn">取消</button>
+            </div>
+        </div>       
+   </div>
+</body>
+</html>
