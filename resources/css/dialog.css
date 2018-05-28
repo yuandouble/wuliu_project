@@ -1,0 +1,107 @@
+/*客户添加（编辑）--对话框*/
+.dialog_add{position: fixed; left: 50%;top:50%;margin-left:-392px;margin-top:-212px;width: 784px;height:auto; padding-bottom:10px;/*height: 414px;*/z-index:3;}
+.dialog_add .header{width: 100%;height: 42px;line-height: 42px;background-color: #f6f9fc; text-align: center;position: relative;font-size: 16px;color:#333333;font-weight: bold;}
+.dialog_add .close_btn{width: 10px; height: 10px; position: absolute; right: 16px; top: 16px;cursor:pointer;}
+.dialog_add .content{width:100%;position:relative;}
+.dialog_add .customer_info{margin:0px 15px;overflow: hidden;}
+.dialog_add .customer_info .customer_info_box{width:100%;}
+.dialog_add .customer_info .customer_info_one{width:50%;float: left;height: 40px;margin-top:10px;overflow: hidden;}
+.dialog_add .customer_info .info_addr{width: 100%;}
+.dialog_add .customer_info .info_mark{width: 120px;float: left;text-align: right;height: 40px; line-height: 40px;}
+.dialog_add .customer_info .info_box{width: 200px;height:36px;line-height:36px;background-color: #ffffff;border-radius:2px;border: solid 1px #dbe3e9;float: left;}
+.dialog_add .customer_info .info_box .jtou_icon{position: absolute; right: 10px; top: 45%;}
+.dialog_add .customer_info .info_addr .info_box{width:578px;}
+.dialog_add .customer_info .info_addr .info_box input,.dialog_add .customer_info .info_box input{width:100%;height:32px;}
+.dialog_add .customer_info .customer_menu{position:absolute;width:200px;left:512px;top:100px;border:solid 1px #dbe3e9;z-index:5;background: white;}
+.dialog_add .customer_info .customer_menu li{width:100%;margin-top:0px;border-bottom:solid 1px #dbe3e9;height:30px;line-height:30px;}
+.dialog_add .customer_info .customer_menu li.act{background:blue;color: white;}
+.dialog_add .contacts{margin:10px 5px 0px;border-radius:2px;border:solid 1px #dbe3e9;}
+.dialog_add .contacts .contacts_header{margin:3px;height:42px;line-height:42px;background-color:#f6f9fc;text-align:left;position: relative;}
+.dialog_add .contacts .add_contacs_btn{width:32px;height:32px;position:absolute;right:10px;top:5px;cursor:pointer;}
+.dialog_add .contacts .contacts_body{border-top:solid 1px #dbe3e9;}
+.dialog_add .contacts .contacts_body .contacts_title{width: 100%;padding:10px 0px;text-align: center;overflow: hidden;font-size: 14px;}
+.dialog_add .contacts .contacts_body .contacts_title p{border-right: solid 1px #dbe3e9;}
+.dialog_add .contacts .contacts_body .contacts_title p.border_none{border-right: none;}
+.dialog_add .contacts .contacts_body .contacts_list_demo{width: 100%; max-height: 150px; overflow-y:auto;}
+.dialog_add .contacts .contacts_body .contacts_one_t{text-align: center;}
+.dialog_add .contacts .contacts_body .contacts_w_0{width:20%;}
+.dialog_add .contacts .contacts_body .contacts_w_1{width:40%;}
+.dialog_add .contacts .contacts_body .contacts_one{width:100%;height: 48px;line-height: 48px;}
+.dialog_add .contacts .contacts_body .contacts_w_2{width:80%;height:30px;line-height: 30px;}
+.dialog_add .contacts .contacts_body .contacts_w_3{width:90%;height:30px;line-height: 30px;}
+.dialog_add .contacts .contacts_body .contacts_text{border:solid 1px #dbe3e9;}
+.dialog_add .contacts .contacts_body .border_none{border:none;background:none;}
+.dialog_add .contacts .contacts_body .edit_box{text-align:center;}
+.dialog_add .contacts .contacts_body .edit_box .edit_btn_one{width: 16px;height: 16px; margin-right: 20px; cursor: pointer;}
+.dialog_add .contacts .contacts_body .edit_box .delete_btn_one{width: 16px;cursor: pointer;}
+.dialog_add .footer{width: 100%;text-align: right;margin-top:10px;}
+.dialog_add .footer .add_next_btn,.dialog_add .footer .ensure_btn,.dialog_add .footer .cancel_btn{margin-right: 10px;}
+
+/*产品信息添加or编辑对话框*/
+.dialog_add .type_radio_list{float:left;margin-left:50px;}
+.dialog_add .type_radio_one{margin-right:50px;}
+.dialog_add .customer_info .product_type_menu{left: 135px;top: 200px;width: 250px;}
+.dialog_add .product_info_box .info_box{width: 250px;}
+
+/*产品等级信息添加or编辑对话框*/
+
+
+/*批量导入对话框*/
+.dialog_add_all{width: 784px; height: 414px;/*height:auto;*/position:fixed;left:50%;top:50%; z-index: 3;margin-left:-392px;margin-top:-212px;}
+.dialog_add_all .get_file_box{width: 100%; height: auto;overflow: hidden;}
+.dialog_add_all .header,.contacts_list_box .header{width:100%;height:42px;line-height:42px;background-color: #f6f9fc; text-align: center;position: relative;font-size: 16px;color:#333333;font-weight: bold;}
+.dialog_add_all .close_btn,.contacts_list_box .close_btn{width:10px;height:10px;position:absolute;right: 16px; top: 16px;cursor:pointer;}
+/*导入文件*/
+.dialog_add_all .upload_file{width:100%;text-align:center;margin:23px auto 0px;}
+.dialog_add_all .upload_file .upload_trigger,.dialog_add_all .loading_file,.dialog_add_all .load_success,.dialog_add_all .load_fail{width: 277px;height: 194px;border-radius: 2px;border: solid 1px #00ccff;background:#e5f5ff;margin:0 auto;}
+.dialog_add_all .upload_file .load_ts_box{margin-top:58px;height:16px;line-height:16px;}
+.dialog_add_all .upload_file .load_ts_icon{width:15px;}
+.dialog_add_all .loading_file,.dialog_add_all .load_success,.dialog_add_all .load_fail{text-align: center;margin:23px auto 0px;}
+/*正在导入*/
+.dialog_add_all .progress_box{width:240px;height:auto;margin:50px auto 0px;}
+.dialog_add_all  .progress_num{width:54px;height:24px;background: url(./../img/load_num_bg.png) no-repeat center bottom;text-align: center;}
+.dialog_add_all  .progress_len_box{border-radius:2px; overflow:hidden;width:238px;height: 14px;background-color: #ffffff;border-radius: 2px;border: solid 1px #dddddd;}
+.dialog_add_all  .progress_loading_cur{width:30%;height:100%;background:#006ac3 url(./../img/loading_icon.png) no-repeat left top;}
+/*导入失败*/
+.dialog_add_all  .load_fail_ts{width:100px;height:18px;line-height:18px;margin:62px auto 0px; }
+.dialog_add_all  .load_fail_icon{margin-top:2px;}
+.dialog_add_all  .load_fail_again{width:140px;margin:10px auto 0px;}
+
+
+/*导入文件信息列表对话框*/
+.contacts_list_box{width: 910px; height: 414px;/*height:auto;*/position:fixed;left:50%;top:50%; z-index: 3;margin-left:-455px;margin-top:-212px;}
+.contacts_list_box  .infolist_box{}
+
+.contacts_list_box  .infolist_box_header{overflow: hidden; width: 100%;}
+.contacts_list_box  .infolist_header_l,.dialog_add_all  .infolist_header_r{width: 50%;}
+.contacts_list_box  .infolist_header_l{height: 42px; line-height: 42px;}
+
+.contacts_list_box .infolist_box_body{border:solid 1px #dfe0e4;}
+.contacts_list_box .infolist_title,.contacts_list_box .infolist_title ul{overflow:hidden;}
+.contacts_list_box .infolist_w_0{width:30px;border-right:#999999 solid 1px;}
+.contacts_list_box .infolist_w_1{width:80px;border-right:#999999 solid 1px;}
+.contacts_list_box .infolist_w_2{width:175px;border-right:#999999 solid 1px;}
+.contacts_list_box .infolist_w_3{width:120px;border-right:#999999 solid 1px;}
+.contacts_list_box .infolist_w_4{width:200px;border-right:#999999 solid 1px;}
+.contacts_list_box .infolist_w_5{width:75px;border-right:#999999 solid 1px;}
+.contacts_list_box .infolist_w_6{width:200px;}
+
+.contacts_list_box .infolist_arr_list{overflow:hidden;}
+.contacts_list_box .infolist_one{overflow:hidden;width:100%;}
+.contacts_list_box .infolist_w0{width:30px;padding-right:1px;}
+.contacts_list_box .infolist_w1{width:80px;padding-right:1px;}
+.contacts_list_box .infolist_w2{width:175px;padding-right:1px;}
+.contacts_list_box .infolist_w3{width:120px;padding-right:1px;}
+.contacts_list_box .infolist_w4{width:200px;padding-right:1px;}
+.contacts_list_box .infolist_w5{width:75px;padding-right:1px;}
+.contacts_list_box .infolist_w6{width:200px;}
+
+
+/*信息确认弹框 （含确定/取消） */
+.dialog_msg{width:400px;margin-left:-200px; margin-top:-100px;position: fixed; top:50%; left: 50%; z-index: 15;background: white;}
+.dialog_msg .header{width: 100%;height: 42px;line-height: 42px;background-color: #f6f9fc;text-align: center;position: relative;font-size: 16px;color: #333333;font-weight: bold;}
+.dialog_msg .header .close_icon{position: absolute; right: 10px; top: 15px;}
+.dialog_msg .content{padding:30px 30px;}
+.dialog_msg .content .content_main{}
+.dialog_msg .footer{padding-bottom:10px;}
+
