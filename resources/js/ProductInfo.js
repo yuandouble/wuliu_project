@@ -1,10 +1,7 @@
-(function () {
-    $(document).ready(function () {
-        productInfo.bindEvent();
-        productInfo.productRequest();
-    })
-})()
-
+$(document).ready(function () {
+    productInfo.bindEvent();
+    productInfo.productRequest();
+})
 var productInfo = {
     bindEvent:function () {
         var flag = true;
@@ -73,6 +70,10 @@ var productInfo = {
             $(".s-type-list").hide();
             typeFlag  = false;
         })
+        //点击新增，添加一条进来；
+
+        //点击批量导入，进行文件上传，批量导入信息
+        
     },
 
     // 产品信息查询
