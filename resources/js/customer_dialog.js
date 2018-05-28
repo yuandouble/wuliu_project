@@ -1,6 +1,9 @@
 //页面初始化
 $(function(){
 
+    customer.bindEvent();
+    // customer.customerRequest();
+
 	//初始化新增（编辑）客户
 	var dialog_customer = new customer_dialog();
 
@@ -431,14 +434,6 @@ customer_dialog.prototype.insert_data=function(oPar,data){
 
 
 //页面主效果--------------------------------------------------------------------------------------------------------
-
-$(document).ready(function () {
-    customer.bindEvent();
-    // customer.customerRequest();
-})
-
-
-
 var customer = {
     bindEvent:function () {
         var flag = true;

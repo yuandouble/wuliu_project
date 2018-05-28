@@ -7,19 +7,29 @@
     <link href="./../../css/style.css" rel="stylesheet">
 	<link rel="stylesheet" href="./../../css/common.css" />
 	<link rel="stylesheet" href="./../../css/dialog.css" />
-	<script src="./../../libs/jquery.min.js"></script>
-	<script src="./../../libs/cj-1.0.js"></script>
-	<script src="./../../js/common.js"></script>
-	<script src="./../../js/dialog.js"></script>
-	<script src="./../../js/customer_dialog.js"></script>
 </head>
 <body>
+	<!--
+	<div>
+		<p style="width: 100%;" class="fl">客户管理页相关弹框</p>
+		<div style="width:100%; height: auto;">
+	-->
+		   <!--
+			<buttton id="add_list_btn" class="btn_nomal blue_btn fl" style="display:block; margin:10px;">批量导入文件</buttton>
+		    <button id="add_one_btn" class="btn_nomal blue_btn fl" style="display:block; margin:10px;">新增客户</button>	
+		   -->
+		   <!--
+			<buttton id="add_infolist_btn" class="btn_nomal blue_btn fl" style="width:250px;display:block; margin:10px;">批量导入文件列表信息</buttton>
+		   <button id="edit_one_btn" class="btn_nomal blue_btn fl" style="display:block; margin:10px;">编辑客户</button>
+		</div>	
+	</div>
+		   -->
     <div class="customer-list">
         <div><span class="nav">基础数据管理  > </span>客户信息</div>
         <div class="content">
             <div class="tools">
-                <div class="active">新增</div>
-                <div>批量导入</div>
+                <div class="active" id="add_one_btn">新增</div>
+                <div id="add_list_btn">批量导入</div>
                 <div>ERP导入</div>
                 <div id="refresh">刷新</div>
             </div>
@@ -189,16 +199,6 @@
         </div>
     </div>
     <!--弹框开始部分-->
-    <div>
-	<p style="width: 100%;" class="fl">客户管理页相关弹框</p>
-	<div style="width:100%; height: auto;">
-	   <buttton id="add_list_btn" class="btn_nomal blue_btn fl" style="display:block; margin:10px;">批量导入文件</buttton>
-	   <buttton id="add_infolist_btn" class="btn_nomal blue_btn fl" style="width:250px;display:block; margin:10px;">批量导入文件列表信息</buttton>
-	   <button id="add_one_btn" class="btn_nomal blue_btn fl" style="display:block; margin:10px;">新增客户</button>	
-	   <button id="edit_one_btn" class="btn_nomal blue_btn fl" style="display:block; margin:10px;">编辑客户</button>		   
-	</div>
-	
-</div>
    <!--黑色弹幕-->
    <div class="bg_black screen_page hidden" id="screen_page"></div>
    <!--添加单个客户弹框 start-->
@@ -424,11 +424,13 @@
 	  </div>
 </div>
 <!--批量导入信息列表弹框 end-->
-    <!--弹框结束部分-->
-    <script type="text/javascript" src="./../../libs/jquery.min.js"></script>
-    <script type="text/javascript" src="./../../libs/laypage.js"></script>
-    <script type="text/javascript" src="./../../libs/cj-1.0.js"></script>
-    <script type="text/javascript" src="./../../libs/messageUtil.js"></script>
-    <script type="text/javascript" src="./../../js/customer_dialog.js"></script>
+<!--弹框结束部分-->
+<script type="text/javascript" src="./../../libs/jquery.min.js"></script>
+<script type="text/javascript" src="./../../libs/laypage.js"></script>
+<script type="text/javascript" src="./../../libs/cj-1.0.js"></script>
+<script type="text/javascript" src="./../../libs/messageUtil.js"></script>
+<script type="text/javascript" src="./../../js/common.js"></script>
+<script type="text/javascript" src="./../../js/dialog.js"></script>
+<script type="text/javascript" src="./../../js/customer_dialog.js"></script>
 </body>
 </html>
