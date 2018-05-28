@@ -67,7 +67,6 @@
 .dialog_add_all  .load_fail_icon{margin-top:2px;}
 .dialog_add_all  .load_fail_again{width:140px;margin:10px auto 0px;}
 
-
 /*导入文件信息列表对话框*/
 .contacts_list_box{width: 910px; height: 414px;/*height:auto;*/position:fixed;left:50%;top:50%; z-index: 3;margin-left:-455px;margin-top:-212px;}
 .contacts_list_box  .infolist_box{}
@@ -78,6 +77,8 @@
 
 .contacts_list_box .infolist_box_body{border:solid 1px #dfe0e4;}
 .contacts_list_box .infolist_title,.contacts_list_box .infolist_title ul{overflow:hidden;}
+
+/*客户管理---导入文件信息对话框每列宽度调整*/
 .contacts_list_box .infolist_w_0{width:30px;border-right:#999999 solid 1px;}
 .contacts_list_box .infolist_w_1{width:80px;border-right:#999999 solid 1px;}
 .contacts_list_box .infolist_w_2{width:175px;border-right:#999999 solid 1px;}
@@ -96,6 +97,37 @@
 .contacts_list_box .infolist_w5{width:75px;padding-right:1px;}
 .contacts_list_box .infolist_w6{width:200px;}
 
+/*产品信息维护--导入文件信息对话框每列宽度调整*/
+.contacts_list_box .infolist_w_7{width:95px;border-right:#999999 solid 1px;}
+.contacts_list_box .infolist_w_8{width:160px;border-right:#999999 solid 1px;}
+.contacts_list_box .infolist_w_9{width:95px;border-right:#999999 solid 1px;}
+.contacts_list_box .infolist_w_10{width:160px;border-right:#999999 solid 1px;}
+.contacts_list_box .infolist_w_11{width:95px;border-right:#999999 solid 1px;}
+.contacts_list_box .infolist_w_12{width:160px;border-right:#999999 solid 1px;}
+.contacts_list_box .infolist_w_13{width:80px;}
+
+.contacts_list_box .infolist_w7{width:95px;padding-right:1px;}
+.contacts_list_box .infolist_w8{width:160px;padding-right:1px;}
+.contacts_list_box .infolist_w9{width:95px;padding-right:1px;}
+.contacts_list_box .infolist_w10{width:160px;padding-right:1px;}
+.contacts_list_box .infolist_w11{width:95px;padding-right:1px;}
+.contacts_list_box .infolist_w12{width:160px;border-right:1px;}
+.contacts_list_box .infolist_w13{width:80px;}
+/*产品等级信息维护--导入文件信息对话框每列宽度调整*/
+.contacts_list_box .infolist_w_14{width:125px;border-right:#999999 solid 1px;}
+.contacts_list_box .infolist_w_15{width:275px;border-right:#999999 solid 1px;}
+.contacts_list_box .infolist_w_16{width:100px;border-right:#999999 solid 1px;}
+.contacts_list_box .infolist_w_17{width:130px;border-right:#999999 solid 1px;}
+.contacts_list_box .infolist_w_18{width:120px;border-right:#999999 solid 1px;}
+.contacts_list_box .infolist_w_19{width:100px;}
+
+
+.contacts_list_box .infolist_w14{width:125px;border-right:#999999 solid 1px;}
+.contacts_list_box .infolist_w15{width:275px;border-right:#999999 solid 1px;}
+.contacts_list_box .infolist_w16{width:100px;border-right:#999999 solid 1px;}
+.contacts_list_box .infolist_w17{width:130px;border-right:#999999 solid 1px;}
+.contacts_list_box .infolist_w18{width:120px;border-right:#999999 solid 1px;}
+.contacts_list_box .infolist_w19{width:100px;}
 
 /*信息确认弹框 （含确定/取消） */
 .dialog_msg{width:400px;margin-left:-200px; margin-top:-100px;position: fixed; top:50%; left: 50%; z-index: 15;background: white;}
