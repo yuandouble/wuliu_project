@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="60480cab-4a24-4b35-b8e0-10f717d60a58" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/basics/customer_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/basics/customer_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/basics/info_dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/basics/info_dialog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/PIE.htc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/wareHouse.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/wareHouse.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,34 +18,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="wareHouse.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/basics/wareHouse.html">
+      <file leaf-file-name="wareHouse.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/js/wareHouse.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2242">
-              <caret line="5" column="87" selection-start-line="5" selection-start-column="87" selection-end-line="5" selection-end-column="87" />
+            <state relative-caret-position="572">
+              <caret line="98" column="63" lean-forward="true" selection-start-line="93" selection-start-column="12" selection-end-line="98" selection-end-column="63" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="product_level.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/js/product_level.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="ProductInfo.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/js/ProductInfo.js">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="589">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
+            <state relative-caret-position="344">
+              <caret line="207" column="34" lean-forward="true" selection-start-line="207" selection-start-column="34" selection-end-line="207" selection-end-column="34" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="product_info.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/basics/product_info.html">
+      <file leaf-file-name="cranePositionMapping.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/html/basics/cranePositionMapping.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="5" column="41" lean-forward="true" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="41" />
+            <state relative-caret-position="1463">
+              <caret line="135" lean-forward="true" selection-start-line="135" selection-end-line="135" />
             </state>
           </provider>
         </entry>
@@ -54,44 +48,17 @@
       <file leaf-file-name="customer_dialog.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/basics/customer_dialog.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="1338">
+              <caret line="72" column="24" lean-forward="true" selection-start-line="72" selection-start-column="24" selection-end-line="72" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="common.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/js/common.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="info_dialog.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/basics/info_dialog.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="817">
-              <caret line="43" column="32" lean-forward="true" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dialog.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/js/dialog.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1623">
-              <caret line="421" column="22" selection-start-line="421" selection-start-column="8" selection-end-line="421" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="customer_dialog.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="customer_dialog.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/js/customer_dialog.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="671" column="34" lean-forward="true" selection-start-line="671" selection-start-column="34" selection-end-line="671" selection-end-column="34" />
+            <state relative-caret-position="273">
+              <caret line="627" column="42" lean-forward="true" selection-start-line="627" selection-start-column="42" selection-end-line="627" selection-end-column="42" />
               <folding>
                 <element signature="e#7753#11209#0" />
               </folding>
@@ -99,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cranePosition.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/basics/cranePosition.html">
+      <file leaf-file-name="wareHouse.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/html/basics/wareHouse.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="4" column="25" lean-forward="true" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+            <state relative-caret-position="528">
+              <caret line="24" column="18" lean-forward="true" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -131,7 +98,6 @@
       <find>cranePositionERPReader</find>
       <find>hover</find>
       <find>right</find>
-      <find>left</find>
       <find>rights</find>
       <find>deliveryPointRequest</find>
       <find>color</find>
@@ -149,10 +115,11 @@
       <find>info</find>
       <find>dialog_message</find>
       <find>setContent</find>
-      <find>show_dialog</find>
       <find>advSearch</find>
-      <find>new</find>
       <find>dialog_message_t</find>
+      <find>new</find>
+      <find>show_dialog</find>
+      <find>left</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -187,12 +154,12 @@
         <option value="$PROJECT_DIR$/html/basics/warehouse.html" />
         <option value="$PROJECT_DIR$/resources/js/warehouse.js" />
         <option value="$PROJECT_DIR$/resources/js/cranePositionMapping.js" />
-        <option value="$PROJECT_DIR$/resources/css/style.css" />
         <option value="$PROJECT_DIR$/html/basics/wareHouse.html" />
         <option value="$PROJECT_DIR$/html/basics/cranePositionMapping.html" />
-        <option value="$PROJECT_DIR$/resources/js/wareHouse.js" />
         <option value="$PROJECT_DIR$/html/basics/info_dialog.html" />
+        <option value="$PROJECT_DIR$/resources/css/style.css" />
         <option value="$PROJECT_DIR$/html/basics/customer_dialog.html" />
+        <option value="$PROJECT_DIR$/resources/js/wareHouse.js" />
         <option value="$PROJECT_DIR$/resources/js/customer_dialog.js" />
       </list>
     </option>
@@ -206,9 +173,9 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="6" />
-    <option name="y" value="-17" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="1924" />
     <option name="height" value="1056" />
   </component>
@@ -319,15 +286,15 @@
       <workItem from="1527122746834" duration="22209000" />
       <workItem from="1527208584105" duration="23348000" />
       <workItem from="1527298503327" duration="14626000" />
-      <workItem from="1527474434820" duration="4740000" />
+      <workItem from="1527474434820" duration="8884000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="171123000" />
+    <option name="totallyTimeSpent" value="175267000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.171875" />
@@ -452,8 +419,6 @@
     <entry file="file://$PROJECT_DIR$/html/basics/cranePositionERP.html" />
     <entry file="file://$PROJECT_DIR$/resources/js/customer.js" />
     <entry file="file://$PROJECT_DIR$/html/basics/cranePositionMES.html" />
-    <entry file="file://$PROJECT_DIR$/resources/css/style.css" />
-    <entry file="file://$PROJECT_DIR$/html/basics/cranePositionMapping.html" />
     <entry file="file://$PROJECT_DIR$/resources/js/deliveryPoint.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
@@ -485,20 +450,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/wareHouse.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" column="35" lean-forward="true" selection-start-line="1" selection-start-column="35" selection-end-line="1" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/basics/wareHouse.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2242">
-          <caret line="5" column="87" selection-start-line="5" selection-start-column="87" selection-end-line="5" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/product_level.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -523,27 +474,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/dialog.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1623">
-          <caret line="421" column="22" selection-start-line="421" selection-start-column="8" selection-end-line="421" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/basics/customer_dialog.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/html/basics/info_dialog.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="817">
@@ -551,13 +481,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/dialog.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5157">
+          <caret line="421" column="22" selection-start-line="421" selection-start-column="8" selection-end-line="421" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/basics/wareHouse.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="24" column="18" lean-forward="true" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/basics/cranePositionMapping.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1463">
+          <caret line="135" lean-forward="true" selection-start-line="135" selection-end-line="135" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/basics/customer_dialog.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1338">
+          <caret line="72" column="24" lean-forward="true" selection-start-line="72" selection-start-column="24" selection-end-line="72" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/customer_dialog.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="671" column="34" lean-forward="true" selection-start-line="671" selection-start-column="34" selection-end-line="671" selection-end-column="34" />
+        <state relative-caret-position="273">
+          <caret line="627" column="42" lean-forward="true" selection-start-line="627" selection-start-column="42" selection-end-line="627" selection-end-column="42" />
           <folding>
             <element signature="e#7753#11209#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="207" column="34" lean-forward="true" selection-start-line="207" selection-start-column="34" selection-end-line="207" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/wareHouse.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="98" column="63" lean-forward="true" selection-start-line="93" selection-start-column="12" selection-end-line="98" selection-end-column="63" />
         </state>
       </provider>
     </entry>

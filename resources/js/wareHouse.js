@@ -1,9 +1,7 @@
-(function () {
-    $(document).ready(function () {
-        wareHouse.bindEvent();
-        // wareHouse.wareHouseRequest();
-    })
-})()
+$(function () {
+    wareHouse.bindEvent();
+    // wareHouse.wareHouseRequest();
+})
 
 var wareHouse = {
     bindEvent: function () {
@@ -84,10 +82,21 @@ var wareHouse = {
             }
         });
 
+        //点击每一行加样式
         $("tbody").on("click", "tr", function () {
             $(this).addClass("active").siblings().removeClass("active");
             _index = $(this).index();
             console.log(_index);
+        })
+
+        //点击表格里面ul加样式
+        $("tbody").on("click", ".padd li", function () {
+            // var _index = $(this).index();
+            // console.log("aaa"+_index);
+            // var uls = $(this)
+            // for()
+            // $(this).css({"background":"red"});
+            // $(this).find("input").css({"background":"red"});
         })
 
         //保存
