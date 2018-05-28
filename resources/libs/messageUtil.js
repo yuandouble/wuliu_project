@@ -28,7 +28,7 @@ var confirm = function (msg, title, callback) {
     showMessage('confirm', msg, title);
 }
 
-var loading = $('<div class="loading" style="display: none;"><img src="../../resources/img/loading2.gif" /></div>');
+var loading = $('<div class="loading" style="display: none;"><img src="./../../img/loading2.gif" /></div>');
 loading.appendTo("body");
 var showLoading = function () {
     $(".mask").fadeIn();

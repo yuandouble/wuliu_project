@@ -157,10 +157,10 @@ var cranePositionMES = {
                 + '</td>'
                 + '<td>'
                 + '<div class="fl img edit">'
-                + '<img src="../../resources/img/edit.png" alt="">'
+                + '<img src="./../../img/edit.png" alt="">'
                 + '</div>'
                 + '<div class="fl img delete">'
-                + '<img src="../../resources/img/delete.png" alt="">'
+                + '<img src="./../../img/delete.png" alt="">'
                 + '</div>'
                 + '</td>'
                 + '</tr>';

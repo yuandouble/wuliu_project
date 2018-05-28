@@ -720,8 +720,8 @@ var customer = {
                 +'</div>'
                 +'</td>'
                 +'<td>'
-                +'<div class="fl img edit"><img src="../../resources/img/edit.png" alt=""></div>'
-                +'<div class="fl img"><img src="../../resources/img/delete.png" alt=""></div>'
+                +'<div class="fl img edit"><img src="./../../img/edit.png" alt=""></div>'
+                +'<div class="fl img"><img src="./../../img/delete.png" alt=""></div>'
                 +'</td>'
                 +'</tr>';
         }
