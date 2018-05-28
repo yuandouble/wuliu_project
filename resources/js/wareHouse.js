@@ -17,7 +17,7 @@ var wareHouse = {
                 }
             })
             if (flag != 0) {
-                if ($("tbody tr").hasClass("add")) {
+                if ($("tbody tr").hasClass("add")  && $("tbody tr").find("input").eq(0).attr("readonly")) {
                     info("请先保存新增项", '温馨提示', function () {
                     });
                 } else {
@@ -46,7 +46,7 @@ var wareHouse = {
                 } else {
                     var _tr = '<tr class="add">'
                         + '<td>12338746</td>'
-                        + '<td class="rights"><input type="text" readonly value= ""></td>'
+                        + '<td class="rights"><input type="text" value= ""></td>'
                         + '<td class="padd">'
                         + '<ul>'
                         + '<li class="first-li"><input type="text" value= ""></li>'
@@ -100,7 +100,7 @@ var wareHouse = {
         })
         //修改操作
         $("tbody").on("click", ".edit", function () {
-            if ($("tbody tr").hasClass("add") || $("tbody ul li").hasClass("add-li")) {
+            if ($("tbody tr").hasClass("add")) {
                 info("请先保存新增项", '温馨提示', function () {
                 });
             } else {
