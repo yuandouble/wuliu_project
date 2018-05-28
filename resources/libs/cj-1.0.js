@@ -80,6 +80,7 @@ cj.parseCjArray = function (formObj) {
     var cjObject = {};
     var collection = {};
     var templates = [];
+
     for (var i = 0; i < formObj.length; i++) {
         var obj = formObj[i];
         var template = {};
@@ -95,6 +96,7 @@ cj.parseCjArray = function (formObj) {
 
             data.push(single);
         }
+
         template["data"] = data;
         templates.push(template);
     }
