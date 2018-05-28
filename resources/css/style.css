@@ -39,6 +39,7 @@ input{
 .layui-table{
     border: 1px solid #dbe3e9;
     border-collapse: collapse;
+    table-layout: fixed;
 }
 .layui-table th,.layui-table td{
     border: none;
@@ -206,6 +207,9 @@ input{
 }
 .customer-list .layui-table .left{
     text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .customer-list td .img{
     width: 45%;
