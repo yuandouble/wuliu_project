@@ -39,8 +39,11 @@ input{
 .layui-table{
     border: 1px solid #dbe3e9;
     border-collapse: collapse;
-    table-layout: fixed;
-}
+   /*
+table-layout: fixed;
+
+   */
+    }
 .layui-table th,.layui-table td{
     border: none;
     text-align: center;
@@ -521,3 +524,5 @@ input{
     background: rgba(26, 158, 254, 0.8);
     color: #fff;
 }
+/*产品等级信息*/
+.wuliao_code{width: 100%;width: 210px;height: 36px;line-height: 36px;outline: none;text-indent: 10px;border: solid 1px #dbe3e9;}

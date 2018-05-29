@@ -31,6 +31,15 @@ $(function(){
 		dialog_upload.hide_dialog();
 		file_infolist.show_dialog();
 	}); 
+
+	//物料编码的模糊搜索
+	$("#wuliao_code").on("click",function(){
+		$("#wuliao_code").parent().find(".type-list").show();
+	});
+	/*物料编码的下拉菜单点击选择以后，将数据填入物料编码的表单中，同时刷列表数据*/
+	$("#wuliao_code").parent().find(".type-list li").on("click",function(){
+		$("#wuliao_code").val($(this).text());
+	});
 });
 
 /*产品等级维护对话框类*/

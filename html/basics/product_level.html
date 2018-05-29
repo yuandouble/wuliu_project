@@ -11,7 +11,7 @@
 <body>
     <!--页面主体开始部分-->
     <div class="customer-list">
-    <div><span class="nav">基础数据管理  > </span>产品信息维护</div>
+    <div><span class="nav">基础数据管理  > </span>产品等级信息维护</div>
     <div class="content">
         <div class="tools">
             <div class="active" id="add_one_btn">新增</div>
@@ -20,10 +20,13 @@
         </div>
         <div>
             <div class="fl">
-                <div class="fl type">危化品类型：</div>
-                <div class="fl type-select">
-                    <div class="types">全部类型</div>
-                    <ul class="type-list">
+                <div class="fl type">MES物料编码:</div>
+                <div class="fl type-select ml_0">
+                    <input type="text" class="wuliao_code" id="wuliao_code" />
+                    <!--
+					<div class="types">全部类型</div>
+                     -->
+					 <ul class="type-list">
                         <li>全部类型</li>
                         <li>普通危化品</li>
                         <li>一般危化品</li>
@@ -36,8 +39,6 @@
                         <li>高级危化品</li>
                     </ul>
                 </div>
-
-
                 <!--<div class="fl">-->
                     <!--<select class="product-type" name="" id="">-->
                         <!--<option value="">全部类型</option>-->
@@ -197,6 +198,7 @@
     <!--页面主体结束部分-->
 
 	<!--产品等级维护页弹框-->
+	<!--
 	<p style="width: 100%;" class="fl">产品等级维护页相关弹框</p>
     <div style="width:100%; height: auto;">
 	   <buttton id="add_list_btn" class="btn_nomal blue_btn fl" style="display:block; margin:10px;">批量导入文件</buttton>
@@ -204,7 +206,8 @@
 		<button id="add_one_btn" class="btn_nomal blue_btn fl" style="display:block; margin:10px;">新增产品等级</button>	
 		<button id="edit_one_btn" class="btn_nomal blue_btn fl" style="display:block; margin:10px;">编辑产品等级</button>	
 	</div>
-
+    
+    -->
    <!--黑色弹幕-->
    <div class="bg_black screen_page hidden" id="screen_page"></div>
    <!--添加单个客户弹框 start-->
@@ -266,7 +269,7 @@
 				 	</li>
 				 	<li  class="customer_info_one">
 				 		<div class="info_mark">
-				 			<span class="ft_red">*</span>ERP批次0：
+				 			<span class="ft_red">*</span>ERP批次：
 				 		</div>
 				 		<div class="info_box">
 				 			<input type="text" value=""  id="customer_addr" />
