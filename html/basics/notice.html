@@ -197,17 +197,20 @@
 </div>
     <!--页面主体结束部分-->
 
-	<!--产品等级维护页弹框-->
-	<!--
-	<p style="width: 100%;" class="fl">产品等级维护页相关弹框</p>
-    <div style="width:100%; height: auto;">
-	   <buttton id="add_list_btn" class="btn_nomal blue_btn fl" style="display:block; margin:10px;">批量导入文件</buttton>
-	   <buttton id="add_infolist_btn" class="btn_nomal blue_btn fl" style="width:250px;display:block; margin:10px;">批量导入文件列表信息</buttton>
-		<button id="add_one_btn" class="btn_nomal blue_btn fl" style="display:block; margin:10px;">新增产品等级</button>	
-		<button id="edit_one_btn" class="btn_nomal blue_btn fl" style="display:block; margin:10px;">编辑产品等级</button>	
-	</div>
-    
-    -->
+<!-- 加载编辑器的容器 -->
+<script id="container" name="content" type="text/plain">
+    这里写你的初始化内容
+</script>
+<!-- 配置文件 -->
+<script type="text/javascript" src="ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="ueditor.all.js"></script>
+<!-- 实例化编辑器 -->
+<script type="text/javascript">
+    var ue = UE.getEditor('container');
+</script>
+
+
 
 <!--js部分-->
 <script type="text/javascript" src="./../../libs/jquery.min.js"></script>
