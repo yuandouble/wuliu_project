@@ -1,9 +1,9 @@
 $(function () {
-    wareHouse.bindEvent();
-    // wareHouse.wareHouseRequest();
+    deliveryPointMapping.bindEvent();
+    // deliveryPointMapping.deliveryPointMappingRequest();
 })
 
-var wareHouse = {
+var deliveryPointMapping = {
     bindEvent: function () {
         //新增
         var _index = 0;
@@ -20,22 +20,21 @@ var wareHouse = {
                     });
                 } else {
                     if($("tbody tr").eq(_index).find(".library-position input").hasClass("active")){
-                            info("请先保存修改项", '温馨提示', function () {
-                            });
+                        info("请先保存修改项", '温馨提示', function () {
+                        });
                     }else {
-                        console.log("111");
-                        var uls = '<ul class="library-position add">'
-                            + '<li><input type="text" value= ""></li>'
-                            + '<li><input type="text" value= ""></li>'
-                            + '<li>张立新</li>'
-                            + '<li>2018-04-10</li>'
-                            + '<li>'
-                            + '<div class="switch1">'
-                            + '<div class="switch2"></div>'
-                            + '</div>'
-                            + '</li>'
-                            + '</ul>';
-                        $("tbody tr").eq(_index).find("ul").eq(0).before(uls);
+                        // var uls = '<ul class="library-position add">'
+                        //     + '<li><input type="text" value= ""></li>'
+                        //     + '<li><input type="text" value= ""></li>'
+                        //     + '<li>张立新</li>'
+                        //     + '<li>2018-04-10</li>'
+                        //     + '<li>'
+                        //     + '<div class="switch1">'
+                        //     + '<div class="switch2"></div>'
+                        //     + '</div>'
+                        //     + '</li>'
+                        //     + '</ul>';
+                        // $("tbody tr").eq(_index).find("ul").eq(0).before(uls);
                     }
                 }
             } else {
@@ -43,25 +42,25 @@ var wareHouse = {
                     info("请先保存修改项", '温馨提示', function () {
                     });
                 } else {
-                    var _tr = '<tr class="add">'
-                        + '<td>12338746</td>'
-                        + '<td class="rights"><input type="text"  value= ""></td>'
-                        + '<td class="library" colspan="5">'
-                        + '<ul class="library-position first">'
-                        + '<li><input type="text"  value= ""></li>'
-                        + '<li><input type="text"  value= ""></li>'
-                        + '<li>张立新</li>'
-                        + '<li>2018-04-10</li>'
-                        + '<li>'
-                        + '<div class="switch1">'
-                        + '<div class="switch2"></div>'
-                        + '</div>'
-                        + '</li>'
-                        + '</ul>'
-                        + '</td>'
-                        + '<td>'
-                        + '</td>'
-                        + '</tr>';
+                    // var _tr = '<tr class="add">'
+                    //     + '<td>12338746</td>'
+                    //     + '<td class="rights"><input type="text"  value= ""></td>'
+                    //     + '<td class="library" colspan="5">'
+                    //     + '<ul class="library-position first">'
+                    //     + '<li><input type="text"  value= ""></li>'
+                    //     + '<li><input type="text"  value= ""></li>'
+                    //     + '<li>张立新</li>'
+                    //     + '<li>2018-04-10</li>'
+                    //     + '<li>'
+                    //     + '<div class="switch1">'
+                    //     + '<div class="switch2"></div>'
+                    //     + '</div>'
+                    //     + '</li>'
+                    //     + '</ul>'
+                    //     + '</td>'
+                    //     + '<td>'
+                    //     + '</td>'
+                    //     + '</tr>';
                     $("tbody").find("tr").eq(0).before(_tr);
                 }
             }
@@ -86,7 +85,7 @@ var wareHouse = {
         })
         //刷新
         $("#refresh").on("click", function () {
-            wareHouse.wareHouseRequest();
+            deliveryPointMapping.deliveryPointMappingRequest();
         })
         //修改操作
         $("tbody").on("click", ".edit", function () {
@@ -109,7 +108,7 @@ var wareHouse = {
         })
     },
     //仓库/库位信息查询
-    wareHouseRequest: function (datas) {
+    deliveryPointMappingRequest: function (datas) {
         $.ajax({
             // url:"",
             // type:"get",
@@ -192,18 +191,18 @@ var wareHouse = {
                     }
                 };
                 datas = cj.Parse(data);
-                wareHouse.wareHouseReader(datas);
+                deliveryPointMapping.deliveryPointMappingReader(datas);
             },
             error: function () {
             }
         })
     },
 
-    wareHouseReader: function (datas) {
+    deliveryPointMappingReader: function (datas) {
         var _html = '';
-        var wareHouseReaderList = datas;
-        console.log(wareHouseReaderList);
-        for (var i = 0; i < wareHouseReaderList.length; i++) {
+        var deliveryPointMappingReaderList = datas;
+        console.log(deliveryPointMappingReaderList);
+        for (var i = 0; i < deliveryPointMappingReaderList.length; i++) {
             _html += '<tr>'
                 + '<td>' + cranePositionERPReaderList[i].storageLocationName + '</td>'
                 + '<td><input type="text" readonly value="' + cranePositionERPReaderList[i].erpCompanyId + '"></td>'

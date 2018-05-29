@@ -2,9 +2,91 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>仓库/库位信息维护</title>
+    <link rel="stylesheet" href="./../../libs/layui/css/layui.css" media="all">
+    <link href="./../../css/style.css" rel="stylesheet">
 </head>
 <body>
+<div class="customer-list">
+    <div><span class="nav">基础数据管理  > </span>发货点（鹤位/仓库）映射信息维护</div>
+    <div class="content">
+        <div class="tools">
+            <div class="active" id="add">新增</div>
+            <div id="save">保存</div>
+            <div>批量导入</div>
+            <div id="refresh">刷新</div>
+        </div>
+        <div>
+            <div class="search fr">
+                <div class="inp fl">
+                    <input type="text" placeholder="搜索">
+                    <div class="search-btn"></div>
+                </div>
+            </div>
+        </div>
+        <div class="cl"></div>
+        <!--表格部分-->
+        <div class="layui-form">
+            <table class="layui-table">
+                <thead>
+                <tr class="head">
+                    <th><p>发货点</p></th>
+                    <th><p>鹤位/仓库</p></th>
+                    <th><p>维护人</p></th>
+                    <th><p>维护时间</p></th>
+                    <th><p>启用/禁用</p></th>
+                    <th width="10%"><p class="last">操作</p></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="rights"><input type="text" readonly value= "北京石油化工厂"></td>
+                    <td class="library librarys" colspan="4">
+                        <ul class="library-position first">
+                            <li>
+                                <input class="crane-pos" type="text" readonly value= "12338746">
+                              </li>
+                            <li>张立新</li>
+                            <li>2018-04-10</li>
+                            <li>
+                                <div class="switch1">
+                                    <div class="switch2"></div>
+                                </div>
+                            </li>
+                        </ul>
 
+                        <ul class="library-position">
+                            <li><input type="text" readonly value= "12338746"></li>
+                            <li>张立新</li>
+                            <li>2018-04-10</li>
+                            <li>
+                                <div class="switch1">
+                                    <div class="switch2"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </td>
+                    <td>
+                        <div class="fl img edit">
+                            <img src="./../../img/edit.png" alt="">
+                        </div>
+                        <div class="fl img delete">
+                            <img src="./../../img/delete.png" alt="">
+                        </div>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+<script type="text/javascript" src="./../../libs/jquery.min.js"></script>
+<script type="text/javascript" src="./../../libs/cj-1.0.js"></script>
+<script type="text/javascript" src="./../../libs/messageUtil.js"></script>
+<script type="text/javascript" src="./../../js/common.js"></script>
+<script type="text/javascript" src="./../../js/deliveryPointMapping.js"></script>
 </body>
 </html>

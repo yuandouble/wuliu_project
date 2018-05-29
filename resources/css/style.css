@@ -46,9 +46,6 @@ input{
     text-align: center;
     background: #ffffff;
     position: static;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 .layui-table tr:hover,.layui-table tr.active{
     border: 2px solid #ffac68;
@@ -206,6 +203,9 @@ input{
 }
 .customer-list .layui-table .left{
     text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .customer-list td .img{
     width: 45%;
@@ -230,6 +230,11 @@ input{
 .customer-list .contacts .contacts-select.active,.customer-list .contacts .contacts-selects.active{
     background: url("../img/up.png") center no-repeat;
 }
+.customer-list .contacts .contacts-select{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 .customer-list .contacts .contacts-modal{
     position: absolute;
     width: 100%;
@@ -242,8 +247,12 @@ input{
     display: none;
 }
 .customer-list td .name{
-     width: 30%;
+     width: 40%;
  }
+.customer-list td .tell-phone{
+    width: 60%;
+    text-align: left;
+}
 .customer-list .search-modal{
     top: 120px;
     width: 100%;
@@ -542,5 +551,11 @@ input{
 }
 .layui-table td.library .switch1{
     top: 14px;
+}
+.layui-table td.librarys li{
+    width: 25%;
+}
+.layui-table tr .crane-pos.active{
+    background: url(../img/select.png) 95% 50% no-repeat;
 }
 

@@ -163,7 +163,7 @@ var cranePositionERP = {
                 + '<td><input type="text" readonly value="' + cranePositionERPReaderList[i].erpFactoryName + '"></td>'
                 + '<td><input type="text" readonly value="' + cranePositionERPReaderList[i].storageLocationPoint + '"></td>'
                 + '<td>' + cranePositionERPReaderList[i].preserveName + '</td>'
-                + '<td>' + cranePositionERP.timeFormat(cranePositionERPReaderList[i].preserveTime) + '</td>'
+                + '<td>' + commons.timeFormat(cranePositionERPReaderList[i].preserveTime) + '</td>'
                 + '<td>'
                 + '<div class="switch1">'
                 + '<div class="switch2"></div>'
@@ -180,9 +180,5 @@ var cranePositionERP = {
                 + '</tr>';
         }
         $("tbody").html(_html);
-    },
-    //时间格式化
-    timeFormat: function (time) {
-        return time.substr(0, 4) + '-' + time.substr(4, 2) + '-' + time.substr(6, 2);
     }
 }
