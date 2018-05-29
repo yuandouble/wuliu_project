@@ -70,12 +70,8 @@ var wareHouse = {
 
         //点击表格里面ul加样式
         $("tbody").on("click", ".library-position", function () {
-            // var _index = $(this).index();
-            // console.log("aaa"+_index);
-            // var uls = $(this)
-            // for()
-            // $(this).css({"background":"red"});
-            // $(this).find("input").css({"background":"red"});
+            $(this).css({"background":"BlanchedAlmond"});
+            $(this).find("input").css({"background":"BlanchedAlmond"});
         })
 
         //保存
