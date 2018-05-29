@@ -36,6 +36,16 @@ dialog_upload_file.prototype.events = function(){
 		$(this).parent().find("input").click();
 	});
 
+    //点击重新上传，关闭当前弹框，显示文件上传弹框。
+    $("#reset_upload_btn").on("click",function(){
+    	$("#load_input").click();         //触发上传文件
+    	$("#dialog_add_all").show();      //显示文件上传弹框
+    	$("#add_contacts_list").hide();   //隐藏当前的信息列表弹框
+    	//初始化上传文件弹框
+    	_this.hide_all_upload_dialog(function(){
+			$("#dialog_add_all .upload_file").show();     //上传文件弹框
+    	});
+    });
 	//当选取了文件后，表单监测到，自动开始上传文件	
 	$("#load_input").on("change",function(){
 		console.log("监测到选择文件了");
@@ -64,6 +74,11 @@ dialog_upload_file.prototype.events = function(){
 //触发上传表单的点击事件
 dialog_upload_file.prototype.load_input_event = function(obj){
 	return	$(obj).parent().find("input").click();			
+}
+
+//设置开始上传的文案
+dialog_upload_file.prototype.load_start = function(){
+
 }
 
 dialog_upload_file.prototype.fileSelected = function(){
