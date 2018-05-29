@@ -46,6 +46,9 @@ input{
     text-align: center;
     background: #ffffff;
     position: static;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .layui-table tr:hover,.layui-table tr.active{
     border: 2px solid #ffac68;
@@ -62,18 +65,14 @@ input{
 .layui-table td.active{
     background: #fcfdfd;
 }
-/*.layui-table tr.active{*/
-    /*border: 2px solid #ffac68;*/
-/*}*/
-.layui-table td.padd{
-    padding: 0;
+.layui-table tr.active{
+    border: 2px solid #ffac68;
 }
+
 .layui-table td.rights{
     border-right: solid 1px #dbe3e9;
 }
-.layui-table td.open .switch1{
-    top: 14px;
-}
+
 .layui-table tr:hover .img{
     display: block;
 }
@@ -87,7 +86,7 @@ input{
     text-indent: 8px;
     text-align: center;
 }
-.layui-table tr.add input,.layui-table tr input.active,.layui-table li.add-li input{
+.layui-table tr.add input,.layui-table tr input.active,.layui-table .library-position.add input{
     text-align: left;
     border: solid 1px #dbe3e9;
     background:#ffffff;
@@ -207,9 +206,6 @@ input{
 }
 .customer-list .layui-table .left{
     text-align: left;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 .customer-list td .img{
     width: 45%;
@@ -520,4 +516,25 @@ input{
 .btn.btn-primary:hover{
     background: rgba(26, 158, 254, 0.8);
     color: #fff;
+}
+
+.library-position li{
+    width: 20%;
+    float: left;
+    border: none;
+    border-top: solid 1px #dbe3e9;
+}
+.library-position.first li{
+    border-top: none;
+}
+.library-position.add li{
+    border: none;
+    border-bottom: solid 1px #dbe3e9;
+}
+.layui-table td.library{
+    padding: 0;
+    border-right: solid 1px #dbe3e9;
+}
+.layui-table td.library .switch1{
+    top: 14px;
 }

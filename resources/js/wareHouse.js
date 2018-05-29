@@ -15,27 +15,22 @@ var wareHouse = {
                 }
             })
             if (flag != 0) {
-                if ($("tbody tr").hasClass("add")  && $("tbody tr").find("input").eq(0).attr("readonly")) {
+                if ($("tbody tr").hasClass("add") && $("tbody tr").find("input").eq(0).attr("readonly")) {
                     info("请先保存新增项", '温馨提示', function () {
                     });
                 } else {
-                    var uls = $("tbody tr").eq(_index).find("ul");
-                    var lis = '<li class="add-li"><input type="text" value= ""></li>';
-                    var operator = '<li class="add-li">张立新</li>';
-                    var operateTime = '<li class="add-li">2018-01-01</li>';
-                    var switchs = '<li class="add-li"><div class="switch1"><div class="switch2"></div></div></li>';
-                    for (var i = 0; i < uls.length; i++) {
-                        if (i < 2) {
-                            uls.eq(i).find("li").eq(0).before(lis);
-                        } else if (i == 2) {
-                            uls.eq(i).find("li").eq(0).before(operator);
-                        } else if (i == 3){
-                            uls.eq(i).find("li").eq(0).before(operateTime);
-                        }else{
-                            uls.eq(i).find("li").eq(0).before(switchs);
-                        }
-
-                    }
+                    var uls = '<ul class="library-position add">'
+                        + '<li><input type="text" value= ""></li>'
+                        + '<li><input type="text" value= ""></li>'
+                        + '<li>张立新</li>'
+                        + '<li>2018-04-10</li>'
+                        + '<li>'
+                        + '<div class="switch1">'
+                        + '<div class="switch2"></div>'
+                        + '</div>'
+                        + '</li>'
+                        + '</ul>';
+                    $("tbody tr").eq(_index).find("ul").eq(0).before(uls);
                 }
             } else {
                 if ($("tbody input").hasClass("active")) {
@@ -44,30 +39,14 @@ var wareHouse = {
                 } else {
                     var _tr = '<tr class="add">'
                         + '<td>12338746</td>'
-                        + '<td class="rights"><input type="text" value= ""></td>'
-                        + '<td class="padd">'
-                        + '<ul>'
-                        + '<li class="first-li"><input type="text" value= ""></li>'
-                        + '</ul>'
-                        + '</td>'
-                        + '<td class="padd">'
-                        + '<ul>'
-                        + '<li class="first-li"><input type="text" value= ""></li>'
-                        + '</ul>'
-                        + '</td>'
-                        + '<td class="padd">'
-                        + '<ul>'
-                        + '<li class="first-li">张立新</li>'
-                        + '</ul>'
-                        + '</td>'
-                        + '<td class="padd">'
-                        + '<ul>'
-                        + '<li class="first-li">2018-04-10</li>'
-                        + '</ul>'
-                        + '</td>'
-                        + '<td class="padd rights open">'
-                        + '<ul>'
-                        + '<li class="first-li">'
+                        + '<td class="rights"><input type="text"  value= ""></td>'
+                        + '<td class="library" colspan="5">'
+                        + '<ul class="library-position first">'
+                        + '<li><input type="text"  value= ""></li>'
+                        + '<li><input type="text"  value= ""></li>'
+                        + '<li>张立新</li>'
+                        + '<li>2018-04-10</li>'
+                        + '<li>'
                         + '<div class="switch1">'
                         + '<div class="switch2"></div>'
                         + '</div>'
@@ -90,7 +69,7 @@ var wareHouse = {
         })
 
         //点击表格里面ul加样式
-        $("tbody").on("click", ".padd li", function () {
+        $("tbody").on("click", ".library-position", function () {
             // var _index = $(this).index();
             // console.log("aaa"+_index);
             // var uls = $(this)
@@ -109,7 +88,7 @@ var wareHouse = {
         })
         //修改操作
         $("tbody").on("click", ".edit", function () {
-            if ($("tbody tr").hasClass("add")) {
+            if ($("tbody tr").hasClass("add") || $(this).parents("tr").find("ul").hasClass("add")) {
                 info("请先保存新增项", '温馨提示', function () {
                 });
             } else {
