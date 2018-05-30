@@ -13,7 +13,7 @@
     <script type="text/javascript" src="./../../libs/ueditor/ueditor.all.js"></script>
     <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
     <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
-    <script type="text/javascript" charset="utf-8" src="./../../libs/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./../../libs/ueditor/lang/zh-cn/zh-cn.js"></script>
 </head>
 <body>
 <!--页面主体开始部分-->
@@ -23,22 +23,26 @@
         </div>
         <div class="content" id="notice_page">
             <div class="tools">
-                <div class="active" id="notice_edit_btn">修改</div>
+                <div class="active" id="notice_edit_btn" onclick="setContent()">修改</div>
             </div>
             <!--入厂安全须知的预览-->
             <div class="notice_priview">
                 
             </div>           
         </div>
-        <div class="content" id="notice_edit_page">
+        <div class="content hidden" id="notice_edit_page">
             <div class="tools">
-                <div class="active" id="notice_publish_btn">发布</div>
-                <div id="notice_store_btn">保存</div>
-                <div id="notice_cancel_btn">取消</div>
+                <div class="active" id="notice_publish_btn" onclick="Publish()">发布</div>
+                <div id="notice_store_btn" onclick="getContent()">保存</div>
+                <div id="notice_cancel_btn" onclick="cancel_editor()">取消</div>
             </div>
             <!--编辑器的容器  开始-->
             <!-- 加载编辑器的容器 -->
+            <!--
             <script id="container" name="content" type="text/plain"></script>
+            
+            -->
+            <script id="editor" type="text/plain"></script>
             <!--编辑器的容器  结束-->        
         </div>
     </div>
@@ -49,5 +53,41 @@
 <script type="text/javascript" src="./../../libs/cj-1.0.js"></script>
 <script type="text/javascript" src="./../../js/common.js"></script>
 <script type="text/javascript" src="./../../js/notice.js"></script>
+
+<script type="text/javascript">
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    var ue = UE.getEditor('editor');
+    //获得内容
+    function getContent() {
+        //console.log(UE.getEditor('editor').getContent());
+        if(hasContent()){
+            $("#notice_page .notice_priview").html(UE.getEditor('editor').getContent());
+        }else{
+            alert("没有内容");
+        }
+
+    }
+    //发布内容
+    function Publish(){
+        if(hasContent()){
+            $("#notice_page .notice_priview").html(UE.getEditor('editor').getContent());
+        }else{
+            alert("没有内容");
+        }
+    }
+    //判断编辑器里是否有内容？？
+    function hasContent() {
+        return UE.getEditor('editor').hasContents();
+    }
+    //设置编辑器里的内容
+    function setContent() {        
+        UE.getEditor('editor').setContent($("#notice_page .notice_priview").html(), false);
+    }
+    //清空编辑器里的内容
+    function cancel_editor(){
+        
+    }
+</script>
 </body>
 </html>
