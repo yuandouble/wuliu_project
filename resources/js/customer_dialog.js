@@ -41,7 +41,7 @@ function customer_dialog(){
 	dialog_basic.apply(this,arguments);      //属性继承
     this.title = ["新增客户","编辑客户"];    //数据
     //用于测试
-	//this.insert_data();
+	this.insert_data();
 	//私有事件
 	this.Events();
 }
@@ -131,20 +131,21 @@ customer_dialog.prototype.check_data = function(){
 
 //提交表单数据(通过回调函数进行回调)
 customer_dialog.prototype.submit_data = function(cb){
-	var post_dt = this.selection_data();  //拼接数据
-	//提交
-	$.ajax({
-		url:"http://IOLService/customers",
-		data:post_dt,
-		method:"POST",
-		success:function(res){
-			//console.log(res);
-			cb && cb();
-		},
-		fail:function(){
+	var post_dt = this.selection_data(),  		 //拼接数据
+		sub_type = this.iseditor?"PUT":"POST";   //提交方式，PUT为编辑提交；POST为新增；
+		//提交
+		$.ajax({
+			url:"http://IOLService/customers",
+			data:post_dt,
+			method:sub_type,
+			success:function(res){
+				//console.log(res);
+				cb && cb();
+			},
+			fail:function(){
 
-		}
-	})
+			}
+		})
 }
 
 //拼接数据
@@ -154,19 +155,23 @@ customer_dialog.prototype.selection_data=function(){
      //拼接客户信息
      var customerName  = $("#customer_name").val(),    //客户名称
      	 customerPhone  = $("#customer_name").val(),   //客户联系电话
-         customerId  = $("#customer_name").val(),      //客户编码：唯一标识
+         customerCode  = $("#customer_name").val(),      //客户编码：
          customerAddress  = $("#customer_name").val(); //客户地址
 	
 	json_dt.customerName = customerName;
 	json_dt.customerPhone = customerPhone;
-	json_dt.customerId = customerId;
+	json_dt.customerId = customerCode;
 	json_dt.customerAddress = customerAddress;
-    
-	customerName = null;
-	customerPhone = null;
-    customerPhone = null;
-    customerPhone = null;
-    customerPhone = null;
+
+	json_dt.loadingType = "";  //装车费类型(1:常客2：散户3：无需缴费)
+
+	if(this.iseditor){
+  	    json_dt.userFlag="";  				 //编辑模式，是否为启用状态，看当前编辑这条客户的状态是否为启用状态；
+    	json_dt.customerId = customerId;     //客户id唯一标识			      
+		json_dt.source = "";       			 //来源（1:手工新增0：ERP批量导入）
+	}else{
+  	    json_dt.userFlag="";  				//新增模式，只能为启用状态；		
+	}
     
      //拼接联系人信息集合
      var contacts_list = [];
