@@ -149,7 +149,7 @@ var cranePositionMES = {
                 + '<td><input type="text" readonly value="' + cranePositionMESReaderList[i].mesCompanyName + '"></td>'
                 + '<td><input type="text" readonly value="' + cranePositionMESReaderList[i].storageLocationPoint + '"></td>'
                 + '<td>' + cranePositionMESReaderList[i].preserveName + '</td>'
-                + '<td>' + cranePositionMES.timeFormat(cranePositionMESReaderList[i].preserveTime) + '</td>'
+                + '<td>' + commons.timeFormat(cranePositionMESReaderList[i].preserveTime) + '</td>'
                 + '<td>'
                 + '<div class="switch1">'
                 + '<div class="switch2"></div>'
@@ -166,9 +166,5 @@ var cranePositionMES = {
                 + '</tr>';
         }
         $("tbody").html(_html);
-    },
-    //时间格式化
-    timeFormat: function (time) {
-        return time.substr(0, 4) + '-' + time.substr(4, 2) + '-' + time.substr(6, 2);
     }
 }

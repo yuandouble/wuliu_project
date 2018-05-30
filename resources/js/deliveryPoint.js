@@ -153,7 +153,7 @@ var deliveryPoint = {
                 +'<td>'+deliveryPointList[i].pointerCode+'</td>'
                 +'<td><input type="text" readonly value="'+deliveryPointList[i].pointerName+'"></td>'
                 +'<td>'+deliveryPointList[i].operator+'</td>'
-                +'<td>'+deliveryPoint.timeFormat(deliveryPointList[i].operateTime)+'</td>'
+                +'<td>'+commons.timeFormat(deliveryPointList[i].operateTime)+'</td>'
                 +'<td>'
                 +'<div class="switch1">'
                 +'<div class="switch2"></div>'
@@ -170,9 +170,5 @@ var deliveryPoint = {
                 +'</tr>';
         }
         $("tbody").html(_html);
-    },
-    //时间格式化
-    timeFormat:function (time) {
-        return time.substr(0,4) + '-'+ time.substr(4,2)+ '-' + time.substr(6,2);
     }
 }
