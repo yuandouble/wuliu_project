@@ -296,9 +296,12 @@ dialog_add_list.prototype.clear_dialog = function(){
 //（新增or编辑）弹框基本模型----------------------------------------------------------------
 
 function dialog_basic(){
-	this.img_list=["./../../img/edit.png","./../../img/edit_false.png","./../../img/delete.png","./../../img/delete_false.png"];
+	this.img_list=["./../../img/edit.png","./../../img/edit_false.png","./../../img/delete.png","./../../img/delete_false.png"];    //图标滑入滑出效果
 	this.title = ["新增客户","编辑客户"];
-	this.title_in = 0;
+	this.title_in = 0;  //确定当前客户是哪个；
+	this.type = "";     //post表示为新增 | put方式表示为编辑
+	//this.continue = false;  //在提交数据前，若为true表示当前点击的按钮是新增并继续；若为false,表示当前点击的按钮是新增；
+	this.iseditor = false;  //当前弹框类型，是为编辑 or 新增； 若是true, 那么表示当前弹框为编辑；若是false，表示当前弹框为新增；
 }
 
 dialog_basic.prototype.init = function(){
@@ -311,28 +314,33 @@ dialog_basic.prototype.events = function(){
 	var _this = this;
 	//点击关闭按钮，关闭当前弹框
 	$("#add_dialog .header .close_btn").click(function(){
+		//_this.continue = false;
+		_this.iseditor = false;
 		_this.hide_dialog();
 	});
 	//点击取消，关闭当前弹框，并清空数据
 	$("#add_dialog .cancel_btn").click(function(){
+		//_this.continue = false;
+		_this.iseditor = false;
 		_this.hide_dialog();
 	});
 	//“点击继续并新增”，新增一条，并且不关闭弹框
 	$("#add_dialog .add_next_btn").click(function(){
-		_this.submit_data(function(){
-			//清空数据 or 不做处理；（进行新增一条）
-		});
+		//_this.continue = true;
+		_this.submit_data();
 	});
 	//点击"确定"新增一条，并关闭弹框，并清空数据
 	$("#add_dialog .ensure_btn").click(function(){
+		//_this.continue = false;
 		_this.submit_data(function(){
  			_this.hide_dialog();
+     		_this.iseditor = false;
 			//清空数据 or 不做处理；（进行新增一条）
 		});
 	});
 }
 
-//提交数据
+//（新增or编辑）提交数据
 dialog_basic.prototype.submit_data = function(cb){
 	cb && cb();
 }
