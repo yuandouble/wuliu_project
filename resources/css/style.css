@@ -446,7 +446,7 @@ input{
 .modal .modal-close {
     position: absolute;
     right: 20px;
-    top: 20px;
+    top: 13px;
     width: 16px;
     height: 16px;
     line-height: 16px;
@@ -486,9 +486,9 @@ input{
     width: 560px;
 }
 
-.alert {
+.alert{
     text-align: center;
-    padding: 30px;
+    padding: 20px;
 }
 .alert .alert-tit {
     font-size: 16px;
@@ -510,21 +510,26 @@ input{
     color: #f90000;
     font-size: 12px;
 }
+.modal-tit{
+    height: 42px;
+    text-align:center;
+    line-height:42px;
+    font-size:16px;
+    background: #f6f9fc;
+}
 .btn-group {
     text-align: center;
+    margin-top: 20px;
 }
 .btn-group a {
-    padding: 5px 20px;
+    padding: 8px 25px;
     border-radius: 2px;
-}
-.btn.btn-primary{
-    background: #1A9EFE;
+    background: #45b2ff;
     color: #fff;
-    border-color: #1A9EFE;
+    border-color:#45b2ff;
 }
-.btn.btn-primary:hover{
-    background: rgba(26, 158, 254, 0.8);
-    color: #fff;
+.btn.j-close{
+   margin-right: 50px;
 }
 /*产品等级信息*/
 .wuliao_code{width: 100%;width: 210px;height: 36px;line-height: 36px;outline: none;text-indent: 10px;border: solid 1px #dbe3e9;}

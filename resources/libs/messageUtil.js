@@ -106,9 +106,10 @@ var dheader = {
 function createDialog(type, msg, title) {
     return $('<div class="modal" id="modal-' + type + '">'
         + '   <a href="javascript:void(0);" id="modal-' + type + '-close" class="modal-close"><i class="iconfont">&#xe607;</i></a>'
+        + '   <div class="modal-tit ' + type + '-tit" id="modal-' + type + '-title">' + title + '</div>'
         + '   <div class="modal-body">'
         + '     <div class="' + dheader[type] + '">'
-        + '       <h2 class="' + type + '-tit" id="modal-' + type + '-title">' + title + '</h2>'
+        // + '       <h2 class="' + type + '-tit" id="modal-' + type + '-title">' + title + '</h2>'
         + '       <div class="' + type + '-con" id="modal-' + type + '-msg">'
         + msg
         + '       </div>'

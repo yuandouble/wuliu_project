@@ -2,7 +2,7 @@
 $(function(){
 
     customer.bindEvent();
-    // customer.customerRequest();
+    customer.customerRequest();
 
 	//初始化新增（编辑）客户
 	var dialog_customer = new customer_dialog();
@@ -434,6 +434,8 @@ customer_dialog.prototype.insert_data=function(oPar,data){
 
 
 //页面主效果--------------------------------------------------------------------------------------------------------
+
+var customerLis = "";
 var customer = {
     bindEvent:function () {
         var flag = true;
@@ -464,6 +466,17 @@ var customer = {
         //刷新
         $("#refresh").on("click",function () {
             customer.customerRequest();
+        })
+		//修改
+		$("tbody").on("click",".edit",function () {
+			var customerid = $(this).parents("tr").attr("customerid");
+            var editData;
+			for(var i = 0; i < customerLis.length; i++){
+				if(customerLis[i].customerId == customerid){
+                    editData = customerLis[i];
+				}
+			}
+			console.log(editData);
         })
         // 启用禁用开关
         $("#customerList").on("click",".switch1",function () {
@@ -637,6 +650,7 @@ var customer = {
                         }
                     }
                 };
+                customerLis = cj.Parse(data);
                 datas = cj.Parse(data);
                 customer.customerReader(datas);
             },
@@ -686,7 +700,7 @@ var customer = {
         var _html = '';
         var customerList = datas;
         for(var i= 0;i < customerList.length;i++){
-            _html = '<tr>'
+            _html += '<tr customerId="'+customerList[i].customerId+'">'
                 +'<td>'+(i+1)+'</td>'
                 +'<td class="customer-num">'+customerList[i].customerCode+'</td>'
                 +'<td  class="left" title="'+customerList[i].customerName+'">'+customerList[i].customerName+'</td>'
@@ -731,21 +745,21 @@ var customer = {
         // var totalPage = data.totalPage;
         // var index = data.current;
         //分页
-        laypage({
-            cont: 'page-right' //分页容器的id
-            , pages: totalPage //总页数
-            ,curr:index
-            ,first:1
-            ,last:totalPage
-            , skin: '#1A9EFE' //自定义选中色值
-            , skip: true //开启跳页
-            , groups: 9  //连续分页数
-            , jump: function (obj,first) {
-                if(!first){
-                    customer.customerRequest(false,obj.curr);
-                }
-            }
-        });
+        // laypage({
+        //     cont: 'page-right' //分页容器的id
+        //     , pages: totalPage //总页数
+        //     ,curr:index
+        //     ,first:1
+        //     ,last:totalPage
+        //     , skin: '#1A9EFE' //自定义选中色值
+        //     , skip: true //开启跳页
+        //     , groups: 9  //连续分页数
+        //     , jump: function (obj,first) {
+        //         if(!first){
+        //             customer.customerRequest(false,obj.curr);
+        //         }
+        //     }
+        // });
     },
 
     // 装车费类型

@@ -44,7 +44,7 @@ var wareHouse = {
                     });
                 } else {
                     var _tr = '<tr class="add">'
-                        + '<td>12338746</td>'
+                        + '<td><input type="text"  value= ""></td>'
                         + '<td class="rights"><input type="text"  value= ""></td>'
                         + '<td class="library" colspan="5">'
                         + '<ul class="library-position first">'
