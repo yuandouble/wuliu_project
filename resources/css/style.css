@@ -70,7 +70,7 @@ input{
     border-right: solid 1px #dbe3e9;
 }
 
-.layui-table tr:hover .img{
+.layui-table tr:hover .img,.layui-table tr:hover .new-delete{
     display: block;
 }
 .layui-table tr,.layui-table tr.head:hover{
@@ -209,6 +209,9 @@ input{
 }
 .customer-list td .img{
     width: 45%;
+    display: none;
+}
+.customer-list td .new-delete{
     display: none;
 }
 .customer-list td .edit{
@@ -560,7 +563,22 @@ input{
 .layui-table td.librarys li{
     width: 25%;
 }
-.layui-table tr .crane-pos.active{
-    background: url(../img/select.png) 95% 50% no-repeat;
+.layui-table tr .crane{
+    /*height: 30px;*/
+   position: relative;
+}
+.layui-table tr .crane-pos{
+    position: absolute;
+    right: 8%;
+    top: 5px;
+    display: none;
+    /*background: url(../img/select.png) 95% 50% no-repeat;*/
+    /*background: url(../img/select.png) center no-repeat;*/
+}
+.layui-table tr.add .crane-pos{
+    display: block;
+}
+.layui-table tr ul .crane-pos{
+    top:-1px;
 }
 
