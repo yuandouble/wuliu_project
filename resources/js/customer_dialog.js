@@ -1,40 +1,7 @@
 //页面初始化
 $(function(){
-
     customer.bindEvent();
     customer.customerRequest();
-
-	//初始化新增（编辑）客户
-	var dialog_customer = new customer_dialog();
-
-    //初始化文件上传
-	var dialog_upload = new dialog_upload_file();
-
-    //初始化批量导入信息
-    var file_infolist = new dialog_add_list();
-
-	//点击新增按钮，展示新增弹框
-	$("#add_one_btn").click(function(){
-		dialog_customer.show_dialog("add");
-	});
-	//点击编辑按钮，展示编辑弹框
-	$("#edit_one_btn").click(function(){
-		dialog_customer.show_dialog("edit");
-	});
-	
-	//点击批量导入按钮，展示批量导入弹框
-	$("#add_list_btn").click(function(){
-		dialog_customer.hide_dialog();
-		file_infolist.hide_dialog();
-		dialog_upload.show_dialog();
-	});
-	//点击批量导入文件信息
-	$("#add_infolist_btn").click(function(){
-		dialog_customer.hide_dialog();
-		dialog_upload.hide_dialog();
-		file_infolist.show_dialog();
-	});
-
 });
 
 function customer_dialog(){
@@ -446,6 +413,37 @@ var customer = {
         var flag = true;
         var selectFlag = true;
 
+		//初始化新增（编辑）客户
+		var dialog_customer = new customer_dialog();
+
+	    //初始化文件上传
+		var dialog_upload = new dialog_upload_file();
+
+	    //初始化批量导入信息
+	    var file_infolist = new dialog_add_list();
+
+		//点击新增按钮，展示新增弹框
+		$("#add_one_btn").click(function(){
+			dialog_customer.show_dialog("add");
+		});
+		//点击编辑按钮，展示编辑弹框
+		$("#edit_one_btn").click(function(){
+			dialog_customer.show_dialog("edit");
+		});
+		
+		//点击批量导入按钮，展示批量导入弹框
+		$("#add_list_btn").click(function(){
+			dialog_customer.hide_dialog();
+			file_infolist.hide_dialog();
+			dialog_upload.show_dialog();
+		});
+		//点击批量导入文件信息
+		$("#add_infolist_btn").click(function(){
+			dialog_customer.hide_dialog();
+			dialog_upload.hide_dialog();
+			file_infolist.show_dialog();
+		});
+
         //高级搜索
         $("#advSearch").on("click",function () {
             if(flag){
@@ -472,44 +470,58 @@ var customer = {
         $("#refresh").on("click",function () {
             customer.customerRequest();
         })
-		//修改
-		$("tbody").on("click",".edit",function () {
-			var customerid = $(this).parents("tr").attr("customerid");
-            var editData;
-			for(var i = 0; i < customerLis.length; i++){
-				if(customerLis[i].customerId == customerid){
-                    editData = customerLis[i];
+        $("#customerList").on("click","img,.switch1,.contacts-select",function(e){
+	        //列表页点击编辑图标，打开编辑弹框，进行相关编辑操作；
+        	if(e.target.tagName=="IMG" && $(e.target).parent().hasClass("edit")){
+
+				//点击编辑，打开编辑弹框；
+				var customerid = $(this).parents("tr").attr("customerid"),
+					editData;
+				for(var i = 0; i < customerLis.length; i++){
+					if(customerLis[i].customerId == customerid){
+	                    editData = customerLis[i];
+					}
 				}
+				//console.log(editData);
+				dialog_customer.edit_dt = editData;   //将当期要编辑的这套数据存储起来；
+
+				dialog_customer.show_dialog("edit");  //显示当前这条编辑框
+        	}
+
+        	//点击删除图标，删除这一行数据
+			if(e.target.tagName=="IMG" && $(e.target).parent().hasClass("img") && !$(e.target).parent().hasClass("edit")){
+                 $(this).parents("tr").remove();
 			}
-			console.log(editData);
-        })
-        // 启用禁用开关
-        $("#customerList").on("click",".switch1",function () {
-            if($(this).hasClass("active")){
-                $(this).removeClass("active");
-                $(this).find(".switch2").removeClass("active");
-            }else{
-                $(this).addClass("active");
-                $(this).find(".switch2").addClass("active");
+			
+            //启用（禁用）开关切换
+            if($(e.target).hasClass("switch1")){
+            	console.log("13545645456");
+	            if($(this).hasClass("active")){
+	                $(this).removeClass("active");
+	                $(this).find(".switch2").removeClass("active");
+	            }else{
+	                $(this).addClass("active");
+	                $(this).find(".switch2").addClass("active");
+	            }	
             }
-        })
-        // 联系人电话下拉框
-        $("#customerList").on("click",".contacts-select",function () {
-            if(selectFlag){
-                $(this).addClass("active");
-                if($(this).parent().hasClass("contacts")){
-                    $(this).siblings(".contacts-modal").show();
-                }else{
-                    $(this).parents(".contacts-modal").show();
-                }
-                selectFlag = false;
-            }else{
-                if($(this).parent().hasClass("contacts")){
-                    $(this).siblings(".contacts-modal").hide();
-                }else{
-                    $(this).parents(".contacts-modal").hide();
-                }
-                selectFlag = true;
+            //联系人电话下拉框
+            if($(e.target).hasClass("contacts-select")){
+            	if(selectFlag){
+	                $(this).addClass("active");
+	                if($(this).parent().hasClass("contacts")){
+	                    $(this).siblings(".contacts-modal").show();
+	                }else{
+	                    $(this).parents(".contacts-modal").show();
+	                }
+	                selectFlag = false;
+	            }else{
+	                if($(this).parent().hasClass("contacts")){
+	                    $(this).siblings(".contacts-modal").hide();
+	                }else{
+	                    $(this).parents(".contacts-modal").hide();
+	                }
+	                selectFlag = true;
+	            } 
             }
         })
         $("#customerList").on("mouseleave",".contacts-modal",function () {
