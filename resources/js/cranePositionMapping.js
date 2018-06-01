@@ -58,6 +58,9 @@ var cranePositionMapping = {
                         + '</ul>'
                         + '</td>'
                         + '<td>'
+                        + '<div class="new-delete">'
+                        + '<img src="./../../img/delete.png" alt="">'
+                        + '</div>'
                         + '</td>'
                         + '</tr>';
                     $("tbody").find("tr").eq(0).before(_tr);
@@ -67,17 +70,23 @@ var cranePositionMapping = {
 
         //点击每一行加样式
         $("tbody").on("click", "tr", function () {
-            $(this).addClass("active").siblings().removeClass("active");
-            _index = $(this).index();
-            console.log(_index);
+            if( $(this).hasClass("active")){
+                $(this).removeClass("active");
+            }else {
+                $(this).addClass("active").siblings().removeClass("active");
+                _index = $(this).index();
+            }
         })
+
 
         //点击表格里面ul加样式
         $("tbody").on("click", ".library-position", function () {
-            $(this).css({"background": "BlanchedAlmond"});
-            $(this).find("input").css({"background": "BlanchedAlmond"});
+            if ($(this).hasClass("active")) {
+                $(this).removeClass("active");
+            } else {
+                $(this).addClass("active").siblings().removeClass("active");
+            }
         })
-
         //保存
         $("#save").on("click", function () {
 
@@ -85,6 +94,20 @@ var cranePositionMapping = {
         //刷新
         $("#refresh").on("click", function () {
             cranePositionMapping.cranePositionMappingRequest();
+        })
+        //删除操作
+        $("tbody").on("click", ".new-delete", function () {
+            var actives = $(this).parents("tr").find(".library-position.active");
+            var adds = $(this).parents("tr").find(".library-position");
+            if(actives.length){
+                if(actives.length == adds.length){
+                    $(this).parents("tr").remove();
+                }else {
+                    actives.remove();
+                }
+            }else {
+                $(this).parents("tr").remove();
+            }
         })
         //修改操作
         $("tbody").on("click", ".edit", function () {

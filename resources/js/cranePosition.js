@@ -1,9 +1,7 @@
-(function () {
-    $(document).ready(function () {
-        cranePosition.bindEvent();
-        cranePosition.cranePositionRequest();
-    })
-})()
+$(function () {
+    cranePosition.bindEvent();
+    cranePosition.cranePositionRequest();
+})
 
 var cranePosition = {
     bindEvent: function () {
@@ -29,7 +27,11 @@ var cranePosition = {
                     + '</div>'
                     + '</td>'
                     + '</tr>';
-                $("tbody").find("tr").eq(0).before(_tr);
+                if($("tbody tr").length){
+                    $("tbody").find("tr").eq(0).before(_tr);
+                }else {
+                    $("tbody").append(_tr);
+                }
             }
         });
         //保存

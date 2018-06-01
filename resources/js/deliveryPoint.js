@@ -1,7 +1,7 @@
 (function () {
     $(document).ready(function () {
         deliveryPoint.bindEvent();
-        deliveryPoint.deliveryPointRequest();
+        // deliveryPoint.deliveryPointRequest();
     })
 })()
 
@@ -29,7 +29,13 @@ var deliveryPoint = {
                     + '</div>'
                     + '</td>'
                     + '</tr>';
-                $("tbody").find("tr").eq(0).before(_tr);
+
+                if($("tbody tr").length){
+                    $("tbody").find("tr").eq(0).before(_tr);
+                }else {
+                    $("tbody").append(_tr);
+                }
+
             }
         });
         //刷新

@@ -30,7 +30,12 @@ var cranePositionMES = {
                     + '</div>'
                     + '</td>'
                     + '</tr>';
-                $("tbody").find("tr").eq(0).before(_tr);
+
+                if ($("tbody tr").length) {
+                    $("tbody").find("tr").eq(0).before(_tr);
+                } else {
+                    $("tbody").append(_tr);
+                }
             }
         });
         //保存

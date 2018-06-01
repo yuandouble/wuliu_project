@@ -564,7 +564,6 @@ input{
     width: 25%;
 }
 .layui-table tr .crane{
-    /*height: 30px;*/
    position: relative;
 }
 .layui-table tr .crane-pos{
@@ -575,10 +574,12 @@ input{
     /*background: url(../img/select.png) 95% 50% no-repeat;*/
     /*background: url(../img/select.png) center no-repeat;*/
 }
-.layui-table tr.add .crane-pos{
+.layui-table tr.add .crane-pos,.layui-table .library-position.add .crane-pos{
     display: block;
 }
 .layui-table tr ul .crane-pos{
     top:-1px;
 }
-
+.layui-table .library-position.active,.layui-table .library-position.active input{
+   background: #FFEFD5;
+}

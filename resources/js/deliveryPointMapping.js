@@ -24,7 +24,9 @@ var deliveryPointMapping = {
                         });
                     } else {
                         var uls = '<ul class="library-position add">'
-                            + '<li><input type="text"  value= ""></li>'
+                            + '<li>'
+                            + '<div class="crane"><input type="text"><p class="crane-pos"><img src="../img/select.png" alt=""></p></div>'
+                            + '</li>'
                             + '<li></li>'
                             + '<li></li>'
                             + '<li>'
@@ -43,13 +45,13 @@ var deliveryPointMapping = {
                 } else {
                     var _tr = '<tr class="add">'
                         + '<td class="rights">'
-                        +'<div class="crane"><input type="text"><p class="crane-pos"><img src="../img/select.png" alt=""></p></div>'
-                        +'</td>'
+                        + '<div class="crane"><input type="text"><p class="crane-pos"><img src="../img/select.png" alt=""></p></div>'
+                        + '</td>'
                         + '<td class="library librarys" colspan="4">'
                         + '<ul class="library-position first">'
                         + '<li>'
-                        +'<div class="crane"><input type="text"><p class="crane-pos"><img src="../img/select.png" alt=""></p></div>'
-                        +'</li>'
+                        + '<div class="crane"><input type="text"><p class="crane-pos"><img src="../img/select.png" alt=""></p></div>'
+                        + '</li>'
                         + '<li></li>'
                         + '<li></li>'
                         + '<li>'
@@ -72,15 +74,22 @@ var deliveryPointMapping = {
 
         //点击每一行加样式
         $("tbody").on("click", "tr", function () {
-            $(this).addClass("active").siblings().removeClass("active");
-            _index = $(this).index();
-            console.log(_index);
+            if ($(this).hasClass("active")) {
+                $(this).removeClass("active");
+            } else {
+                $(this).addClass("active").siblings().removeClass("active");
+                _index = $(this).index();
+            }
         })
+
 
         //点击表格里面ul加样式
         $("tbody").on("click", ".library-position", function () {
-            $(this).css({"background": "BlanchedAlmond"});
-            $(this).find("input").css({"background": "BlanchedAlmond"});
+            if ($(this).hasClass("active")) {
+                $(this).removeClass("active");
+            } else {
+                $(this).addClass("active").siblings().removeClass("active");
+            }
         })
 
         //保存
@@ -89,8 +98,19 @@ var deliveryPointMapping = {
         })
         //删除操作
         $("tbody").on("click", ".new-delete", function () {
-            $(this).parents("tr").remove();
+            var actives = $(this).parents("tr").find(".library-position.active");
+            var adds = $(this).parents("tr").find(".library-position");
+            if (actives.length) {
+                if (actives.length == adds.length) {
+                    $(this).parents("tr").remove();
+                } else {
+                    actives.remove();
+                }
+            } else {
+                $(this).parents("tr").remove();
+            }
         })
+
         //刷新
         $("#refresh").on("click", function () {
             deliveryPointMapping.deliveryPointMappingRequest();
