@@ -471,10 +471,13 @@ var customer = {
             customer.customerRequest();
         })
         $("#customerList").on("click","img,.switch1,.contacts-select",function(e){
+
 	        //列表页点击编辑图标，打开编辑弹框，进行相关编辑操作；
         	if(e.target.tagName=="IMG" && $(e.target).parent().hasClass("edit")){
 
 				//点击编辑，打开编辑弹框；
+
+				//拼接数据
 				var customerid = $(this).parents("tr").attr("customerid"),
 					editData;
 				for(var i = 0; i < customerLis.length; i++){
@@ -482,7 +485,7 @@ var customer = {
 	                    editData = customerLis[i];
 					}
 				}
-				//console.log(editData);
+
 				dialog_customer.edit_dt = editData;   //将当期要编辑的这套数据存储起来；
 
 				dialog_customer.show_dialog("edit");  //显示当前这条编辑框
@@ -495,7 +498,6 @@ var customer = {
 			
             //启用（禁用）开关切换
             if($(e.target).hasClass("switch1")){
-            	console.log("13545645456");
 	            if($(this).hasClass("active")){
 	                $(this).removeClass("active");
 	                $(this).find(".switch2").removeClass("active");
