@@ -1,8 +1,7 @@
-$(document).ready(function () {
+$(function(){
     productInfo.bindEvent();
     productInfo.productRequest();
-})
-
+});
 
 //弹框主逻辑 start ------------------------------------
 
@@ -60,6 +59,12 @@ dialog_product_info.prototype.Insert_dt=function(){
 dialog_product_info.prototype.submit_data=function(cb){
     cb && cb();
 }
+
+//当前产品，编辑弹框，数据填充
+dialog_product_info.prototype.Insert_edit_dt=function(){
+
+}
+
 
 //弹框主逻辑 end --------------------------------------
 
@@ -134,11 +139,16 @@ var productInfo = {
             typeFlag  = false;
         });
 
-        $("#productInfo").on("click","img",function(e){
 
+        $("#productInfo").on("click","img",function(){
             //点击编辑按钮，显示编辑弹框
             if($(this).attr("src").indexOf("edit.png")!=-1){
-                  dialog_product.show_dialog("edit");  
+                 //当前产品的所有数据拼接
+
+
+                  dialog_product.show_dialog("edit",function(){
+                       dialog_product.Insert_edit_dt();
+                  });  
             };
             //点击删除按钮，删除这一行；
             if($(this).attr("src").indexOf("delete.png")!=-1){
