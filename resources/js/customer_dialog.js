@@ -110,7 +110,7 @@ customer_dialog.prototype.submit_data = function(cb){
 			data:post_dt,
 			method:sub_type,
 			success:function(res){
-				//是新增状态,重新刷新
+				//提交成功后,重新刷新数据
 	            customer.customerRequest();
 			    //清空弹框数据；
 			    _this.clear_dialog();

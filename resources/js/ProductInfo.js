@@ -63,7 +63,7 @@ dialog_product_info.prototype.clear_dialog=function(cb){
     cb && cb();
 }
 //拼接弹框上所有的数据
-dialog_product_info.prototype.get_all_dt=function(){
+dialog_product_info.prototype.selection_data=function(){
     /*
 "data": [
             {"name":"mesCode","value":"","prompt":"mes物料编码"},
@@ -109,8 +109,25 @@ dialog_product_info.prototype.Insert_dt=function(){
 }
 //提交表单数据
 dialog_product_info.prototype.submit_data=function(cb){
-    
-    cb && cb();
+    var _this = this;
+    var post_dt = this.selection_data(),         //拼接数据
+        sub_type = this.iseditor?"PUT":"POST";   //提交方式，PUT为编辑提交；POST为新增；
+    //提交
+    $.ajax({
+        url:"http://IOLService/customers",
+        data:post_dt,
+        method:sub_type,
+        success:function(res){
+            //提交成功后，重新刷新数据
+            productInfo.productRequest();
+            //清空弹框数据；
+            _this.clear_dialog();
+            cb && cb();
+        },
+        fail:function(){
+
+        }
+    })
 }
 
 //当前产品，编辑弹框，数据填充
@@ -254,10 +271,11 @@ var productInfo = {
                     }
                 }
                 dialog_product.edit_dt = editData; //将当期要编辑的这套数据存储起来；
-
-                  dialog_product.show_dialog("edit",function(){
-                       dialog_product.Insert_edit_dt();
-                  });  
+                dialog_product.iseditor = true;   //将弹框的状态设置为编辑状态；
+                
+                dialog_product.show_dialog("edit",function(){
+                   dialog_product.Insert_edit_dt();
+                });  
             };
             //点击删除按钮，删除这一行；
             if($(this).attr("src").indexOf("delete.png")!=-1){
@@ -278,13 +296,15 @@ var productInfo = {
 
         //点击新增按钮，展示新增弹框
         $("#add_one_btn").click(function(){
-            dialog_product.show_dialog("add");
+            dialog_product.iseditor = false;     //将弹框的状态设置为编辑状态；
+            dialog_product.show_dialog("add");   //j将弹框的状态设置为新增状态；
         });
         //点击编辑按钮，展示编辑弹框
+        /*
         $("#edit_one_btn").click(function(){
             dialog_product.show_dialog("edit");
         });
-        
+        */
         //点击批量导入按钮，展示批量导入弹框
         $("#add_list_btn").click(function(){
             dialog_product.hide_dialog();
