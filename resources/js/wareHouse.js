@@ -95,7 +95,76 @@ var wareHouse = {
 
         //保存
         $("#save").on("click", function () {
+            var flag = 0;
+            //判断是否是新增，新增flag为1，修改flag为2，flag为0没有任何变化
+            $("tbody tr").each(function () {
+                if ($(this).hasClass("add")) {
+                    flag = 1;
+                }
+                if ($(this).find("input").hasClass("active")) {
+                    flag = 2;
+                }
+            })
 
+            //无修改痕迹时，弹出相应提醒
+            if (flag == 0) {
+                info("当前页面没有需要保存的内容", '温馨提示', function () {
+                });
+            } else {
+                var template = [];
+                //为1时，执行新增操作
+                if (flag == 1) {
+                    var noNull = 0;
+                    $("tbody tr.add input").each(function () {
+                        if (!commons.deleteSpace($(this))) {
+                            noNull++;
+                        }
+                    })
+                    if (noNull != 0) {
+                        info("输入内容不能为空", '温馨提示', function () {
+                        });
+                    } else {
+                        //遍历新增项
+                        $("tbody tr.add .library-position").each(function () {
+
+                            var depotCode = $(this).parents("tr").find("td").eq(0).find("input");
+                            var depotName = $(this).parents("tr").find("td").eq(1).find("input");
+                            var stockCode = $(this).find("li").eq(0).find("input");
+                            var stockName = $(this).find("li").eq(1).find("input");
+
+                            var depotAdd = {
+                                depotCode: commons.deleteSpace(depotCode),
+                                depotName: commons.deleteSpace(depotName),
+                                stockCode: commons.deleteSpace(stockCode),
+                                stockName: commons.deleteSpace(stockName),
+                                status: "1",
+                                operator: "",
+                                operateTime: ""
+                            }
+                            template.push(depotAdd)
+                        })
+                        console.log(cj.parseCjArray(template));
+                        wareHouse.wareHousAdd();
+                    }
+                } else {
+                    //为2时执行修改操作，遍历修改项
+                    $("tbody tr.update .library-position").each(function () {
+                        // var depotName = $(this).parents("tr").find("td").eq(1).find("input");
+                        // var stockCode = $(this).find("li").eq(0).find("input");
+                        // var stockName = $(this).find("li").eq(1).find("input");
+                        // var delivery = {
+                        //     cranePositionCode: $(this).parents("tr").find("td").eq(0).html(),
+                        //     cranePositionName: commons.deleteSpace($(this).parents("tr").find("input")),
+                        //     status: $(this).parents("tr").find("td").eq(4).attr("status"),
+                        //     operator: $(this).parents("tr").find("td").eq(2).html(),
+                        //     operateTime: $(this).parents("tr").find("td").eq(3).attr("times")
+                        // }
+                        // template.push(delivery)
+                    })
+                    console.log(cj.parseCjArray(template));
+                    wareHouse.wareHousAdd();
+                }
+            }
         })
         //刷新
         $("#refresh").on("click", function () {
@@ -128,26 +197,28 @@ var wareHouse = {
             if (adds.length) {
                 adds.remove();
             } else {
-                if(actives.length){
+                if (actives.length) {
                     // actives.remove();
-                }else {
+                } else {
                     // $(this).parents("tr").remove();
                 }
             }
         })
         //修改操作
         $("tbody").on("click", ".edit", function () {
+            //判断是否存在新增项未保存，未保存不允许操作修改
             if ($("tbody tr").hasClass("add") || $(this).parents("tr").find("ul").hasClass("add")) {
                 info("请先保存新增项", '温馨提示', function () {
                 });
             } else {
+                //  判断是全部修改还是单条修改
                 var adds = $(this).parents("tr").find(".library-position.active");
                 if (adds.length) {
-                    adds.find("input").add().addClass("active").removeAttr("readonly");
+                    adds.find("input").addClass("active").removeAttr("readonly");
                 } else {
                     $(this).parents("tr").find("input").addClass("active").removeAttr("readonly");
                 }
-
+                $(this).parents("tr").addClass("update");
             }
         })
         // 启用禁用开关
@@ -174,74 +245,251 @@ var wareHouse = {
                 var data = {
                     "collection": {
                         "version": "1.0",
-                        "href": "http://IOLService/locerps ",
-                        "links": [],
+                        "href": "http://localhost:8094/IOLService/depot",
                         "items": [
                             {
-                                "href": "{id}",
                                 "data": [
                                     {
-                                        "name": "storageLocationId",
-                                        "value": "000001"
+                                        "name": "depotId",
+                                        "value": 5
                                     },
                                     {
-                                        "name": "storageLocationName",
-                                        "value": "1"
+                                        "name": "depotCode",
+                                        "value": "55"
                                     },
                                     {
-                                        "name": "erpCompanyId",
-                                        "value": " 00001"
-                                    },
-
-                                    {
-                                        "name": "erpCompanyName",
-                                        "value": " 北京石油化工"
+                                        "name": "depotName",
+                                        "value": "调查VB"
                                     },
                                     {
-                                        "name": "erpFactoryName",
-                                        "value": "北京石油化工"
-                                    },
-
-                                    {
-                                        "name": "storageLocationPoint",
-                                        "value": "石化"
+                                        "name": "stockCode",
+                                        "value": ""
                                     },
                                     {
-                                        "name": "preserveName",
-                                        "value": "1111"
+                                        "name": "stockName",
+                                        "value": ""
                                     },
                                     {
-                                        "name": "preserveTime",
-                                        "value": "201801111234"
+                                        "name": "status",
+                                        "value": 0
                                     },
                                     {
-                                        "name": "storageLocationStatus",
-                                        "value": "1"
+                                        "name": "operator",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "operateTime",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "top",
+                                        "value": 1
+                                    },
+                                    {
+                                        "name": "size",
+                                        "value": 2
+                                    },
+                                    {
+                                        "name": "codeList",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "direction",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "sortColumn",
+                                        "value": ""
                                     }
-                                ],
-                                "links": []
-                            }
-                        ],
-                        "queries": [
+                                ]
+                            },
                             {
-                                "rel": "search",
-                                "href": "http://IOLService/locerps ",
-                                "prompt": "1、查询",
                                 "data": [
                                     {
-                                        "name": "storageLocationName",
+                                        "name": "depotId",
+                                        "value": 4
+                                    },
+                                    {
+                                        "name": "depotCode",
+                                        "value": "44"
+                                    },
+                                    {
+                                        "name": "depotName",
+                                        "value": "规范地方"
+                                    },
+                                    {
+                                        "name": "stockCode",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "stockName",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "status",
+                                        "value": 0
+                                    },
+                                    {
+                                        "name": "operator",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "operateTime",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "top",
+                                        "value": 1
+                                    },
+                                    {
+                                        "name": "size",
+                                        "value": 2
+                                    },
+                                    {
+                                        "name": "codeList",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "direction",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "sortColumn",
+                                        "value": ""
+                                    }
+                                ]
+                            },
+                            {
+                                "data": [
+                                    {
+                                        "name": "depotId",
+                                        "value": 3
+                                    },
+                                    {
+                                        "name": "depotCode",
+                                        "value": "eerwerewwerwer"
+                                    },
+                                    {
+                                        "name": "depotName",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "stockCode",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "stockName",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "status",
+                                        "value": 0
+                                    },
+                                    {
+                                        "name": "operator",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "operateTime",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "top",
+                                        "value": 1
+                                    },
+                                    {
+                                        "name": "size",
+                                        "value": 2
+                                    },
+                                    {
+                                        "name": "codeList",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "direction",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "sortColumn",
                                         "value": ""
                                     }
                                 ]
                             }
                         ],
-                        "templates": {
-                            "data": []
+                        "page": {
+                            "data": [
+                                {
+                                    "name": "last",
+                                    "value": false
+                                },
+                                {
+                                    "name": "totalPages",
+                                    "value": 2
+                                },
+                                {
+                                    "name": "totalElements",
+                                    "value": 5
+                                },
+                                {
+                                    "name": "size",
+                                    "value": 3
+                                },
+                                {
+                                    "name": "number",
+                                    "value": 1
+                                },
+                                {
+                                    "name": "first",
+                                    "value": true
+                                },
+                                {
+                                    "name": "sort",
+                                    "value": "[{\"ascending\":false,\"direction\":\"DESC\",\"ignoreCase\":false,\"nullHandling\":\"NATIVE\",\"property\":\"depotId\"}]"
+                                },
+                                {
+                                    "name": "numberOfElements",
+                                    "value": 3
+                                }
+                            ]
                         },
-                        "error": {
-                            "code": "",
-                            "message": ""
-                        }
+                        "templates": [
+                            {
+                                "data": [
+                                    {
+                                        "name": "depotId",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "depotCode",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "depotName",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "stockCode",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "stockName",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "status",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "operator",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "operateTime",
+                                        "value": ""
+                                    }
+                                ]
+                            }
+                        ]
                     }
                 };
                 datas = cj.Parse(data);
@@ -252,24 +500,63 @@ var wareHouse = {
         })
     },
 
+    //仓库and库位  新增/修改接口
+    wareHousAdd: function (types, templates) {
+        $.ajax({
+            url: "",
+            type: types,
+            timeout: 100000,
+            data: templates,
+            success: function (data) {
+            },
+            error: function (data) {
+
+            }
+        })
+    },
+    //鹤位删除接口
+    wareHouseDelete: function (wareHouseId) {
+        $.ajax({
+            url: "",
+            type: "delete",
+            timeout: 10000,
+            data: {
+                depotId: wareHouseId
+            },
+            success: function () {
+
+            },
+            error: function () {
+
+            }
+        })
+    },
+
+
+    //仓库/库位信息数据处理
     wareHouseReader: function (datas) {
         var _html = '';
         var wareHouseReaderList = datas;
         console.log(wareHouseReaderList);
         for (var i = 0; i < wareHouseReaderList.length; i++) {
             _html += '<tr>'
-                + '<td>' + cranePositionERPReaderList[i].storageLocationName + '</td>'
-                + '<td><input type="text" readonly value="' + cranePositionERPReaderList[i].erpCompanyId + '"></td>'
-                + '<td><input type="text" readonly value="' + cranePositionERPReaderList[i].erpCompanyName + '"></td>'
-                + '<td><input type="text" readonly value="' + cranePositionERPReaderList[i].erpFactoryName + '"></td>'
-                + '<td><input type="text" readonly value="' + cranePositionERPReaderList[i].storageLocationPoint + '"></td>'
-                + '<td>' + cranePositionERPReaderList[i].preserveName + '</td>'
-                + '<td>' + commons.timeFormat(cranePositionERPReaderList[i].preserveTime) + '</td>'
-                + '<td>'
-                + '<div class="switch1">'
-                + '<div class="switch2"></div>'
-                + '</div>'
-                + '</td>'
+                + '<td>' + wareHouseReaderList[i].depotCode + '</td>'
+                + '<td><input type="text" readonly value="' + wareHouseReaderList[i].depotName + '"></td>'
+                + '<td><input type="text" readonly value="' + wareHouseReaderList[i].stockCode + '"></td>'
+                + '<td><input type="text" readonly value="' + wareHouseReaderList[i].stockName + '"></td>'
+                + '<td>' + wareHouseReaderList[i].operator + '</td>'
+                + '<td>' + commons.timeFormat(wareHouseReaderList[i].operateTime) + '</td>'
+                + '<td>';
+            if (wareHouseReaderList[i].status == 1) {
+                _html += '<div class="switch1 active">'
+                    + '<div class="switch2 active"></div>'
+                    + '</div>'
+            } else {
+                _html += '<div class="switch1">'
+                    + '<div class="switch2"></div>'
+                    + '</div>'
+            }
+            _html += '</td>'
                 + '<td>'
                 + '<div class="fl img edit">'
                 + '<img src="./../../img/edit.png" alt="">'
