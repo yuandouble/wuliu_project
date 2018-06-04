@@ -45,12 +45,63 @@ dialog_product_info.prototype.Events = function(){
 }
 
 //清空表单数据
-dialog_product_info.prototype.clear_dialog=function(){
+dialog_product_info.prototype.clear_dialog=function(cb){
 
+    $("#add_dialog .customer_info").find("input").val("");    //清空所有表单存储的值
+    //删除存储的产品id属性值；
+    $("#add_dialog").removeAttr("productlevel_id");
+    $("#add_dialog").removeAttr("product_id");
+    //清空所有选中状态的数据
+    $("#add_dialog input:radio").each(function(){
+        this.checked = false;
+    });
+
+    //危化品类型默认选择第一个
+    $("#denger_status").find("label").html($("#danger_menu li").eq(0).text());
+    $("#denger_status").parent().attr("value",$("#danger_menu li").eq(0).attr("value"));       
+
+    cb && cb();
 }
 //拼接弹框上所有的数据
 dialog_product_info.prototype.get_all_dt=function(){
+    /*
+"data": [
+            {"name":"mesCode","value":"","prompt":"mes物料编码"},
+            {"name":"mesName","value":"","prompt":"mes物料名称"},
+            {"name":"erpCode","value":"","prompt":"erp物料编号"},
+            {"name":"erpName","value":"","prompt":"erp物料名称"},
+            {"name":"limsCode","value":"","prompt":"lims物料编码"},
+            {"name":"limsName","value":"","prompt":"lims物料名称"},
+            {"name":" dangerLevel ","value":"","prompt":"危化品等级"},
+            {"name":"ertruckingType","value":"","prompt":"装车费类型"},
+            {"name":"settlementType","value":"","prompt":"结算类型"},
+            {"name":" erpAccountMark ","value":"","prompt":"erp过账标识"},
+        ]
+    */
+    var json_dt = {};
 
+    json_dt.mesCode = $("#mes_code").val();    //mes物料编码
+
+    json_dt.mesName = $("#mes_code").val();    //mes物料名称
+
+    json_dt.erpCode = $("#mes_code").val();    //erp物料编号
+
+    json_dt.erpName = $("#mes_code").val();    //erp物料名称
+
+    json_dt.limsCode = $("#mes_code").val();    //lims物料编码
+
+    json_dt.limsName = $("#mes_code").val();    //lims物料名称
+
+    json_dt.dangerLevel = $("#denger_status").parent().attr("value")    //危化品等级
+
+    json_dt.ertruckingType = $("#type_list input:checked").val();    //装车费类型
+
+    json_dt.settlementType = $("#count_before input:checked").val();    //结算类型
+
+    json_dt.erpAccountMark = $("#erp_count input:checked").val();    //erp过账标识
+
+    return json_dt;
+       
 }
 //当为编辑状态时，将数据全部插入到页面上去
 dialog_product_info.prototype.Insert_dt=function(){
@@ -58,11 +109,59 @@ dialog_product_info.prototype.Insert_dt=function(){
 }
 //提交表单数据
 dialog_product_info.prototype.submit_data=function(cb){
+    
     cb && cb();
 }
 
 //当前产品，编辑弹框，数据填充
 dialog_product_info.prototype.Insert_edit_dt=function(){
+    console.log("当前产品的数据："+JSON.stringify(this.edit_dt));
+
+    /*
+    {
+        "productId":" 00001 ",
+        "productLevelId":"000001 ",
+
+        "mesCode":"0000001",
+        "mesName":"97#汽油",
+        
+        "erpCode":"333322 ",
+        "erpName":"97#汽油",
+        
+        "limCode":"2434",
+        "limsName":"97#汽油",
+       
+        "dangerLevel":"一般危化品",
+        "entruckingType":"常客",
+        "settlementType":"结算",
+        "erpAccountMark":"是"
+
+    }
+    */
+    
+    //产品id;
+    $("#add_dialog").attr("product_id",this.edit_dt.productId);
+    //产品等级id;
+    $("#add_dialog").attr("productLevel_id",this.edit_dt.productLevelId);
+    //物料mes编码和物料mes名称；
+    $("#mes_code").val(this.edit_dt.mesCode);
+    $("#mes_name").val(this.edit_dt.mesName);
+    
+    //物料ERP编码和物料ERP名称；
+    $("#erp_code").val(this.edit_dt.erpCode);
+    $("#erp_name").val(this.edit_dt.erpName);
+
+    //物料LIMS编码和物料LIMS名称；
+    $("#lims_code").val(this.edit_dt.limCode);
+    $("#lims_name").val(this.edit_dt.limsName);
+
+    //危化品类型
+
+    //装车费收费类型
+
+    //提前结算标记
+
+    //ERP发货过账标记
 
 }
 

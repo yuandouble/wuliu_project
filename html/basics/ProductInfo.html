@@ -205,7 +205,7 @@
                             <span class="ft_red">*</span>MES物料编码：
                         </div>
                         <div class="info_box">
-                            <input type="text" value="" id="customer_name" />
+                            <input type="text" value="" id="mes_code" />
                         </div>
                     </li>
                     <li class="customer_info_one">
@@ -213,7 +213,7 @@
                             <span class="ft_red">*</span>MES物料名称：
                         </div>
                         <div class="info_box">
-                            <input type="text" value="" id="customer_tel" />
+                            <input type="text" value="" id="mes_name" />
                         </div>
                     </li>
                     <li class="customer_info_one">
@@ -221,7 +221,7 @@
                             <span class="ft_red">*</span>ERP物料编码：
                         </div>
                         <div class="info_box">
-                            <input type="text" value="" id="customer_code" />
+                            <input type="text" value="" id="erp_code" />
                         </div>
                     </li>
                     <li class="customer_info_one">
@@ -229,7 +229,7 @@
                             <span class="ft_red">*</span>ERP物料名称：
                         </div>
                         <div class="info_box">
-                            <input type="text" value="" id="customer_code" />
+                            <input type="text" value="" id="erp_name" />
                         </div>
                     </li>
                     <li class="customer_info_one">
@@ -237,7 +237,7 @@
                             <span class="ft_red">*</span>LIMS物料编码：
                         </div>
                         <div class="info_box">
-                            <input type="text" value="" id="customer_code" />
+                            <input type="text" value="" id="lims_code" />
                         </div>
                     </li>
                     <li class="customer_info_one">
@@ -245,7 +245,7 @@
                             <span class="ft_red">*</span>LIMS物料名称：
                         </div>
                         <div class="info_box">
-                            <input type="text" value="" id="customer_code" />
+                            <input type="text" value="" id="lims_name" />
                         </div>
                     </li>
                     <li class="customer_info_one" id="car_type_list">
@@ -253,27 +253,31 @@
                             <span class="ft_red">*</span>危化品类型：
                         </div>
                         <div class="info_box posi_relative" value="1">
-                            <label class="ml_0">常客</label>
+                            <label class="ml_0" id="denger_status">一般</label>
                             <img src="./../../img/jtou_icon.png" alt="" class="jtou_icon" />
                         </div>
-                        <ul class="customer_menu product_type_menu hidden" id="customer_menu">
-                            <li value="1"><label class="ml_0">常客</label></li>
-                            <li value="2"><label class="ml_0">散户</label></li>
-                            <li value="3" class="border_bottom_no"><label class="ml_0">无需缴费</label></li>
+                        <ul class="customer_menu product_type_menu hidden" id="danger_menu">
+                            <li value="1"><label class="ml_0">特殊危险</label></li>
+                            <li value="2"><label class="ml_0">非常危险</label></li>
+                            <li value="3" class="border_bottom_no"><label class="ml_0">一般危险</label></li>
                         </ul>
                     </li>
                     <li  class="customer_info_one info_addr">
                         <div class="info_mark">
-                            <span class="ft_red">*</span>提前结算标记：
+                            <span class="ft_red">*</span>装车费收费类型：
                         </div>
-                        <div class="type_radio_list mt_2">
+                        <div class="type_radio_list mt_2" id="type_list">
                              <p class="fl mr_2">
                                  <input type="radio" />
-                                 <label for="">是</label>    
+                                 <label for="">常客</label>    
                              </p>
                              <p class="fl mr_2">
                                 <input type="radio" />
-                                <label for="">否</label> 
+                                <label for="">散户</label> 
+                             </p>
+                                <p class="fl mr_2">
+                                <input type="radio" />
+                                <label for="">无需缴费</label> 
                              </p>
                         </div>
                     </li>                   
@@ -281,7 +285,7 @@
                         <div class="info_mark">
                             <span class="ft_red">*</span>提前结算标记：
                         </div>
-                        <div class="type_radio_list mt_2">
+                        <div class="type_radio_list mt_2" id="count_before">
                              <p class="fl mr_2">
                                  <input type="radio" />
                                  <label for="">是</label>    
@@ -296,7 +300,7 @@
                         <div class="info_mark" style="white-space:nowrap;">
                             <span class="ft_red">*</span>ERP发货过账标记：
                         </div>
-                        <div class="type_radio_list mt_2">
+                        <div class="type_radio_list mt_2" id="erp_count">
                              <p class="fl mr_2">
                                  <input type="radio" />
                                  <label for="">是</label>    
