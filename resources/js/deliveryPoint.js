@@ -1,7 +1,7 @@
 (function () {
     $(document).ready(function () {
         deliveryPoint.bindEvent();
-        deliveryPoint.deliveryPointRequest();
+        // deliveryPoint.deliveryPointRequest();
     })
 })()
 
@@ -16,17 +16,26 @@ var deliveryPoint = {
                 var _tr = '<tr class="add">'
                     + '<td>12338746</td>'
                     + '<td><input type="text"></td>'
-                    + '<td>张立新</td>'
-                    + '<td>2018-04-10</td>'
+                    + '<td></td>'
+                    + '<td></td>'
                     + '<td>'
                     + '<div class="switch1 active">'
                     + '<div class="switch2 active"></div>'
                     + '</div>'
                     + '</td>'
                     + '<td>'
+                    + '<div class="new-delete">'
+                    + '<img src="./../../img/delete.png" alt="">'
+                    + '</div>'
                     + '</td>'
                     + '</tr>';
-                $("tbody").find("tr").eq(0).before(_tr);
+
+                if($("tbody tr").length){
+                    $("tbody").find("tr").eq(0).before(_tr);
+                }else {
+                    $("tbody").append(_tr);
+                }
+
             }
         });
         //刷新
@@ -59,7 +68,7 @@ var deliveryPoint = {
                     })
                     console.log(noNull);
                     if (noNull != 0) {
-                        info("请输入发货点名称", '温馨提示', function () {
+                        info("输入内容不能为空", '温馨提示', function () {
                         });
                     } else {
                         $("tbody tr.add").each(function () {
@@ -67,8 +76,8 @@ var deliveryPoint = {
                                 pointerCode: $(this).find("td").eq(0).html(),
                                 pointerName: commons.deleteSpace($(this).find("input")),
                                 status: "1",
-                                operator: $(this).find("td").eq(2).html(),
-                                operateTime: $(this).find("td").eq(3).html()
+                                operator: "",
+                                operateTime: ""
                             }
                             template.push(delivery)
                         })
@@ -100,6 +109,10 @@ var deliveryPoint = {
             } else {
                 $(this).parents("tr").find("input").addClass("active").removeAttr("readonly");
             }
+        })
+        //删除操作
+        $("tbody").on("click", ".new-delete", function () {
+            $(this).parents("tr").remove();
         })
         //删除操作
         $("tbody").on("click", ".delete", function () {

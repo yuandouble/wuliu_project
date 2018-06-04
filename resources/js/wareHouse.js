@@ -19,19 +19,18 @@ var wareHouse = {
                     info("请先保存新增项", '温馨提示', function () {
                     });
                 } else {
-                    if($("tbody tr").eq(_index).find(".library-position input").hasClass("active")){
-                            info("请先保存修改项", '温馨提示', function () {
-                            });
-                    }else {
-                        console.log("111");
+                    if ($("tbody tr").eq(_index).find(".library-position input").hasClass("active")) {
+                        info("请先保存修改项", '温馨提示', function () {
+                        });
+                    } else {
                         var uls = '<ul class="library-position add">'
                             + '<li><input type="text" value= ""></li>'
                             + '<li><input type="text" value= ""></li>'
-                            + '<li>张立新</li>'
-                            + '<li>2018-04-10</li>'
+                            + '<li></li>'
+                            + '<li></li>'
                             + '<li>'
-                            + '<div class="switch1">'
-                            + '<div class="switch2"></div>'
+                            + '<div class="switch1 active">'
+                            + '<div class="switch2 active"></div>'
                             + '</div>'
                             + '</li>'
                             + '</ul>';
@@ -50,34 +49,48 @@ var wareHouse = {
                         + '<ul class="library-position first">'
                         + '<li><input type="text"  value= ""></li>'
                         + '<li><input type="text"  value= ""></li>'
-                        + '<li>张立新</li>'
-                        + '<li>2018-04-10</li>'
+                        + '<li></li>'
+                        + '<li></li>'
                         + '<li>'
-                        + '<div class="switch1">'
-                        + '<div class="switch2"></div>'
+                        + '<div class="switch1 active">'
+                        + '<div class="switch2 active"></div>'
                         + '</div>'
                         + '</li>'
                         + '</ul>'
                         + '</td>'
                         + '<td>'
+                        + '<div class="new-delete">'
+                        + '<img src="./../../img/delete.png" alt="">'
+                        + '</div>'
                         + '</td>'
                         + '</tr>';
-                    $("tbody").find("tr").eq(0).before(_tr);
+
+                    if ($("tbody tr").length) {
+                        $("tbody").find("tr").eq(0).before(_tr);
+                    } else {
+                        $("tbody").append(_tr);
+                    }
                 }
             }
         });
 
         //点击每一行加样式
         $("tbody").on("click", "tr", function () {
-            $(this).addClass("active").siblings().removeClass("active");
-            _index = $(this).index();
-            console.log(_index);
+            if ($(this).hasClass("active")) {
+                $(this).removeClass("active");
+            } else {
+                $(this).addClass("active").siblings().removeClass("active");
+                _index = $(this).index();
+            }
         })
 
         //点击表格里面ul加样式
         $("tbody").on("click", ".library-position", function () {
-            $(this).css({"background":"BlanchedAlmond"});
-            $(this).find("input").css({"background":"BlanchedAlmond"});
+            if ($(this).hasClass("active")) {
+                $(this).removeClass("active");
+            } else {
+                $(this).addClass("active").siblings().removeClass("active");
+            }
         })
 
         //保存
@@ -88,13 +101,53 @@ var wareHouse = {
         $("#refresh").on("click", function () {
             wareHouse.wareHouseRequest();
         })
+        //删除操作
+        $("tbody").on("click", ".new-delete", function () {
+            var actives = $(this).parents("tr").find(".library-position.active");
+            var adds = $(this).parents("tr").find(".library-position");
+            if (actives.length) {
+                if (actives.length == adds.length) {
+                    $(this).parents("tr").remove();
+                } else {
+                    if (actives.index() == adds.length - 1) {
+                        actives.remove();
+                        $(this).parents("tr").find(".library-position.add").eq(adds.length - 2).find("li").css({"border-bottom": "none"});
+                    } else {
+                        actives.remove();
+                    }
+                }
+            } else {
+                $(this).parents("tr").remove();
+            }
+        })
+        //删除操作
+        $("tbody").on("click", ".delete", function () {
+            var adds = $(this).parents("tr").find(".library-position.add.active");
+            var actives = $(this).parents("tr").find(".library-position.active");
+            //判断是否是新增的ul，是直接删除节点，不是调删除接口
+            if (adds.length) {
+                adds.remove();
+            } else {
+                if(actives.length){
+                    // actives.remove();
+                }else {
+                    // $(this).parents("tr").remove();
+                }
+            }
+        })
         //修改操作
         $("tbody").on("click", ".edit", function () {
             if ($("tbody tr").hasClass("add") || $(this).parents("tr").find("ul").hasClass("add")) {
                 info("请先保存新增项", '温馨提示', function () {
                 });
             } else {
-                $(this).parents("tr").find("input").addClass("active").removeAttr("readonly");
+                var adds = $(this).parents("tr").find(".library-position.active");
+                if (adds.length) {
+                    adds.find("input").add().addClass("active").removeAttr("readonly");
+                } else {
+                    $(this).parents("tr").find("input").addClass("active").removeAttr("readonly");
+                }
+
             }
         })
         // 启用禁用开关

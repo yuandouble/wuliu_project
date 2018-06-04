@@ -19,22 +19,23 @@ var deliveryPointMapping = {
                     info("请先保存新增项", '温馨提示', function () {
                     });
                 } else {
-                    if($("tbody tr").eq(_index).find(".library-position input").hasClass("active")){
+                    if ($("tbody tr").eq(_index).find(".library-position input").hasClass("active")) {
                         info("请先保存修改项", '温馨提示', function () {
                         });
-                    }else {
-                        // var uls = '<ul class="library-position add">'
-                        //     + '<li><input type="text" value= ""></li>'
-                        //     + '<li><input type="text" value= ""></li>'
-                        //     + '<li>张立新</li>'
-                        //     + '<li>2018-04-10</li>'
-                        //     + '<li>'
-                        //     + '<div class="switch1">'
-                        //     + '<div class="switch2"></div>'
-                        //     + '</div>'
-                        //     + '</li>'
-                        //     + '</ul>';
-                        // $("tbody tr").eq(_index).find("ul").eq(0).before(uls);
+                    } else {
+                        var uls = '<ul class="library-position add">'
+                            + '<li>'
+                            + '<div class="crane"><input type="text"><p class="crane-pos"><img src="../img/select.png" alt=""></p></div>'
+                            + '</li>'
+                            + '<li></li>'
+                            + '<li></li>'
+                            + '<li>'
+                            + '<div class="switch1 active">'
+                            + '<div class="switch2 active"></div>'
+                            + '</div>'
+                            + '</li>'
+                            + '</ul>';
+                        $("tbody tr").eq(_index).find("ul").eq(0).before(uls);
                     }
                 }
             } else {
@@ -42,25 +43,30 @@ var deliveryPointMapping = {
                     info("请先保存修改项", '温馨提示', function () {
                     });
                 } else {
-                    // var _tr = '<tr class="add">'
-                    //     + '<td>12338746</td>'
-                    //     + '<td class="rights"><input type="text"  value= ""></td>'
-                    //     + '<td class="library" colspan="5">'
-                    //     + '<ul class="library-position first">'
-                    //     + '<li><input type="text"  value= ""></li>'
-                    //     + '<li><input type="text"  value= ""></li>'
-                    //     + '<li>张立新</li>'
-                    //     + '<li>2018-04-10</li>'
-                    //     + '<li>'
-                    //     + '<div class="switch1">'
-                    //     + '<div class="switch2"></div>'
-                    //     + '</div>'
-                    //     + '</li>'
-                    //     + '</ul>'
-                    //     + '</td>'
-                    //     + '<td>'
-                    //     + '</td>'
-                    //     + '</tr>';
+                    var _tr = '<tr class="add">'
+                        + '<td class="rights">'
+                        + '<div class="crane"><input type="text"><p class="crane-pos"><img src="../img/select.png" alt=""></p></div>'
+                        + '</td>'
+                        + '<td class="library librarys" colspan="4">'
+                        + '<ul class="library-position first">'
+                        + '<li>'
+                        + '<div class="crane"><input type="text"><p class="crane-pos"><img src="../img/select.png" alt=""></p></div>'
+                        + '</li>'
+                        + '<li></li>'
+                        + '<li></li>'
+                        + '<li>'
+                        + '<div class="switch1 active">'
+                        + '<div class="switch2 active"></div>'
+                        + '</div>'
+                        + '</li>'
+                        + '</ul>'
+                        + '</td>'
+                        + '<td>'
+                        + '<div class="new-delete">'
+                        + '<img src="./../../img/delete.png" alt="">'
+                        + '</div>'
+                        + '</td>'
+                        + '</tr>';
                     $("tbody").find("tr").eq(0).before(_tr);
                 }
             }
@@ -68,21 +74,43 @@ var deliveryPointMapping = {
 
         //点击每一行加样式
         $("tbody").on("click", "tr", function () {
-            $(this).addClass("active").siblings().removeClass("active");
-            _index = $(this).index();
-            console.log(_index);
+            if ($(this).hasClass("active")) {
+                $(this).removeClass("active");
+            } else {
+                $(this).addClass("active").siblings().removeClass("active");
+                _index = $(this).index();
+            }
         })
+
 
         //点击表格里面ul加样式
         $("tbody").on("click", ".library-position", function () {
-            $(this).css({"background":"BlanchedAlmond"});
-            $(this).find("input").css({"background":"BlanchedAlmond"});
+            if ($(this).hasClass("active")) {
+                $(this).removeClass("active");
+            } else {
+                $(this).addClass("active").siblings().removeClass("active");
+            }
         })
 
         //保存
         $("#save").on("click", function () {
 
         })
+        //删除操作
+        $("tbody").on("click", ".new-delete", function () {
+            var actives = $(this).parents("tr").find(".library-position.active");
+            var adds = $(this).parents("tr").find(".library-position");
+            if (actives.length) {
+                if (actives.length == adds.length) {
+                    $(this).parents("tr").remove();
+                } else {
+                    actives.remove();
+                }
+            } else {
+                $(this).parents("tr").remove();
+            }
+        })
+
         //刷新
         $("#refresh").on("click", function () {
             deliveryPointMapping.deliveryPointMappingRequest();
@@ -94,6 +122,8 @@ var deliveryPointMapping = {
                 });
             } else {
                 $(this).parents("tr").find("input").addClass("active").removeAttr("readonly");
+                $(this).parents("tr").find(".crane-pos").show();
+
             }
         })
         // 启用禁用开关

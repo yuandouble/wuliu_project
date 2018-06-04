@@ -14,20 +14,28 @@ var cranePositionMES = {
                 });
             } else {
                 var _tr = '<tr class="add">'
-                    + '<td>北京石油化工厂</td>'
                     + '<td><input type="text"></td>'
                     + '<td><input type="text"></td>'
-                    + '<td>张立新</td>'
-                    + '<td>2018-04-10</td>'
+                    + '<td><input type="text"></td>'
+                    + '<td></td>'
+                    + '<td></td>'
                     + '<td>'
-                    + '<div class="switch1">'
-                    + '<div class="switch2"></div>'
+                    + '<div class="switch1 active">'
+                    + '<div class="switch2 active"></div>'
                     + '</div>'
                     + '</td>'
                     + '<td>'
+                    + '<div class="new-delete">'
+                    + '<img src="./../../img/delete.png" alt="">'
+                    + '</div>'
                     + '</td>'
                     + '</tr>';
-                $("tbody").find("tr").eq(0).before(_tr);
+
+                if ($("tbody tr").length) {
+                    $("tbody").find("tr").eq(0).before(_tr);
+                } else {
+                    $("tbody").append(_tr);
+                }
             }
         });
         //保存
@@ -37,6 +45,10 @@ var cranePositionMES = {
         //刷新
         $("#refresh").on("click", function () {
             cranePositionMES.cranePositionMESRequest();
+        })
+        //删除操作
+        $("tbody").on("click", ".new-delete", function () {
+            $(this).parents("tr").remove();
         })
         //修改操作
         $("tbody").on("click", ".edit", function () {
