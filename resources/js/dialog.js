@@ -297,7 +297,9 @@ dialog_add_list.prototype.clear_dialog = function(){
 
 function dialog_basic(){
 	this.img_list=["./../../img/edit.png","./../../img/edit_false.png","./../../img/delete.png","./../../img/delete_false.png"];    //图标滑入滑出效果
-	this.title = ["新增客户","编辑客户"];
+	this.title = ["新增客户","编辑客户"];                        //弹框标题类型
+	this.loadingType = {"1":"常客","2":"散户","3":"无需缴费"};   //装车费类型
+
 	this.title_in = 0;  //确定当前客户是哪个；
 	this.type = "";     //post表示为新增 | put方式表示为编辑
 	//this.continue = false;  //在提交数据前，若为true表示当前点击的按钮是新增并继续；若为false,表示当前点击的按钮是新增；
@@ -335,7 +337,6 @@ dialog_basic.prototype.events = function(){
 		_this.submit_data(function(){
  			_this.hide_dialog();
      		_this.iseditor = false;
-			//清空数据 or 不做处理；（进行新增一条）
 		});
 	});
 }
@@ -358,10 +359,11 @@ dialog_basic.prototype.hide_dialog = function(){
 }
 
 //显示对话框
-dialog_basic.prototype.show_dialog = function(type){
+dialog_basic.prototype.show_dialog = function(type,cb){
 	var _this = this;
     var oToggle_btn = $("#add_dialog .footer").find("input").eq(0);
     var dialog_footer = $("#add_dialog .footer");
+    this.clear_dialog();
     switch(type){
 		//若是增加
     	case "add":
@@ -381,6 +383,8 @@ dialog_basic.prototype.show_dialog = function(type){
 	//显示弹框
     $("#add_dialog").show();
     $("#screen_page").show();
+
+    cb && cb();
 }
 
 //信息确认弹框------------------------------------------------------------------

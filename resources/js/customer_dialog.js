@@ -7,6 +7,7 @@ $(function(){
 function customer_dialog(){
 	dialog_basic.apply(this,arguments);      //属性继承
     this.title = ["新增客户","编辑客户"];    //数据
+    this.edit_dt = {};                       //当前客户的相关数据
     //用于测试
 	this.insert_data();
 	//私有事件
@@ -49,6 +50,8 @@ customer_dialog.prototype.Events=function(){
         //鼠标滑出
     	$(this).parent().find("li").removeClass("act");
     });
+
+    //客户新增or编辑弹框上，联系人列表是否编辑可操作
 	$("#add_dialog .contacts_list_demo").on("click",function(e){
 		if(e.target.tagName=="IMG"){
 			//点击"删除"按钮，删除当前这条联系人信息；
@@ -98,6 +101,7 @@ customer_dialog.prototype.check_data = function(){
 
 //提交表单数据(通过回调函数进行回调)
 customer_dialog.prototype.submit_data = function(cb){
+    var _this = this;
 	var post_dt = this.selection_data(),  		 //拼接数据
 		sub_type = this.iseditor?"PUT":"POST";   //提交方式，PUT为编辑提交；POST为新增；
 		//提交
@@ -106,7 +110,10 @@ customer_dialog.prototype.submit_data = function(cb){
 			data:post_dt,
 			method:sub_type,
 			success:function(res){
-				//console.log(res);
+				//是新增状态,重新刷新
+	            customer.customerRequest();
+			    //清空弹框数据；
+			    _this.clear_dialog();
 				cb && cb();
 			},
 			fail:function(){
@@ -115,7 +122,7 @@ customer_dialog.prototype.submit_data = function(cb){
 		})
 }
 
-//拼接数据
+//弹框拼接数据
 customer_dialog.prototype.selection_data=function(){
      var json_dt = {};
 
@@ -134,7 +141,7 @@ customer_dialog.prototype.selection_data=function(){
 
 	if(this.iseditor){
   	    json_dt.userFlag="";  				 //编辑模式，是否为启用状态，看当前编辑这条客户的状态是否为启用状态；
-    	json_dt.customerId = customerId;     //客户id唯一标识			      
+    	json_dt.customerId = $("#customer_name").attr("customerId");     //客户id唯一标识			      
 		json_dt.source = "";       			 //来源（1:手工新增0：ERP批量导入）
 	}else{
   	    json_dt.userFlag="";  				//新增模式，只能为启用状态；		
@@ -248,13 +255,13 @@ customer_dialog.prototype.add_contacts_one=function(obj_btn,data){
 }
 
 
-//当前这条联系人信息，可编辑状态与不可编辑状态切换展示
+//当前这条联系人信息，可编辑状态与不可编辑状态切换展示，oPar表示单条联系人的盒子；btn为true表示可编辑，false表示不可编辑；
 customer_dialog.prototype.set_isedit=function(oPar,btn){
   var _this = this,
 	  edit_btn = btn || false,
       edit_img_src = edit_btn?_this.img_list[0]:_this.img_list[1],
       delete_img_src = edit_btn?_this.img_list[2]:_this.img_list[3];
-	if(btn){
+	if(edit_btn){
 		//表单可编辑
 		$(oPar).find("input:text").removeClass("border_none");
 		$(oPar).find("input:text").removeAttr("disabled");
@@ -270,6 +277,57 @@ customer_dialog.prototype.set_isedit=function(oPar,btn){
 	$(oPar).find("img.delete_btn_one").attr("src",delete_img_src);
 }
 
+//显示编辑框，并将客户的相关数据插进来
+customer_dialog.prototype.insert_edit_dialog=function(){
+
+    var _this = this; 	
+	
+	console.log("当前编辑的这条客户数据："+JSON.stringify(this.edit_dt));
+
+	//客户状态
+	$("#add_dialog").attr("customer_id",this.edit_dt.customerId);    						//客户id
+	$("#add_dialog").attr("source",this.edit_dt.source?this.edit_dt.source:"");    			//客户来源
+	$("#add_dialog").attr("userFlag",this.edit_dt.userFlag?this.edit_dt.userFlag:"");    	//启用状态
+	
+    
+    //客户信息填充
+    $("#customer_name").val(this.edit_dt.customerName);        //客户名称
+	$("#customer_tel").val(this.edit_dt.customerPhone);		   //客户联系电话
+	$("#customer_code").val(this.edit_dt.customerCode);		   //客户编码
+	$("#customer_addr").val(this.edit_dt.customerAddress);	   //客户地址
+	$("#car_type_list .info_box label").html(this.loadingType[this.edit_dt.loadingType]);   //装车费类型
+	
+     //客户相关的联系人列表信息填充
+     var aContacs_list = this.edit_dt.contactList["0"]["value"];
+     var Demo_list = "";     											//拼接联系人列表信息；
+     for(var key in aContacs_list){
+		Demo_list+='<div class="contacts_one">';
+		Demo_list+='<p class="contacts_w_0 fl">';
+		Demo_list+='<label class="ft_red ml_0 mr_1 fl">*</label>';
+		Demo_list+='<input type="text" value="'+aContacs_list[key].contactName+'" class="contacts_text contacts_w_2">';
+		Demo_list+='</p>';
+		Demo_list+='<p class="contacts_w_0 fl">';
+		Demo_list+='<label class="ft_red ml_0 mr_1 fl">*</label>';
+		Demo_list+='<input type="text" value="'+aContacs_list[key].contactPhone+'" class="contacts_text contacts_w_2">';
+		Demo_list+='</p>';
+		Demo_list+='<p class="contacts_w_1 fl">';
+		Demo_list+='<label class="ft_red ml_0 mr_1 fl">*</label>';
+		Demo_list+='<input type="text" value="'+aContacs_list[key].contactCardId+'" class="contacts_text contacts_w_3">';
+		Demo_list+='</p>';
+		Demo_list+='<p class="contacts_w_0 fl edit_box">';
+		Demo_list+='<img src="./../../img/edit.png" alt="" class="edit_btn_one">';
+		Demo_list+='<img src="./../../img/delete.png" alt="" class="delete_btn_one">';
+		Demo_list+='</p>';
+		Demo_list+='</div>';
+     }
+
+     //填充联系人列表信息
+     $(".contacts_list_demo").html(Demo_list);
+     //设置联系人列表，每条为不可编辑状态；
+     $(".contacts_list_demo .contacts_one").each(function(){
+	    _this.set_isedit($(this),false);    	
+     });
+}
 
 //插入某个客户的信息以及相关的联系人列表信息
 customer_dialog.prototype.insert_data=function(oPar,data){
@@ -424,11 +482,14 @@ var customer = {
 
 		//点击新增按钮，展示新增弹框
 		$("#add_one_btn").click(function(){
+    		dialog_customer.iseditor = false;             //设置为编辑状态
 			dialog_customer.show_dialog("add");
 		});
 		//点击编辑按钮，展示编辑弹框
 		$("#edit_one_btn").click(function(){
-			dialog_customer.show_dialog("edit");
+			dialog_customer.show_dialog("edit",function(){
+				dialog_customer.insert_edit_dialog();
+			});
 		});
 		
 		//点击批量导入按钮，展示批量导入弹框
@@ -487,8 +548,12 @@ var customer = {
 				}
 
 				dialog_customer.edit_dt = editData;   //将当期要编辑的这套数据存储起来；
+				//显示当前这条编辑框
+				dialog_customer.show_dialog("edit",function(){
+					dialog_customer.iseditor = true;             //设置为编辑状态
+					dialog_customer.insert_edit_dialog();         //插入数据
+				});
 
-				dialog_customer.show_dialog("edit");  //显示当前这条编辑框
         	}
 
         	//点击删除图标，删除这一行数据
@@ -710,7 +775,7 @@ var customer = {
                     
                 },
                 error:function () {
-
+                	
                 }
             })
         }
