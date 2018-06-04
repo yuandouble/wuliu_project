@@ -9,6 +9,7 @@ $(function(){
 function dialog_product_info(){
     dialog_basic.apply(this,arguments);      //属性继承
     this.title = ["新增产品","编辑产品"];    //数据
+    this.edit_dt = {};                       //当前客户的相关数据
     this.Events();
 }
 
@@ -70,6 +71,7 @@ dialog_product_info.prototype.Insert_edit_dt=function(){
 
 
 //产品信息维护列表页主效果-----------------------------
+var productLis = "";
 var productInfo = {
     bindEvent:function () {
         var flag = true;
@@ -144,7 +146,15 @@ var productInfo = {
             //点击编辑按钮，显示编辑弹框
             if($(this).attr("src").indexOf("edit.png")!=-1){
                  //当前产品的所有数据拼接
-
+                //拼接数据
+                var productId = $(this).parents("tr").attr("productId"),
+                    editData;
+                for(var i = 0; i < productLis.length; i++){
+                    if(productLis[i].productId == productId){
+                        editData = productLis[i];
+                    }
+                }
+                dialog_product.edit_dt = editData; //将当期要编辑的这套数据存储起来；
 
                   dialog_product.show_dialog("edit",function(){
                        dialog_product.Insert_edit_dt();
@@ -312,6 +322,7 @@ var productInfo = {
                 }
 
             };
+                productLis = cj.Parse(data);
                 datas = cj.Parse(data);
                 productInfo.productReader(datas);
             },
@@ -324,7 +335,7 @@ var productInfo = {
         var _html = '';
         var productList = datas;
         for(var i = 0; i < productList.length; i++){
-            _html+= '<tr dangerLevel="'+productList[i].dangerLevel+'">'
+            _html+= '<tr productId="'+productList[i].productId+'" dangerLevel="'+productList[i].dangerLevel+'">'
                    +'<td>'+(i+1)+'</td>'
                    +'<td>'+productList[i].mesCode+'</td>'
                    +'<td>'+productList[i].mesName+'</td>'

@@ -74,7 +74,7 @@ var cranePosition = {
                             template.push(delivery)
                         })
                         console.log(cj.parseCjArray(template));
-                        cranePosition.cranePositionPointAdd();
+                        cranePosition.cranePositionAdd();
                     }
                 } else {
                     $("tbody tr input.active").each(function () {
@@ -88,7 +88,7 @@ var cranePosition = {
                         template.push(delivery)
                     })
                     console.log(cj.parseCjArray(template));
-                    cranePosition.cranePositionPointAdd();
+                    cranePosition.cranePositionAdd();
                 }
             }
         })
@@ -139,63 +139,220 @@ var cranePosition = {
             success: function (data) {
                 var data = {
                     "collection": {
-                        "version": 1.0,
-                        "href": "http://IOLService/cranepositions ",
-                        "items": [{
-                            "href": "{id}",
-                            "data": [{
-                                "name": "cranePositionId",
-                                "value": "0000012"
+                        "version": "1.0",
+                        "href": "http://localhost:8094/IOLService/cranePosition",
+                        "items": [
+                            {
+                                "data": [
+                                    {
+                                        "name": "cranePositionId",
+                                        "value": 123
+                                    },
+                                    {
+                                        "name": "cranePositionCode",
+                                        "value": "33"
+                                    },
+                                    {
+                                        "name": "cranePositionName",
+                                        "value": "3#鹤位123123123"
+                                    },
+                                    {
+                                        "name": "status",
+                                        "value": 0
+                                    },
+                                    {
+                                        "name": "operator",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "operateTime",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "top",
+                                        "value": 1
+                                    },
+                                    {
+                                        "name": "size",
+                                        "value": 2
+                                    },
+                                    {
+                                        "name": "codeList",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "direction",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "sortColumn",
+                                        "value": ""
+                                    }
+                                ]
                             },
-                                {
-                                    "name": "cranePositionCode",
-                                    "value": "1231231 "
-                                },
-                                {
-                                    "name": "cranePositionName",
-                                    "value": "1#"
-                                },
-                                {
-                                    "name": "status",
-                                    "value": "1"
-                                },
-                                {
-                                    "name": "operator",
-                                    "value": "张三"
-                                },
-                                {
-                                    "name": "operateTime",
-                                    "value": "201805031123"
-                                }
-
-                            ],
-                            "links": []
-                        }],
-                        "queries": [{
-                            "href": " http://IOLService/cranepositions ",
-                            "rel": "search",
-                            "prompt": "1、列表查询",
-                            "data": [
-                                {
-                                    "name": "$craneName",
-                                    "value": ""
-                                }
-                            ]
-                        }
+                            {
+                                "data": [
+                                    {
+                                        "name": "cranePositionId",
+                                        "value": 5
+                                    },
+                                    {
+                                        "name": "cranePositionCode",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "cranePositionName",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "status",
+                                        "value": 0
+                                    },
+                                    {
+                                        "name": "operator",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "operateTime",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "top",
+                                        "value": 1
+                                    },
+                                    {
+                                        "name": "size",
+                                        "value": 2
+                                    },
+                                    {
+                                        "name": "codeList",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "direction",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "sortColumn",
+                                        "value": ""
+                                    }
+                                ]
+                            },
+                            {
+                                "data": [
+                                    {
+                                        "name": "cranePositionId",
+                                        "value": 4
+                                    },
+                                    {
+                                        "name": "cranePositionCode",
+                                        "value": "44"
+                                    },
+                                    {
+                                        "name": "cranePositionName",
+                                        "value": "4#鹤位"
+                                    },
+                                    {
+                                        "name": "status",
+                                        "value": 1
+                                    },
+                                    {
+                                        "name": "operator",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "operateTime",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "top",
+                                        "value": 1
+                                    },
+                                    {
+                                        "name": "size",
+                                        "value": 2
+                                    },
+                                    {
+                                        "name": "codeList",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "direction",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "sortColumn",
+                                        "value": ""
+                                    }
+                                ]
+                            }
                         ],
-                        "templates": {
+                        "page": {
                             "data": [
-                                {"name": " cranePositionCode ", "value": "", "prompt": "鹤位编码"},
-                                {"name": " cranePositionName", "value": "", "prompt": "鹤位名称"},
-                                {"name": "status", "value": "", "prompt": "状态"},
-                                {"name": "operator", "value": "", "prompt": "操作人"},
-                                {"name": "operate_time", "value": "", "prompt": "操作时间"},
+                                {
+                                    "name": "last",
+                                    "value": false
+                                },
+                                {
+                                    "name": "totalPages",
+                                    "value": 2
+                                },
+                                {
+                                    "name": "totalElements",
+                                    "value": 6
+                                },
+                                {
+                                    "name": "size",
+                                    "value": 3
+                                },
+                                {
+                                    "name": "number",
+                                    "value": 1
+                                },
+                                {
+                                    "name": "first",
+                                    "value": true
+                                },
+                                {
+                                    "name": "sort",
+                                    "value": "[{\"ascending\":false,\"direction\":\"DESC\",\"ignoreCase\":false,\"nullHandling\":\"NATIVE\",\"property\":\"cranePositionId\"}]"
+                                },
+                                {
+                                    "name": "numberOfElements",
+                                    "value": 3
+                                }
                             ]
                         },
-                        "error": {
-                            "code": "",
-                            "message": ""
-                        }
+                        "templates": [
+                            {
+                                "data": [
+                                    {
+                                        "name": "cranePositionId",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "cranePositionCode",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "cranePositionName",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "status",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "operator",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "operateTime",
+                                        "value": ""
+                                    }
+                                ]
+                            }
+                        ]
                     }
                 };
 
@@ -208,7 +365,7 @@ var cranePosition = {
         })
     },
     //鹤位新增/修改接口
-    cranePositionPointAdd: function (types, templates) {
+    cranePositionAdd: function (types, templates) {
         $.ajax({
             url:"",
             type:types,
