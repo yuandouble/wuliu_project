@@ -147,6 +147,7 @@ var productInfo = {
                         editData = productLis[i];
                     }
                 }
+                console.log(editData);
                 dialog_product.edit_dt = editData; //将当期要编辑的这套数据存储起来；
                 dialog_product.iseditor = true;   //将弹框的状态设置为编辑状态；
                   dialog_product.show_dialog("edit",function(){
@@ -322,6 +323,7 @@ var productInfo = {
                 }
 
             };
+                productLis = cj.Parse(data);
                 datas = cj.Parse(data);
                 productInfo.productReader(datas);
             },
@@ -334,7 +336,7 @@ var productInfo = {
         var _html = '';
         var productList = datas;
         for(var i = 0; i < productList.length; i++){
-            _html+= '<tr dangerLevel="'+productList[i].dangerLevel+'">'
+            _html+= '<tr productId="'+productList[i].productId+'" dangerLevel="'+productList[i].dangerLevel+'">'
                    +'<td>'+(i+1)+'</td>'
                    +'<td>'+productList[i].mesCode+'</td>'
                    +'<td>'+productList[i].mesName+'</td>'
@@ -342,10 +344,6 @@ var productInfo = {
                    +'<td>'+productList[i].erpName+'</td>'
                    +'<td>'+productList[i].limCode+'</td>'
                    +'<td>'+productList[i].limsName+'</td>'
-                   +'<td>'+productList[i].dangerLevel+'</td>'
-                   +'<td>'+productList[i].entruckingType+'</td>'
-                   +'<td>'+productList[i].settlementType+'</td>'
-                   +'<td>'+productList[i].erpAccountMark+'</td>'
                    +'<td>'
                    +'<div class="fl img">'
                    +'<img src="./../../img/edit.png" alt="">'

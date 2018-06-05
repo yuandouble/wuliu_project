@@ -19,40 +19,10 @@
             <div id="refresh">刷新</div>
         </div>
         <div>
-            <div class="fl">
-                <div class="fl type">MES物料编码:</div>
-                <div class="fl type-select ml_0">
-                    <input type="text" class="wuliao_code" id="wuliao_code" />
-                    <!--
-					<div class="types">全部类型</div>
-                     -->
-					 <ul class="type-list">
-                        <li>全部类型</li>
-                        <li>普通危化品</li>
-                        <li>一般危化品</li>
-                        <li>高级危化品</li>
-                        <li>全部类型</li>
-                        <li>普通危化品</li>
-                        <li>高级危化品</li>
-                        <li>全部类型</li>
-                        <li>普通危化品</li>
-                        <li>高级危化品</li>
-                    </ul>
-                </div>
-                <!--<div class="fl">-->
-                    <!--<select class="product-type" name="" id="">-->
-                        <!--<option value="">全部类型</option>-->
-                    <!--</select>-->
-                <!--</div>-->
-            </div>
             <div class="search fr">
                 <div class="inp fl">
                     <input type="text" placeholder="搜索"><div class="search-btn"></div>
-                </div>
-                <div class="adv-search fl" id="advSearch">
-                    <div class="adv-btn fl" id="advBtn">高级搜索</div>
-                    <div class="adv-btns fl" id="advBtns"></div>
-                </div>
+                </div>                
             </div>
         </div>
         <div class="cl"></div>
@@ -61,18 +31,14 @@
             <table class="layui-table" id="product_level">
                 <thead>
                 <tr class="head">
-                    <th><p>序号</p></th>
+                    <th style="width:50px;"><p>序号</p></th>
                     <th><p>MES物料编码</p></th>
                     <th><p>MES物料名称</p></th>
-                    <th><p>ERP物料编码</p></th>
-                    <th><p>ERP物料名称</p></th>
-                    <th><p>LIMS物料编码</p></th>
-                    <th><p>LIMS物料名称</p></th>
-                    <th><p>危化品类型</p></th>
-                    <th><p>装车费类型</p></th>
-                    <th><p>提前结算标记</p></th>
-                    <th><p>ERP发货过账标记</p></th>
-                    <th><p class="last">操作</p></th>
+                    <th><p>MES物料等级</p></th>
+                    <th><p>ERP工厂</p></th>
+                    <th><p>ERP评估类型</p></th>
+                    <th><p>ERP批次</p></th>
+                    <th style="width: 100px;"><p class="last">操作</p></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -84,10 +50,6 @@
                     <td>97#汽油</td>
                     <td>DS73838</td>
                     <td>97#汽油</td>
-                    <td class="left">普通危化品</td>
-                    <td class="left">常户</td>
-                    <td>否</td>
-                    <td>否</td>
                     <td>
                         <div class="fl img">
                             <img src="./../../img/edit.png" alt="">
@@ -105,10 +67,6 @@
                     <td>97#汽油</td>
                     <td>DS73838</td>
                     <td>97#汽油</td>
-                    <td class="left">高级危化品</td>
-                    <td class="left">无需缴纳</td>
-                    <td>否</td>
-                    <td>否</td>
                     <td>
                         <div class="fl img">
                             <img src="./../../img/edit.png" alt="">
@@ -121,79 +79,8 @@
                 </tbody>
             </table>
         </div>
-
-        <!--高级搜索弹窗-->
-        <div class="search-modal" id="searchModal">
-            <div class="fl title">MES物料编码：</div>
-            <div class="fl"><input type="text"></div>
-            <div class="fl title">MES物料名称：</div>
-            <div class="fl"><input type="text"></div>
-            <div class="fl title">ERP物料编码：</div>
-            <div class="fl"><input type="text"></div>
-            <div class="fl title title2">ERP物料名称：</div>
-            <div class="fl title2"><input type="text"></div>
-            <div class="fl title title2">LIMS物料编码：</div>
-            <div class="fl title2"><input type="text"></div>
-            <div class="fl title title2">LIMS物料名称：</div>
-            <div class="fl title2"><input type="text"></div>
-            <div class="fl title title2">装车费类型：</div>
-            <div class="fl title2">
-                <!--<select name="">-->
-                    <!--<option value="">全部</option>-->
-                <!--</select>-->
-                <div class="fl select">
-                    <div class="s-types">全部类型</div>
-                    <ul class="s-type-list">
-                        <li>全部类型</li>
-                        <li>普通危化品</li>
-                        <li>高级危化品</li>
-                    </ul>
-                </div>
-
-            </div>
-            <div class="fl title title2">结算标记：</div>
-            <div class="fl title2">
-                <div class="fl select">
-                    <div class="s-types">全部类型</div>
-                    <ul class="s-type-list">
-                        <li>全部类型</li>
-                        <li>普通危化品</li>
-                        <li>高级危化品</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="fl title title2">ERP发货标记：</div>
-            <div class="fl title2">
-                <div class="fl select">
-                    <div class="s-types">全部类型</div>
-                    <ul class="s-type-list">
-                        <li>全部类型</li>
-                        <li>普通危化品</li>
-                        <li>高级危化品</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="cl"></div>
-            <div class="btn fr">
-                <div class="search-modbtn active">查询</div>
-                <div class="search-modbtn" id="searchClear">清除</div>
-            </div>
-        </div>
-    </div>
 </div>
-    <!--页面主体结束部分-->
-
-	<!--产品等级维护页弹框-->
-	<!--
-	<p style="width: 100%;" class="fl">产品等级维护页相关弹框</p>
-    <div style="width:100%; height: auto;">
-	   <buttton id="add_list_btn" class="btn_nomal blue_btn fl" style="display:block; margin:10px;">批量导入文件</buttton>
-	   <buttton id="add_infolist_btn" class="btn_nomal blue_btn fl" style="width:250px;display:block; margin:10px;">批量导入文件列表信息</buttton>
-		<button id="add_one_btn" class="btn_nomal blue_btn fl" style="display:block; margin:10px;">新增产品等级</button>	
-		<button id="edit_one_btn" class="btn_nomal blue_btn fl" style="display:block; margin:10px;">编辑产品等级</button>	
-	</div>
-    
-    -->
+ <!--页面主体结束部分-->
    <!--黑色弹幕-->
    <div class="bg_black screen_page hidden" id="screen_page"></div>
    <!--添加单个客户弹框 start-->

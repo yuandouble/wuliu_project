@@ -192,6 +192,7 @@ var productInfo = {
     bindEvent:function () {
         var flag = true;
         var typeFlag = false;
+
         $("#refresh").on("click",function () {
             productInfo.productRequest();
         })
@@ -265,6 +266,7 @@ var productInfo = {
                 //拼接数据
                 var productId = $(this).parents("tr").attr("productId"),
                     editData;
+                console.log(productLis);
                 for(var i = 0; i < productLis.length; i++){
                     if(productLis[i].productId == productId){
                         editData = productLis[i];
