@@ -8,6 +8,7 @@ $(function(){
 /*产品等级维护对话框类*/
 function dialog_product_level(){
 	dialog_basic.apply(this,arguments);      //属性继承
+    this.edit_dt = {};   //当前产品的数据
     this.title = ["新增产品","编辑产品"];    //数据
    // this.Events();
    this.init();
@@ -30,6 +31,27 @@ dialog_product_level.prototype.get_all_dt=function(){
 
 }
 
+//当弹框为编辑状态时，将数据插入到弹框当中去
+dialog_product_level.prototype.Insert_edit_dt=function(){
+    
+    console.log("数据："+JSON.stringify(this.edit_dt));
+
+    //物料类型; 
+
+    //MES物料编码; 
+
+    //MES物料名称; 
+
+    //MES物料等级; 
+
+    //ERP工厂;
+
+    //ERP评估类型; 
+
+    //ERP批次;
+
+}
+
 //当为编辑状态时，将数据全部插入到页面上去
 dialog_product_level.prototype.Insert_dt=function(){
 
@@ -41,9 +63,8 @@ dialog_product_level.prototype.submit_data=function(){
 }
 
 
-
-
 //产品信息维护列表页主效果-----------------------------
+var productLis = "";
 var productInfo = {
     bindEvent:function () {
         var flag = true;
@@ -118,7 +139,16 @@ var productInfo = {
             //点击编辑按钮，显示编辑弹框
             if($(this).attr("src").indexOf("edit.png")!=-1){
                  //当前产品的所有数据拼接
-
+                //拼接数据
+                var productId = $(this).parents("tr").attr("productId"),
+                    editData;
+                for(var i = 0; i < productLis.length; i++){
+                    if(productLis[i].productId == productId){
+                        editData = productLis[i];
+                    }
+                }
+                dialog_product.edit_dt = editData; //将当期要编辑的这套数据存储起来；
+                dialog_product.iseditor = true;   //将弹框的状态设置为编辑状态；
                   dialog_product.show_dialog("edit",function(){
                        dialog_product.Insert_edit_dt();
                   });  
