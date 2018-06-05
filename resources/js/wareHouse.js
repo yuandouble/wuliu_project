@@ -144,11 +144,17 @@ var wareHouse = {
                             template.push(depotAdd)
                         })
                         console.log(cj.parseCjArray(template));
-                        wareHouse.wareHousAdd();
+                        wareHouse.wareHouseAdd();
                     }
                 } else {
                     //为2时执行修改操作，遍历修改项
-                    $("tbody tr.update .library-position").each(function () {
+                    $("tbody tr.update .library-position.update").each(function () {
+                        console.log($("tbody tr .library-position.update"));
+
+                        var depotName = $(this).parents("tr").find("td").eq(1).find("input");
+                        var stockCode = $(this).find("li").eq(0).find("input");
+                        var stockName = $(this).find("li").eq(1).find("input");
+
                         // var depotName = $(this).parents("tr").find("td").eq(1).find("input");
                         // var stockCode = $(this).find("li").eq(0).find("input");
                         // var stockName = $(this).find("li").eq(1).find("input");
@@ -162,7 +168,7 @@ var wareHouse = {
                         // template.push(delivery)
                     })
                     console.log(cj.parseCjArray(template));
-                    wareHouse.wareHousAdd();
+                    wareHouse.wareHouseAdd();
                 }
             }
         })
@@ -215,8 +221,10 @@ var wareHouse = {
                 var adds = $(this).parents("tr").find(".library-position.active");
                 if (adds.length) {
                     adds.find("input").addClass("active").removeAttr("readonly");
+                    adds.addClass("update");
                 } else {
                     $(this).parents("tr").find("input").addClass("active").removeAttr("readonly");
+                    $(this).parents("tr").find(".library-position").addClass("update");
                 }
                 $(this).parents("tr").addClass("update");
             }
@@ -501,7 +509,7 @@ var wareHouse = {
     },
 
     //仓库and库位  新增/修改接口
-    wareHousAdd: function (types, templates) {
+    wareHouseAdd: function (types, templates) {
         $.ajax({
             url: "",
             type: types,

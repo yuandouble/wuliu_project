@@ -66,7 +66,6 @@ var deliveryPoint = {
                             noNull++;
                         }
                     })
-                    console.log(noNull);
                     if (noNull != 0) {
                         info("输入内容不能为空", '温馨提示', function () {
                         });
@@ -85,18 +84,30 @@ var deliveryPoint = {
                         deliveryPoint.deliveryPointAdd();
                     }
                 } else {
+                    var noNull = 0;
                     $("tbody tr input.active").each(function () {
-                        var delivery = {
-                            pointerCode: $(this).parents("tr").find("td").eq(0).html(),
-                            pointerName: commons.deleteSpace($(this).parents("tr").find("input")),
-                            status: $(this).parents("tr").find("td").eq(4).attr("status"),
-                            operator: $(this).parents("tr").find("td").eq(2).html(),
-                            operateTime: $(this).parents("tr").find("td").eq(3).attr("times")
+                        if (!commons.deleteSpace($(this))) {
+                            noNull++;
                         }
-                        template.push(delivery)
                     })
-                    console.log(cj.parseCjArray(template));
-                    deliveryPoint.deliveryPointAdd();
+                    //判断input是否为空，为空不允许修改
+                    if (noNull != 0) {
+                        info("修改内容不能为空", '温馨提示', function () {
+                        });
+                    }else{
+                        $("tbody tr input.active").each(function () {
+                            var delivery = {
+                                pointerCode: $(this).parents("tr").find("td").eq(0).html(),
+                                pointerName: commons.deleteSpace($(this).parents("tr").find("input")),
+                                status: $(this).parents("tr").find("td").eq(4).attr("status"),
+                                operator: $(this).parents("tr").find("td").eq(2).html(),
+                                operateTime: $(this).parents("tr").find("td").eq(3).attr("times")
+                            }
+                            template.push(delivery)
+                        })
+                        console.log(cj.parseCjArray(template));
+                        deliveryPoint.deliveryPointAdd();
+                    }
                 }
             }
         })

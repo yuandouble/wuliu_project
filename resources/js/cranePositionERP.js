@@ -1,9 +1,7 @@
-(function () {
-    $(document).ready(function () {
-        cranePositionERP.bindEvent();
-        cranePositionERP.cranePositionERPRequest();
-    })
-})()
+$(function () {
+    cranePositionERP.bindEvent();
+    cranePositionERP.cranePositionERPRequest();
+})
 
 var cranePositionERP = {
     bindEvent: function () {
@@ -72,7 +70,8 @@ var cranePositionERP = {
             }
         })
     },
-    //鹤位ERP库位映射信息查询
+
+    //鹤位ERP库位映射信息查询接口
     cranePositionERPRequest: function (datas) {
         $.ajax({
             // url:"",
@@ -644,6 +643,7 @@ var cranePositionERP = {
         })
     },
 
+    //鹤位ERP库位映射信息数据展示
     cranePositionERPReader: function (datas) {
         var _html = '';
         var cranePositionERPReaderList = datas;
@@ -654,14 +654,22 @@ var cranePositionERP = {
                 + '<td><input type="text" readonly value="' + cranePositionERPReaderList[i].erpCompanyId + '"></td>'
                 + '<td><input type="text" readonly value="' + cranePositionERPReaderList[i].erpCompanyName + '"></td>'
                 + '<td><input type="text" readonly value="' + cranePositionERPReaderList[i].erpFactoryName + '"></td>'
-                + '<td><input type="text" readonly value="' + cranePositionERPReaderList[i].storageLocationPoint + '"></td>'
-                + '<td>' + cranePositionERPReaderList[i].preserveName + '</td>'
-                + '<td>' + commons.timeFormat(cranePositionERPReaderList[i].preserveTime) + '</td>'
-                + '<td>'
-                + '<div class="switch1">'
-                + '<div class="switch2"></div>'
-                + '</div>'
-                + '</td>'
+                + '<td><input type="text" readonly value="' + cranePositionERPReaderList[i].erpStorageName + '"></td>'
+                + '<td>' + cranePositionERPReaderList[i].mntUserName + '</td>'
+                + '<td>' + commons.timeFormat(cranePositionERPReaderList[i].mntDate) + '</td>'
+                + '<td status = "' + cranePositionERPReaderList[i].Flag + '">'
+            if (cranePositionERPReaderList[i].Flag == 1) {
+                _html += '<div class="switch1 active">'
+                    + '<div class="switch2 active"></div>'
+                    + '</div>'
+            } else {
+                _html += '<div class="switch1">'
+                    + '<div class="switch2"></div>'
+                    + '</div>'
+            }
+
+
+            _html += '</td>'
                 + '<td>'
                 + '<div class="fl img edit">'
                 + '<img src="./../../img/edit.png" alt="">'
