@@ -1,7 +1,7 @@
 (function () {
     $(document).ready(function () {
         deliveryPoint.bindEvent();
-        // deliveryPoint.deliveryPointRequest();
+        deliveryPoint.deliveryPointRequest();
     })
 })()
 
@@ -71,14 +71,21 @@ var deliveryPoint = {
                         });
                     } else {
                         $("tbody tr.add").each(function () {
-                            var delivery = {
+                            //新增信息获取
+                            var addInfo = {
                                 pointerCode: $(this).find("td").eq(0).html(),
-                                pointerName: commons.deleteSpace($(this).find("input")),
-                                status: "1",
-                                operator: "",
-                                operateTime: ""
+                                pointerName: $(this).find("td").eq(1).find("input"),
+                                status:"1"
                             }
-                            template.push(delivery)
+
+                            //新增信息组装
+                            var addInfomation = {
+                                pointerCode: addInfo.pointerCode,
+                                pointerName: commons.deleteSpace(addInfo.pointerName),
+                                status: addInfo.status
+                            }
+
+                            template.push(addInfomation)
                         })
                         console.log(cj.parseCjArray(template));
                         deliveryPoint.deliveryPointAdd();
@@ -95,15 +102,26 @@ var deliveryPoint = {
                         info("修改内容不能为空", '温馨提示', function () {
                         });
                     }else{
-                        $("tbody tr input.active").each(function () {
-                            var delivery = {
-                                pointerCode: $(this).parents("tr").find("td").eq(0).html(),
-                                pointerName: commons.deleteSpace($(this).parents("tr").find("input")),
-                                status: $(this).parents("tr").find("td").eq(4).attr("status"),
-                                operator: $(this).parents("tr").find("td").eq(2).html(),
-                                operateTime: $(this).parents("tr").find("td").eq(3).attr("times")
+                        $("tbody tr.update").each(function () {
+
+                            //修改信息获取
+                            var updateInfo = {
+                                pointerId:$(this).attr("pointerId"),
+                                pointerCode: $(this).find("td").eq(0).find("input"),
+                                pointerName: $(this).find("td").eq(1).find("input"),
+                                status:$(this).find("td").eq(4).attr("status")
                             }
-                            template.push(delivery)
+
+                            //修改信息组装
+                            var updateInfomation = {
+                                pointerId:updateInfo.pointerId,
+                                pointerCode: commons.deleteSpace(updateInfo.pointerCode),
+                                pointerName: commons.deleteSpace(updateInfo.pointerName),
+                                status: updateInfo.status
+                            }
+
+
+                            template.push(updateInfomation)
                         })
                         console.log(cj.parseCjArray(template));
                         deliveryPoint.deliveryPointAdd();
@@ -119,6 +137,7 @@ var deliveryPoint = {
                 });
             } else {
                 $(this).parents("tr").find("input").addClass("active").removeAttr("readonly");
+                $(this).parents("tr").addClass("update");
             }
         })
         //删除操作
@@ -302,7 +321,8 @@ var deliveryPoint = {
         // status: 1启用  2停用
         for (var i = 0; i < deliveryPointList.length; i++) {
             _html += '<tr pointerId="' + deliveryPointList[i].pointerId + '">'
-                + '<td>' + deliveryPointList[i].pointerCode + '</td>'
+                // + '<td>' + deliveryPointList[i].pointerCode + '</td>'
+                + '<td><input type="text" readonly value="' + deliveryPointList[i].pointerCode + '"></td>'
                 + '<td><input type="text" readonly value="' + deliveryPointList[i].pointerName + '"></td>'
                 + '<td>' + deliveryPointList[i].operator + '</td>'
                 + '<td times="' + deliveryPointList[i].operateTime + '">' + commons.timeFormat(deliveryPointList[i].operateTime) + '</td>'
