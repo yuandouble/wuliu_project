@@ -27,9 +27,9 @@ var cranePosition = {
                     + '</div>'
                     + '</td>'
                     + '</tr>';
-                if($("tbody tr").length){
+                if ($("tbody tr").length) {
                     $("tbody").find("tr").eq(0).before(_tr);
-                }else {
+                } else {
                     $("tbody").append(_tr);
                 }
             }
@@ -58,7 +58,7 @@ var cranePosition = {
                             noNull++;
                         }
                     })
-                    console.log(noNull);
+                    //判断input是否为空，为空不允许修改
                     if (noNull != 0) {
                         info("输入内容不能为空", '温馨提示', function () {
                         });
@@ -77,18 +77,31 @@ var cranePosition = {
                         cranePosition.cranePositionAdd();
                     }
                 } else {
+
+                    var noNull = 0;
                     $("tbody tr input.active").each(function () {
-                        var delivery = {
-                            cranePositionCode: $(this).parents("tr").find("td").eq(0).html(),
-                            cranePositionName: commons.deleteSpace($(this).parents("tr").find("input")),
-                            status: $(this).parents("tr").find("td").eq(4).attr("status"),
-                            operator: $(this).parents("tr").find("td").eq(2).html(),
-                            operateTime: $(this).parents("tr").find("td").eq(3).attr("times")
+                        if (!commons.deleteSpace($(this))) {
+                            noNull++;
                         }
-                        template.push(delivery)
                     })
-                    console.log(cj.parseCjArray(template));
-                    cranePosition.cranePositionAdd();
+                    //判断input是否为空，为空不允许修改
+                    if (noNull != 0) {
+                        info("修改内容不能为空", '温馨提示', function () {
+                        });
+                    } else {
+                        $("tbody tr input.active").each(function () {
+                            var crane = {
+                                cranePositionCode: $(this).parents("tr").find("td").eq(0).html(),
+                                cranePositionName: commons.deleteSpace($(this).parents("tr").find("input")),
+                                status: $(this).parents("tr").find("td").eq(4).attr("status"),
+                                operator: "",
+                                operateTime: ""
+                            }
+                            template.push(crane)
+                        })
+                        console.log(cj.parseCjArray(template));
+                        cranePosition.cranePositionAdd();
+                    }
                 }
             }
         })
@@ -367,10 +380,10 @@ var cranePosition = {
     //鹤位新增/修改接口
     cranePositionAdd: function (types, templates) {
         $.ajax({
-            url:"",
-            type:types,
-            timeout:100000,
-            data:templates,
+            url: "",
+            type: types,
+            timeout: 100000,
+            data: templates,
             success: function (data) {
             },
             error: function (data) {
@@ -402,7 +415,7 @@ var cranePosition = {
         var cranePositionList = datas;
         console.log(cranePositionList);
         for (var i = 0; i < cranePositionList.length; i++) {
-            _html += '<tr cranePositionId="'+cranePositionList[i].cranePositionId+'">'
+            _html += '<tr cranePositionId="' + cranePositionList[i].cranePositionId + '">'
                 + '<td>' + cranePositionList[i].cranePositionCode + '</td>'
                 + '<td><input type="text" readonly value="' + cranePositionList[i].cranePositionName + '"></td>'
                 + '<td>' + cranePositionList[i].operator + '</td>'
