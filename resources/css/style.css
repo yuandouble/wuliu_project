@@ -26,7 +26,7 @@ body{
     background: #ecf1f5;
     color: #333333;
     font-family: MicrosoftYaHei;
-    font-size: 14px;
+    font-size: 12px;
 }
 input{
     color: #666666;
@@ -40,12 +40,16 @@ input{
     border: 1px solid #dbe3e9;
     border-collapse: collapse;
     table-layout: fixed;
-    }
+}
+.tools,search-modbtn,.search,.search-modal{
+    font-size: 14px;
+}
 .layui-table th,.layui-table td{
     border: none;
     text-align: center;
     background: #ffffff;
     position: static;
+    font-size: 12px;
 }
 .layui-table tr:hover,.layui-table tr.active{
     border: 2px solid #ffac68;
@@ -125,6 +129,7 @@ input{
     margin: 14px 0;
     height: 56px;
     border: solid 1px #dbe3e9;
+
 }
 .tools div,.customer-list td img,.search-btn,.contacts{
     cursor: pointer;
@@ -333,7 +338,7 @@ input{
 .customer-list .type-list,.search-modal .s-type-list{
     width: 210px;
     height: 160px;
-    overflow: auto;
+    overflow-y: auto;
     background: #ffffff;
     position: absolute;
     top: 36px;
@@ -345,7 +350,7 @@ input{
     text-indent:8px;
     display: none;
 }
-.customer-list .type-list li:hover,.search-modal .s-type-list li:hover{
+.customer-list .type-list li:hover,.search-modal .s-type-list li:hover,.crane .crane-select li:hover{
     border:1px solid #ffac68;
     background: #fffcf6;
 }
@@ -537,9 +542,9 @@ input{
 /*产品等级信息*/
 .wuliao_code{width: 100%;width: 210px;height: 36px;line-height: 36px;outline: none;text-indent: 10px;border: solid 1px #dbe3e9;}
 
-.library-position{
-    overflow: hidden;
-}
+/*.library-position{*/
+    /*overflow: hidden;*/
+/*}*/
 .library-position li{
     width: 20%;
     float: left;
@@ -582,4 +587,29 @@ input{
 }
 .layui-table .library-position.active,.layui-table .library-position.active input{
    background: #FFEFD5;
+}
+.layui-table tr .crane-select{
+    position: absolute;
+    top: 32px;
+    left: 4.5%;
+    width: 90.3%;
+    height: 160px;
+    z-index: 50000;
+    background: #ffffff;
+    border: solid 1px #dbe3e9;
+    border-top: none;
+    text-indent: 8px;
+    overflow-y: auto;
+}
+.layui-table .crane-select li{
+    width: 99.2%;
+    border: 1px solid #ffffff;
+    text-align: left;
+    height: 30px;
+    line-height: 30px;
+}
+.layui-table tr .library-position .crane-select{
+    top: 40px;
+    left: 4.8%;
+    width: 89.7%;
 }

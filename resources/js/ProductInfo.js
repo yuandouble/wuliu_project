@@ -190,8 +190,8 @@ dialog_product_info.prototype.Insert_edit_dt=function(){
 var productLis = "";
 var productInfo = {
     bindEvent:function () {
-        var flag = true;
-        var typeFlag = false;
+        var flag = true;     //高级搜索开关
+        var typeFlag = false;    //危化品等级开关
         $("#refresh").on("click",function () {
             productInfo.productRequest();
         })

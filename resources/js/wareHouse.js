@@ -229,6 +229,7 @@ var wareHouse = {
                 $(this).parents("tr").addClass("update");
             }
         })
+
         // 启用禁用开关
         $("tbody").on("click", ".switch1", function () {
             if ($(this).hasClass("active")) {
@@ -548,7 +549,8 @@ var wareHouse = {
         console.log(wareHouseReaderList);
         for (var i = 0; i < wareHouseReaderList.length; i++) {
             _html += '<tr>'
-                + '<td>' + wareHouseReaderList[i].depotCode + '</td>'
+                // + '<td>' + wareHouseReaderList[i].depotCode + '</td>'
+                + '<td><input type="text" readonly value="' + wareHouseReaderList[i].depotCode + '"></td>'
                 + '<td><input type="text" readonly value="' + wareHouseReaderList[i].depotName + '"></td>'
                 + '<td><input type="text" readonly value="' + wareHouseReaderList[i].stockCode + '"></td>'
                 + '<td><input type="text" readonly value="' + wareHouseReaderList[i].stockName + '"></td>'

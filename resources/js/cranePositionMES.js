@@ -56,6 +56,7 @@ var cranePositionMES = {
                 });
             } else {
                 var template = [];
+
                 //为1时执行新增
                 if (flag == 1) {
                     var noNull = 0;

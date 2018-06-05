@@ -37,6 +37,7 @@ var cranePosition = {
         //保存
         $("#save").on("click", function () {
             var flag = 0;
+            //判断是否是新增，新增flag为1，修改flag为2，flag为0没有任何变化
             $("tbody tr").each(function () {
                 if ($(this).hasClass("add")) {
                     flag = 1;
@@ -45,12 +46,13 @@ var cranePosition = {
                     flag = 2;
                 }
             })
-            console.log(flag);
+            //没有修改痕迹时，弹出相应提醒
             if (flag == 0) {
                 info("当前页面没有需要保存的内容", '温馨提示', function () {
                 });
             } else {
                 var template = [];
+                //flag为1时，执行新增操作
                 if (flag == 1) {
                     var noNull = 0;
                     $("tbody tr.add input").each(function () {
@@ -64,14 +66,22 @@ var cranePosition = {
                         });
                     } else {
                         $("tbody tr.add").each(function () {
-                            var delivery = {
+
+                            //新增信息获取
+                            var addInfo = {
                                 cranePositionCode: $(this).find("td").eq(0).html(),
-                                cranePositionName: commons.deleteSpace($(this).find("input")),
-                                status: "1",
-                                operator: "",
-                                operateTime: ""
+                                cranePositionName: $(this).find("td").eq(1).find("input"),
+                                status:"1"
                             }
-                            template.push(delivery)
+
+                            //新增信息组装
+                            var addInfomation = {
+                                cranePositionCode: addInfo.cranePositionCode,
+                                cranePositionName: commons.deleteSpace(addInfo.cranePositionName),
+                                status: addInfo.status
+                            }
+
+                            template.push(addInfomation)
                         })
                         console.log(cj.parseCjArray(template));
                         cranePosition.cranePositionAdd();
@@ -89,15 +99,23 @@ var cranePosition = {
                         info("修改内容不能为空", '温馨提示', function () {
                         });
                     } else {
-                        $("tbody tr input.active").each(function () {
-                            var crane = {
-                                cranePositionCode: $(this).parents("tr").find("td").eq(0).html(),
-                                cranePositionName: commons.deleteSpace($(this).parents("tr").find("input")),
-                                status: $(this).parents("tr").find("td").eq(4).attr("status"),
-                                operator: "",
-                                operateTime: ""
+                        $("tbody tr.update").each(function () {
+                            //修改信息获取
+                            var updateInfo = {
+                                cranePositionId:$(this).attr("cranePositionId"),
+                                cranePositionCode: $(this).find("td").eq(0).find("input"),
+                                cranePositionName: $(this).find("td").eq(1).find("input"),
+                                status:$(this).find("td").eq(4).attr("status")
                             }
-                            template.push(crane)
+
+                            //修改信息组装
+                            var updateInfomation = {
+                                cranePositionId:updateInfo.cranePositionId,
+                                cranePositionCode: commons.deleteSpace(updateInfo.cranePositionCode),
+                                cranePositionName: commons.deleteSpace(updateInfo.cranePositionName),
+                                status: updateInfo.status
+                            }
+                            template.push(updateInfomation)
                         })
                         console.log(cj.parseCjArray(template));
                         cranePosition.cranePositionAdd();
@@ -116,6 +134,7 @@ var cranePosition = {
                 });
             } else {
                 $(this).parents("tr").find("input").addClass("active").removeAttr("readonly");
+                $(this).parents("tr").addClass("update");
             }
         })
         //删除操作
@@ -140,7 +159,7 @@ var cranePosition = {
             }
         })
     },
-    //鹤位信息查询
+    //鹤位信息查询接口
     cranePositionRequest: function (datas) {
         $.ajax({
             // url:"",
@@ -416,11 +435,12 @@ var cranePosition = {
         console.log(cranePositionList);
         for (var i = 0; i < cranePositionList.length; i++) {
             _html += '<tr cranePositionId="' + cranePositionList[i].cranePositionId + '">'
-                + '<td>' + cranePositionList[i].cranePositionCode + '</td>'
+                // + '<td>' + cranePositionList[i].cranePositionCode + '</td>'
+                + '<td><input type="text" readonly value="' + cranePositionList[i].cranePositionCode + '"></td>'
                 + '<td><input type="text" readonly value="' + cranePositionList[i].cranePositionName + '"></td>'
                 + '<td>' + cranePositionList[i].operator + '</td>'
                 + '<td>' + commons.timeFormat(cranePositionList[i].operateTime) + '</td>'
-                + '<td>';
+                + '<td status="'+cranePositionList[i].status+'">';
             if (cranePositionList[i].status == 1) {
                 _html += '<div class="switch1 active">'
                     + '<div class="switch2 active"></div>'
