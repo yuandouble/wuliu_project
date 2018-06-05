@@ -69,72 +69,11 @@ var productInfo = {
     bindEvent:function () {
         var flag = true;
         var typeFlag = false;
+
+        //点击刷新，刷新数据
         $("#refresh").on("click",function () {
             productInfo.productRequest();
         })
-        //高级搜索
-        $("#advSearch").on("click",function () {
-            if(flag){
-                $("#searchModal").show();
-                $("#advBtn").html("收起");
-                flag = false;
-            }else{
-                $("#searchModal").hide();
-                $("#advBtn").html("高级搜索");
-                flag = true;
-            }
-        })
-        //高级搜索清除
-        $("#searchClear").on("click",function () {
-            $("#searchModal input").val("");
-            $(".s-types").html("全部类型");
-        })
-
-        //危化品下拉框
-        $(".types").on("click",function () {
-            typeFlag = !typeFlag;
-            if(typeFlag){
-                $(".type-list").show();
-            }else{
-                $(".type-list").hide();
-            }
-        })
-        //高级搜索里面下拉框
-        $(".s-types").on("click",function () {
-            typeFlag = !typeFlag;
-            if(typeFlag){
-                $(this).siblings(".s-type-list").show();
-            }else{
-                $(this).siblings(".s-type-list").hide();
-            }
-        })
-        //危化品选择
-        $(".type-list").on("click","li",function () {
-            $(".types").html($(this).html());
-            $(".type-list").hide();
-            typeFlag  = false;
-            $("tbody tr").hide();
-            $("tbody tr").each(function () {
-                if($(".types").html() == "全部类型"){
-                    $("tbody tr").show();
-                }else if($(this).attr("dangerlevel") ==  $(".types").html()){
-                    $(this).show().siblings().hide();
-                }
-            })
-        })
-        $(".type-select,.select").on("mouseleave",function () {
-            $(".type-list").hide();
-            $(".s-type-list").hide();
-            typeFlag  = false;
-        })
-        //搜索类型选择
-        $(".s-type-list").on("click","li",function () {
-            $(this).parent().siblings(".s-types").html($(this).html());
-            $(".s-type-list").hide();
-            typeFlag  = false;
-        });
-
-
         $("#product_level").on("click","img",function(){
             //点击编辑按钮，显示编辑弹框
             if($(this).attr("src").indexOf("edit.png")!=-1){
@@ -174,10 +113,6 @@ var productInfo = {
 		$("#add_one_btn").click(function(){
 			dialog_product.show_dialog("add");
 		});
-		//点击编辑按钮，展示编辑弹框
-		$("#edit_one_btn").click(function(){
-			dialog_product.show_dialog("edit");
-		});
 		
 		//点击批量导入按钮，展示批量导入弹框
 		$("#add_list_btn").click(function(){
@@ -193,14 +128,11 @@ var productInfo = {
 		}); 
 
 		//物料编码的模糊搜索
-		$("#wuliao_code").on("click",function(){
-			$("#wuliao_code").parent().find(".type-list").show();
-		});
-		/*物料编码的下拉菜单点击选择以后，将数据填入物料编码的表单中，同时刷列表数据*/
-		$("#wuliao_code").parent().find(".type-list li").on("click",function(){
-			$("#wuliao_code").val($(this).text());
-		}); 
-
+		/*
+        $("#wuliao_code").on("click",function(){
+            $("#wuliao_code").parent().find(".type-list").show();
+        });
+        */
         //弹框主逻辑----------------------end
         
     },
