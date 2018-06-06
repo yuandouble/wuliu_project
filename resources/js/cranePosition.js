@@ -5,6 +5,19 @@ $(function () {
 
 var cranePosition = {
     bindEvent: function () {
+
+        //初始化文件上传
+        var dialog_upload = new dialog_upload_file();
+
+        //初始化批量导入信息
+        var file_infolist = new dialog_add_list();
+
+        //批量导入
+        $("#add_list_btn").click(function(){
+            file_infolist.hide_dialog();
+            dialog_upload.show_dialog();
+        });
+
         //新增
         $("#add").on("click", function () {
             if ($("tbody input").hasClass("active")) {
