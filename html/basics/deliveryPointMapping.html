@@ -5,8 +5,8 @@
     <title>仓库/库位信息维护</title>
     <link rel="stylesheet" href="./../../libs/layui/css/layui.css" media="all">
     <link href="./../../css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="./../../css/common.css" />
-    <link rel="stylesheet" href="./../../css/dialog.css" />
+    <link rel="stylesheet" href="./../../css/common.css"/>
+    <link rel="stylesheet" href="./../../css/dialog.css"/>
 </head>
 <body>
 <div class="customer-list">
@@ -46,16 +46,24 @@
                 <tr>
                     <td class="rights">
                         <div class="crane">
-                            <input type="text" readonly value= "北京石油化工厂">
+                            <input type="text" readonly value="北京石油化工厂">
                             <p class="crane-pos"><img src="../img/select.png" alt=""></p>
+                            <ul class="crane-select">
+                                <li>111111111111111</li>
+                                <li>222222222222</li>
+                            </ul>
                         </div>
                     </td>
                     <td class="library librarys" colspan="4">
                         <ul class="library-position first">
                             <li>
                                 <div class="crane">
-                                    <input type="text" readonly value= "12338746">
+                                    <input type="text" readonly value="12338746">
                                     <p class="crane-pos"><img src="../img/select.png" alt=""></p>
+                                    <ul class="crane-select">
+                                        <li>111111111111111</li>
+                                        <li>222222222222</li>
+                                    </ul>
                                 </div>
                             </li>
                             <li>张立新</li>
@@ -65,12 +73,17 @@
                                     <div class="switch2 active"></div>
                                 </div>
                             </li>
+                            <div class="cl"></div>
                         </ul>
                         <ul class="library-position">
                             <li>
                                 <div class="crane">
-                                    <input type="text" readonly value= "12338746">
+                                    <input type="text" readonly value="12338746">
                                     <p class="crane-pos"><img src="../img/select.png" alt=""></p>
+                                    <!--<ul class="crane-select">-->
+                                        <!--<li>111111111111111</li>-->
+                                        <!--<li>222222222222</li>-->
+                                    <!--</ul>-->
                                 </div>
                             </li>
                             <li>张立新</li>
@@ -80,14 +93,78 @@
                                     <div class="switch2 active"></div>
                                 </div>
                             </li>
+                            <div class="cl"></div>
                         </ul>
                     </td>
                     <td>
                         <div class="fl img edit">
-                        <img src="./../../img/edit.png" alt="">
+                            <img src="./../../img/edit.png" alt="">
                         </div>
                         <div class="fl img delete">
-                        <img src="./../../img/delete.png" alt="">
+                            <img src="./../../img/delete.png" alt="">
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="rights">
+                        <div class="crane">
+                            <input type="text" readonly value="北京石油化工厂">
+                            <p class="crane-pos"><img src="../img/select.png" alt=""></p>
+                            <ul class="crane-select">
+                                <li>111111111111111</li>
+                                <li>222222222222</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td class="library librarys" colspan="4">
+                        <ul class="library-position first">
+                            <li>
+                                <div class="crane">
+                                    <input type="text" readonly value="12338746">
+                                    <p class="crane-pos"><img src="../img/select.png" alt=""></p>
+                                    <ul class="crane-select">
+                                        <li>111111111111111</li>
+                                        <li>222222222222</li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>张立新</li>
+                            <li>2018-04-10</li>
+                            <li>
+                                <div class="switch1 active">
+                                    <div class="switch2 active"></div>
+                                </div>
+                            </li>
+                            <div class="cl"></div>
+                        </ul>
+                        <ul class="library-position">
+                            <li>
+                                <div class="crane">
+                                    <input type="text" readonly value="12338746">
+                                    <p class="crane-pos"><img src="../img/select.png" alt=""></p>
+                                    <!--<ul class="crane-select">-->
+                                    <!--<li>111111111111111</li>-->
+                                    <!--<li>222222222222</li>-->
+                                    <!--</ul>-->
+                                </div>
+                            </li>
+                            <li>张立新</li>
+                            <li>2018-04-10</li>
+                            <li>
+                                <div class="switch1 active">
+                                    <div class="switch2 active"></div>
+                                </div>
+                            </li>
+                            <div class="cl"></div>
+                        </ul>
+                    </td>
+                    <td>
+                        <div class="fl img edit">
+                            <img src="./../../img/edit.png" alt="">
+                        </div>
+                        <div class="fl img delete">
+                            <img src="./../../img/delete.png" alt="">
                         </div>
                     </td>
                 </tr>
@@ -167,14 +244,14 @@
             <p class="mt_0">
                 请点击<a class="ft_green" href="javascript:;">此处</a>下载模板，若已有模板，请勿重复下载
             </p>
-            <input type="file" class="file_input hidden" id="load_input" />
+            <input type="file" class="file_input hidden" id="load_input"/>
         </div>
         <!--上传过程-->
         <div class="loading_file hidden">
             <div class="progress_box">
                 <div class="progress_num ft_white mb_0" id="progress_num">65%</div>
                 <div class="progress_len_box">
-                    <div class="progress_loading_cur"  id="progress_len"></div>
+                    <div class="progress_loading_cur" id="progress_len"></div>
                 </div>
             </div>
             <p class="ft_gray mt_0">正在导入</p>
@@ -209,20 +286,20 @@
     </div>
     <div class="infolist_box ml_0 mr_0">
         <div class="infolist_box_header mt_0 mb_0">
-            <input type="button" value="重新导入" class="blue_btn btn_big mr_0" id="reset_upload_btn" />
-            <input type="button" value="确认导入" class="blue_btn btn_big mr_0" id="add_contacts_sure" />
+            <input type="button" value="重新导入" class="blue_btn btn_big mr_0" id="reset_upload_btn"/>
+            <input type="button" value="确认导入" class="blue_btn btn_big mr_0" id="add_contacts_sure"/>
         </div>
         <div class="infolist_box_header mt_0 mb_0">
             <div class="fl infolist_header_l tl ft_gray">详情信息显示</div>
             <div class="fr infolist_header_r tr">
-                <input type="button" value="删除" class="gray_btn  btn_big" id="remove_contacts_sure" />
+                <input type="button" value="删除" class="gray_btn  btn_big" id="remove_contacts_sure"/>
             </div>
         </div>
         <div class="infolist_box_body mt_0" id="infolist_par">
             <div class="infolist_title">
                 <ul class="mt_0 mb_0 tc">
                     <li class="infolist_w_0 fl">
-                        <input type="checkbox" id="check_all" />
+                        <input type="checkbox" id="check_all"/>
                     </li>
                     <li class="infolist_w_1 fl">用户编码</li>
                     <li class="infolist_w_2 fl">客户名称</li>
