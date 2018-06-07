@@ -51,7 +51,35 @@ $(function(){
     		}
     	});
     });
+
+    //模糊搜索模块
+    new search_block({
+    	  posi_box:$("#search_input_box"),                //下拉菜单参考的其它demo位置;
+		  oInput:$("#search_input_box input"),   	      //表单输入框;
+    	  oSearch_btn:$("#search_input_box div"),         //搜索按钮;
+   		  oList_box:$("#search_menu_list"),               //下拉菜单;
+    	  demo:"li",                  					  //下拉列表每一项的demo标签;
+    	  url:"",										  //模糊搜索请求的url;
+    	  key:"",										//模糊搜索，请求后端需要的字段
+    });
 });
+
+function search_block(){
+	search_model.apply(this,arguments);         //属性继承
+}
+
+search_block.prototype = new search_model();    //方法继承
+
+//刷新页面列表数据
+search_block.prototype.refresh_page_list=function(){
+
+};
+
+//填充搜索下拉菜单列表数据
+search_block.prototype.search_dt=function(){
+    
+};
+
 
 function safe_technology(){
 	dialog_basic.apply(this,arguments);      //属性继承
@@ -100,20 +128,6 @@ safe_technology.prototype.Events=function(){
 		});
 		$("#technology_list thead input:checkbox")[0].checked = trigger_btn;
 	})
-	
-	//模糊搜索列表点击捕获值
-	$("#search_listen input").on("change",function(){
-		if($.trim($(this).val())==""){
-			_this.hide_search_list();
-		}else{
-
-		}
-	})
-	//模糊搜索列表输入滑入滑出效果
-
-	//监听表单输入
-
-	//点击搜索按钮，刷新数据
 
 }
 
@@ -138,24 +152,6 @@ safe_technology.prototype.search_insert_list = function(){
 
 }
 
-//展示搜索列表
-safe_technology.prototype.show_search_list = function(){
-
-}
-
-//隐藏搜索列表
-safe_technology.prototype.hide_search_list = function(){
-
-}
-
-//获取某一项搜索列表的值，并将值塞入搜索表单内
-safe_technology.prototype.get_search_one = function(){
-
-}
-//点击搜索，进行请求，拉回数据，并填充
-safe_technology.prototype.search_result = function(){
-
-}
 //填充列表
 safe_technology.prototype.insert_list = function(){
 
