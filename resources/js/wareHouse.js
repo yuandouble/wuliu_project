@@ -12,7 +12,7 @@ var wareHouse = {
         var file_infolist = new dialog_add_list();
 
         //批量导入
-        $("#add_list_btn").click(function(){
+        $("#add_list_btn").click(function () {
             file_infolist.hide_dialog();
             dialog_upload.show_dialog();
         });
@@ -138,21 +138,24 @@ var wareHouse = {
                         //遍历新增项
                         $("tbody tr.add .library-position").each(function () {
 
-                            var depotCode = $(this).parents("tr").find("td").eq(0).find("input");
-                            var depotName = $(this).parents("tr").find("td").eq(1).find("input");
-                            var stockCode = $(this).find("li").eq(0).find("input");
-                            var stockName = $(this).find("li").eq(1).find("input");
-
-                            var depotAdd = {
-                                depotCode: commons.deleteSpace(depotCode),
-                                depotName: commons.deleteSpace(depotName),
-                                stockCode: commons.deleteSpace(stockCode),
-                                stockName: commons.deleteSpace(stockName),
-                                status: "1",
-                                operator: "",
-                                operateTime: ""
+                            //新增信息获取
+                            var addInfo = {
+                                depotCode: $(this).parents("tr").find("td").eq(0).find("input"),
+                                depotName: $(this).parents("tr").find("td").eq(1).find("input"),
+                                stockCode: $(this).find("li").eq(0).find("input"),
+                                stockName: $(this).find("li").eq(1).find("input"),
+                                status:"1"
                             }
-                            template.push(depotAdd)
+
+                            //新增信息组装
+                            var addInfomation = {
+                                depotCode: commons.deleteSpace(addInfo.depotCode),
+                                depotName: commons.deleteSpace(addInfo.depotName),
+                                stockCode: commons.deleteSpace(addInfo.stockCode),
+                                stockName: commons.deleteSpace(addInfo.stockName),
+                                status: addInfo.status
+                            }
+                            template.push(addInfomation)
                         })
                         console.log(cj.parseCjArray(template));
                         wareHouse.wareHouseAdd();
@@ -160,23 +163,24 @@ var wareHouse = {
                 } else {
                     //为2时执行修改操作，遍历修改项
                     $("tbody tr.update .library-position.update").each(function () {
-                        console.log($("tbody tr .library-position.update"));
+                        //修改信息获取
+                        var updateInfo = {
+                            depotCode: $(this).parents("tr").find("td").eq(0).find("input"),
+                            depotName: $(this).parents("tr").find("td").eq(1).find("input"),
+                            stockCode: $(this).find("li").eq(0).find("input"),
+                            stockName: $(this).find("li").eq(1).find("input"),
+                            status:$(this).find("li").eq(4).attr("status")
+                        }
 
-                        var depotName = $(this).parents("tr").find("td").eq(1).find("input");
-                        var stockCode = $(this).find("li").eq(0).find("input");
-                        var stockName = $(this).find("li").eq(1).find("input");
-
-                        // var depotName = $(this).parents("tr").find("td").eq(1).find("input");
-                        // var stockCode = $(this).find("li").eq(0).find("input");
-                        // var stockName = $(this).find("li").eq(1).find("input");
-                        // var delivery = {
-                        //     cranePositionCode: $(this).parents("tr").find("td").eq(0).html(),
-                        //     cranePositionName: commons.deleteSpace($(this).parents("tr").find("input")),
-                        //     status: $(this).parents("tr").find("td").eq(4).attr("status"),
-                        //     operator: $(this).parents("tr").find("td").eq(2).html(),
-                        //     operateTime: $(this).parents("tr").find("td").eq(3).attr("times")
-                        // }
-                        // template.push(delivery)
+                        //修改信息组装
+                        var updateInfomation = {
+                            depotCode: commons.deleteSpace(updateInfo.depotCode),
+                            depotName: commons.deleteSpace(updateInfo.depotName),
+                            stockCode: commons.deleteSpace(updateInfo.stockCode),
+                            stockName: commons.deleteSpace(updateInfo.stockName),
+                            status: updateInfo.status
+                        }
+                        template.push(updateInfomation)
                     })
                     console.log(cj.parseCjArray(template));
                     wareHouse.wareHouseAdd();
