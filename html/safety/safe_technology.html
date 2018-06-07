@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>安全教育材料维护</title>
 	<link rel="stylesheet" href="./../../libs/layui/css/layui.css"  media="all">
-    <link href="./../../css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="./../../css/style.css" />
     <link rel="stylesheet" href="./../../css/common.css" />
     <link rel="stylesheet" href="./../../css/dialog.css" />
 </head>
@@ -13,23 +13,30 @@
     <div class="customer-list">
     <div><span class="nav">基础数据管理  > </span>安全教育材料维护</div>
     <div class="content">
-        <div class="tools">
+        <div class="tools" id="menu_list">
         	<div>上传</div>
-            <div class="active" id="add_one_btn">下载</div>
-            <div id="add_list_btn">删除</div>
-            <div id="refresh">刷新</div>
+            <div _href="#">下载</div>
+            <div>删除</div>
+            <div>刷新</div>
         </div>
         <div>
-            <div class="search fr">
+            <div class="search fr posi_relative" id="search_listen">
                 <div class="inp fl">
                     <input type="text" placeholder="搜索"><div class="search-btn"></div>
                 </div>
+                <ul class="search_menu_list posi_absolute">
+					<li class="active">onesfjfj</li>
+					<li>onesfjfj</li>
+					<li>onesfjfj</li>
+					<li>onesfjfj</li>
+					<li>onesfjfj</li>
+                </ul>
             </div>
         </div>
         <div class="cl"></div>
         <!--表格部分-->
         <div class="layui-form">
-            <table class="layui-table">
+            <table class="layui-table" id="technology_list">
                 <thead>
                 <tr class="head">
                     <th style="width: 50px;">
@@ -283,14 +290,8 @@
 <!--js部分-->
 <script type="text/javascript" src="./../../libs/jquery.min.js"></script>
 <script type="text/javascript" src="./../../libs/cj-1.0.js"></script>
-<!--<script type="text/javascript" src="./../../js/ProductInfo.js"></script>-->
 <script type="text/javascript" src="./../../js/common.js"></script>
 <script type="text/javascript" src="./../../js/dialog.js"></script>
 <script type="text/javascript" src="./../../js/safe_technology.js"></script>
-<!--
-<script type="text/javascript" src="./../../js/product_level.js"></script>
--->
-
-
 </body>
 </html>

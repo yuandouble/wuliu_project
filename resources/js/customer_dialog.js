@@ -532,7 +532,6 @@ var customer = {
             customer.customerRequest();
         })
         $("#customerList").on("click","img,.switch1,.contacts-select",function(e){
-
 	        //列表页点击编辑图标，打开编辑弹框，进行相关编辑操作；
         	if(e.target.tagName=="IMG" && $(e.target).parent().hasClass("edit")){
 
