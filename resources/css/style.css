@@ -365,7 +365,7 @@ input{
     text-indent:8px;
     display: none;
 }
-.customer-list .type-list li:hover,.search-modal .s-type-list li:hover,.crane .crane-select li:hover,.customer-list .search-sel li:hover{
+.customer-list .type-list li:hover,.search-modal .s-type-list li:hover,.crane .crane-select li:hover,.layui-table td.librarys .crane-select li:hover,.customer-list .search-sel li:hover{
     border:1px solid #ffac68;
     background: #fffcf6;
 }
@@ -616,6 +616,7 @@ input{
     border-top: none;
     text-indent: 8px;
     overflow-y: auto;
+    display: none;
 }
 .layui-table .crane-select li{
     width: 99.2%;
@@ -623,6 +624,9 @@ input{
     text-align: left;
     height: 30px;
     line-height: 30px;
+}
+.layui-table td.librarys .crane-select li{
+    width: 99.5%;
 }
 .layui-table tr .library-position .crane-select{
     top: 40px;
