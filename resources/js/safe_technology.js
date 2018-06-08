@@ -53,7 +53,8 @@ $(function(){
     });
 
     //模糊搜索模块
-    new search_block({
+    
+	new search_block({
     	  posi_box:$("#search_input_box"),                //下拉菜单参考的其它demo位置;
 		  oInput:$("#search_input_box input"),   	      //表单输入框;
     	  oSearch_btn:$("#search_input_box div"),         //搜索按钮;
@@ -62,12 +63,14 @@ $(function(){
     	  url:"",										  //模糊搜索请求的url;
     	  key:"",										  //模糊搜索，请求后端需要的字段
     });
+    
 });
 
 
 //搜索模块类
 function search_block(){
 	search_model.apply(this,arguments);         //属性继承
+    //this.bindEvent();                                 //事件初始化;
 }
 
 search_block.prototype = new search_model();    //方法继承

@@ -20,8 +20,10 @@ var commons = {
 }
 
 
-//搜索模块
-function search_model(dt){
+//搜索模块---------------------------------------------------------------------------------------------
+
+function search_model(data){
+    var dt = data || {};
     this.posi_box = dt.posi_box || null;              //下拉菜单参考的其它demo位置;
     this.Input = dt.oInput || null;                   //表单输入框;
     this.Search_btn = dt.oSearch_btn || null;         //搜索按钮;
@@ -37,16 +39,16 @@ function search_model(dt){
 
     this.class_act = dt.class_act || "active";        //每一项鼠标滑过的样式class名
     
-    this.bindEvent();                                 //事件初始化;
+   // this.bindEvent();                                 //事件初始化;
 }
 
 //绑定事件
 search_model.prototype.bindEvent=function(){
-    var _this = this;
 
-    //设置下拉菜单的位置
-    this.set_position();
+        var _this = this;
 
+        //设置下拉菜单的位置
+        this.set_position();
 
       if($(this.Input).attr("type")=="text"){
          //若是表单，那么进行表单监听
@@ -86,7 +88,7 @@ search_model.prototype.bindEvent=function(){
          $(this.Search_btn).on("click",function(){
             _this.refresh_page_list();
          });        
-     }
+     } 
 }
 
 //根据搜索条件刷新页面列表数据
@@ -106,6 +108,7 @@ search_model.prototype.hide_search_list=function(){
 
 //下拉菜单位置设置
 search_model.prototype.set_position=function(){
+    console.log($(this.posi_box));
     var left = $(this.posi_box).offset().left,
         top = $(this.posi_box).offset().top+$(this.posi_box).height()+2;
     if(this.left && this.top){
@@ -125,11 +128,6 @@ search_model.prototype.set_position=function(){
 search_model.prototype.get_search_list=function(){
     var _this = this,
         sValue = $(this.Input).val();
-    /*  
-    if($(this.Input).attr("index")){
-        sValue = $(this.Input).attr("index");
-    }
-    */
     if(this.url){
         $.ajax({
            type:this.type,
@@ -145,9 +143,7 @@ search_model.prototype.get_search_list=function(){
 
 //搜索列表数据填充
 search_model.prototype.insert_search_list=function(dt){
-
     this.search_dt(dt);   //下拉菜单数据填充
-
      //为下拉列表添加滑入滑出事件
      var aList = $(this.list_box+" "+this.one_demo);
      if(aList.length>0){
