@@ -3,7 +3,7 @@
 $(function(){
 
    //安全教育材料维护模块
-    var oTechnology = new safe_technology();
+    var oTeachControl = new safe_control();
 
 	//初始化文件上传
    	var dialog_upload = new dialog_upload_file();
@@ -12,23 +12,16 @@ $(function(){
     var file_infolist = new dialog_add_list();
 
     $("#menu_list div").on("click",function(e){
-    	$(this).parent().find("div").removeData("checked");
-    	$(this).data("checked","true");
-    	$(this).addClass("active");
     	switch($(this).text()){
-		    //上传功能
-			case "上传":
-				oTechnology.hide_dialog();
+		    //批量导入功能
+			case "批量导入":
+				oTeachControl.hide_dialog();
 				file_infolist.hide_dialog();
 				dialog_upload.show_dialog();
 			break;
-		    //下载功能
-			case "下载":
-				window.location.href = $(this).attr("_href");
-			break;
-		    //删除功能
-			case "删除":
-				oTechnology.delete($("#technology_list tbody input:checked"));
+		    //新增功能
+			case "新增":
+               
 			break;
 		    //刷新功能
 			case "刷新":
@@ -36,21 +29,9 @@ $(function(){
 			break;
     	}
     });
+
     //上传、下载、删除、刷新 按钮滑过效果；
-    $("#menu_list div").hover(function(){
-    	$(this).parent().find("div").each(function(){
-    		if(!$(this).data("checked")){
-    			$(this).removeClass("active")
-    		}
-    	})
-    	$(this).attr("class","active");
-    },function(){
-    	$(this).parent().find("div").each(function(){
-    		if(!$(this).data("checked")){
-                $(this).removeClass("active"); 
-    		}
-    	});
-    });
+    common_frame.btn_hover($("#menu_list div"),"active");
 
     //模糊搜索模块
     new search_block({
@@ -62,15 +43,35 @@ $(function(){
     	  url:"",										  //模糊搜索请求的url;
     	  key:"",										  //模糊搜索，请求后端需要的字段
     });
+
+    //列表页，禁用启用功能；
+	common_frame.disable_btn(function(obj){
+	    // $.ajax({
+	      //  success:function(){
+
+	        //启用禁用效果
+	         common_frame.toggle_class(obj);
+	       // }
+	    // })
+	});
+
+    
 });
 
 
-//搜索模块类
+//搜索模块类-------------------------------------------------------------------------------------------------
 function search_block(){
 	search_model.apply(this,arguments);         //属性继承
+    this.init();				               //事件初始化;
 }
 
 search_block.prototype = new search_model();    //方法继承
+
+
+//初始化
+search_block.prototype.init=function(){
+	this.bindEvent();
+}
 
 //刷新页面列表数据
 search_block.prototype.refresh_page_list=function(){
@@ -83,34 +84,24 @@ search_block.prototype.search_dt=function(dt){
 };
 
 
-function safe_technology(){
+//安全教育材料维护列表页面主逻辑-----------------------------------------------------------------------------
+
+function safe_control(){
 	dialog_basic.apply(this,arguments);      //属性继承
     this.title = ["新增客户","编辑客户"];    //数据
     this.edit_dt = {};                       //当前客户的相关数据
-    //用于测试
-	//this.insert_data();
 	//私有事件
 	this.Events();
 }
 
 //类方法的继承
-safe_technology.prototype = new dialog_basic();
+safe_control.prototype = new dialog_basic();
 
 //其它事件绑定
-safe_technology.prototype.Events=function(){
+safe_control.prototype.Events = function(){
 	var _this = this;
 
 	this.init();  //公有事件
-
-	//鼠标滑过下拉框，每一项有选中效果；
-    $("#customer_menu li").hover(function(){
-    	//鼠标滑入
-    	$(this).parent().find("li").removeClass("act");
-    	$(this).addClass("act");
-    },function(){
-        //鼠标滑出
-    	$(this).parent().find("li").removeClass("act");
-    });
 
     //列表页头全选功能
 	$("#technology_list thead").on("click","input:checkbox",function(e){
@@ -133,39 +124,34 @@ safe_technology.prototype.Events=function(){
 }
 
 //上传文件
-//safe_technology.prototype.upload = function(){
+//safe_control.prototype.upload = function(){
 
 //}
 
 //删除功能
-safe_technology.prototype.delete = function(aInput){
+safe_control.prototype.delete = function(aInput){
 	$(aInput).each(function(){
 		$(this).parents("tr").remove();
 	})
 }
 //刷新功能
-safe_technology.prototype.refresh = function(){
-
-}
-
-//插入搜索数据
-safe_technology.prototype.search_insert_list = function(){
+safe_control.prototype.refresh = function(){
 
 }
 
 //填充列表
-safe_technology.prototype.insert_list = function(){
+safe_control.prototype.insert_list = function(){
 
 }
 
 //清空表单数据
-safe_technology.prototype.clear_dialog = function(){
+safe_control.prototype.clear_dialog = function(){
     $("#add_dialog .customer_info").find("input").val("");
     $("#add_dialog .contacts_list_demo").html("");
 }
 
 //提交表单数据(通过回调函数进行回调)
-safe_technology.prototype.submit_data = function(cb){
+safe_control.prototype.submit_data = function(cb){
     var _this = this;
 	var post_dt = this.selection_data(),  		 //拼接数据
 		sub_type = this.iseditor?"PUT":"POST";   //提交方式，PUT为编辑提交；POST为新增；

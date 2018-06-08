@@ -1,4 +1,3 @@
-
 var common_frame = {
 
     //调用此方法，鼠标点击的时候，一定要取消
@@ -28,8 +27,21 @@ var common_frame = {
 
     },
     //禁用/启用效果
-    disable_btn:function(){
-
+    disable_btn:function(cb){
+        //启用（禁用）开关切换
+        $(".switch1").on("click",function(){
+            cb && cb(this);
+        });
+    },
+    //class名切换
+    toggle_class:function(obj){
+        if($(obj).hasClass("active")){
+            $(obj).removeClass("active");
+            $(obj).find(".switch2").removeClass("active");
+        }else{
+            $(obj).addClass("active");
+            $(obj).find(".switch2").addClass("active");
+        }   
     }
 }
 
