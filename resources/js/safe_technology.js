@@ -12,9 +12,6 @@ $(function(){
     var file_infolist = new dialog_add_list();
 
     $("#menu_list div").on("click",function(e){
-    	$(this).parent().find("div").removeData("checked");
-    	$(this).data("checked","true");
-    	$(this).addClass("active");
     	switch($(this).text()){
 		    //上传功能
 			case "上传":
@@ -36,25 +33,12 @@ $(function(){
 			break;
     	}
     });
+
     //上传、下载、删除、刷新 按钮滑过效果；
-    $("#menu_list div").hover(function(){
-    	$(this).parent().find("div").each(function(){
-    		if(!$(this).data("checked")){
-    			$(this).removeClass("active")
-    		}
-    	})
-    	$(this).attr("class","active");
-    },function(){
-    	$(this).parent().find("div").each(function(){
-    		if(!$(this).data("checked")){
-                $(this).removeClass("active"); 
-    		}
-    	});
-    });
+    common_frame.btn_hover($("#menu_list div"),"active");
 
     //模糊搜索模块
-    
-	new search_block({
+    new search_block({
     	  posi_box:$("#search_input_box"),                //下拉菜单参考的其它demo位置;
 		  oInput:$("#search_input_box input"),   	      //表单输入框;
     	  oSearch_btn:$("#search_input_box div"),         //搜索按钮;

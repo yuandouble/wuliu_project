@@ -84,7 +84,7 @@ input{outline:none;}
 .search_menu_list{
 	width: 200px; 
 	border: solid 1px #dbe3e9;
-	z-index: 5;
+	z-index: 2;
 	background: white;	
 	border-bottom:none;
 

@@ -1,5 +1,34 @@
+
 var common_frame = {
-	search_init:function(){
+
+    //调用此方法，鼠标点击的时候，一定要取消
+    btn_hover:function(aBtn,act_class){
+        //鼠标点击，设置点击按钮属性，去掉其它一类按钮的该属性
+        $(aBtn).on("click",function(){
+            $(aBtn).removeData("checked");
+            $(this).data("checked","true");
+            $(this).addClass("active");        
+        });
+
+         //鼠标滑入滑出效果
+         $(aBtn).hover(function(){
+            $(aBtn).each(function(){
+                if(!$(this).data("checked")){
+                    $(this).removeClass("active")
+                }
+            })
+            $(this).attr("class",act_class);
+        },function(){
+            $(aBtn).each(function(){
+                if(!$(this).data("checked")){
+                    $(this).removeClass("active"); 
+                }
+            });
+        });
+
+    },
+    //禁用/启用效果
+    disable_btn:function(){
 
     }
 }
@@ -67,6 +96,7 @@ search_model.prototype.bindEvent=function(){
             _this.show_search_list();
         });
       }
+
     //绑定鼠标滑入滑出事件
     var aList = $(this.list_box).find(this.one_demo);
     this.bind_hover(aList); 
@@ -176,3 +206,33 @@ search_model.prototype.bind_hover=function(aList){
 search_model.prototype.clear_show_list=function(){
     $(this.list_box).find(this.one_demo).remove();
 }
+
+
+//功能按钮类 一系列模块化----------------------------------------------------------------------------------
+function button_model(data){
+   var dt = data || {};
+   this.aBtn = dt.btn_list;     //一系列按钮列表
+   this.act_class = dt.active || "active";  //按钮选中的样式
+   /*
+    按钮类别： 
+    新增  批量导入  ERP导入  刷新  上传  下载  保存 取消  返回 修改 发布  
+    补录订单号 更新承运人信息 更新承运商信息 更新成员车辆信息
+   */
+
+}
+
+//为按钮添加事件
+button_model.prototype.bindEvent=function(){
+    //按钮，滑入滑出效果
+    $(this.aBtn).hover(function(){
+
+    },function(){
+
+    })
+    //按钮组点击效果
+    $(this.aBtn).click(function(e){
+
+    });
+}
+
+//新增
