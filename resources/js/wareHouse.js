@@ -20,38 +20,31 @@ var wareHouse = {
         var _index = 0;
         $("#add").on("click", function () {
             var flag = 0;
+            //flag为0 时新增仓库信息    flag不为0 时在已有在已有仓库信息上新增库位信息
+
             $("tbody tr").each(function () {
                 if ($(this).hasClass("active")) {
                     flag++;
                 }
             })
-            if (flag != 0) {
-                if ($("tbody tr").hasClass("add") && $("tbody tr").find("input").eq(0).attr("readonly")) {
-                    info("请先保存新增项", '温馨提示', function () {
-                    });
-                } else {
-                    if ($("tbody tr").eq(_index).find(".library-position input").hasClass("active")) {
-                        info("请先保存修改项", '温馨提示', function () {
-                        });
-                    } else {
-                        var uls = '<ul class="library-position add">'
-                            + '<li><input type="text" value= ""></li>'
-                            + '<li><input type="text" value= ""></li>'
-                            + '<li></li>'
-                            + '<li></li>'
-                            + '<li>'
-                            + '<div class="switch1 active">'
-                            + '<div class="switch2 active"></div>'
-                            + '</div>'
-                            + '</li>'
-                            + '</ul>';
-                        $("tbody tr").eq(_index).find("ul").eq(0).before(uls);
-                    }
-                }
+            //判断是否存在未保存修改项，存在不允许新增
+            if ($("tbody input").hasClass("active")) {
+                info("请先保存修改项", '温馨提示', function () {
+                });
             } else {
-                if ($("tbody input").hasClass("active")) {
-                    info("请先保存修改项", '温馨提示', function () {
-                    });
+                if (flag != 0) {
+                    var uls = '<ul class="library-position add">'
+                        + '<li><input type="text" value= ""></li>'
+                        + '<li><input type="text" value= ""></li>'
+                        + '<li></li>'
+                        + '<li></li>'
+                        + '<li>'
+                        + '<div class="switch1 active">'
+                        + '<div class="switch2 active"></div>'
+                        + '</div>'
+                        + '</li>'
+                        + '</ul>';
+                    $("tbody tr").eq(_index).find("ul").eq(0).before(uls);
                 } else {
                     var _tr = '<tr class="add">'
                         + '<td><input type="text"  value= ""></td>'
@@ -82,6 +75,7 @@ var wareHouse = {
                         $("tbody").append(_tr);
                     }
                 }
+
             }
         });
 
@@ -144,7 +138,7 @@ var wareHouse = {
                                 depotName: $(this).parents("tr").find("td").eq(1).find("input"),
                                 stockCode: $(this).find("li").eq(0).find("input"),
                                 stockName: $(this).find("li").eq(1).find("input"),
-                                status:"1"
+                                status: "1"
                             }
 
                             //新增信息组装
@@ -161,29 +155,41 @@ var wareHouse = {
                         wareHouse.wareHouseAdd();
                     }
                 } else {
-                    //为2时执行修改操作，遍历修改项
-                    $("tbody tr.update .library-position.update").each(function () {
-                        //修改信息获取
-                        var updateInfo = {
-                            depotCode: $(this).parents("tr").find("td").eq(0).find("input"),
-                            depotName: $(this).parents("tr").find("td").eq(1).find("input"),
-                            stockCode: $(this).find("li").eq(0).find("input"),
-                            stockName: $(this).find("li").eq(1).find("input"),
-                            status:$(this).find("li").eq(4).attr("status")
+                    var noNull = 0;
+                    $("tbody tr.update input").each(function () {
+                        if (!commons.deleteSpace($(this))) {
+                            noNull++;
                         }
-
-                        //修改信息组装
-                        var updateInfomation = {
-                            depotCode: commons.deleteSpace(updateInfo.depotCode),
-                            depotName: commons.deleteSpace(updateInfo.depotName),
-                            stockCode: commons.deleteSpace(updateInfo.stockCode),
-                            stockName: commons.deleteSpace(updateInfo.stockName),
-                            status: updateInfo.status
-                        }
-                        template.push(updateInfomation)
                     })
-                    console.log(cj.parseCjArray(template));
-                    wareHouse.wareHouseAdd();
+                    if (noNull != 0) {
+                        info("修改内容不能为空", '温馨提示', function () {
+                        });
+                    } else {
+                        //为2时执行修改操作，遍历修改项
+                        $("tbody tr.update .library-position.update").each(function () {
+                            //修改信息获取
+                            var updateInfo = {
+                                depotCode: $(this).parents("tr").find("td").eq(0).find("input"),
+                                depotName: $(this).parents("tr").find("td").eq(1).find("input"),
+                                stockCode: $(this).find("li").eq(0).find("input"),
+                                stockName: $(this).find("li").eq(1).find("input"),
+                                status: $(this).find("li").eq(4).attr("status")
+                            }
+
+                            //修改信息组装
+                            var updateInfomation = {
+                                depotCode: commons.deleteSpace(updateInfo.depotCode),
+                                depotName: commons.deleteSpace(updateInfo.depotName),
+                                stockCode: commons.deleteSpace(updateInfo.stockCode),
+                                stockName: commons.deleteSpace(updateInfo.stockName),
+                                status: updateInfo.status
+                            }
+                            template.push(updateInfomation)
+                        })
+                        console.log(cj.parseCjArray(template));
+                        wareHouse.wareHouseAdd();
+                    }
+
                 }
             }
         })
@@ -193,19 +199,17 @@ var wareHouse = {
         })
         //删除操作
         $("tbody").on("click", ".new-delete", function () {
-            var actives = $(this).parents("tr").find(".library-position.active");
-            var adds = $(this).parents("tr").find(".library-position");
+            var actives = $(this).parents("tr").find(".library-position.active");    //库位选择项
+            var adds = $(this).parents("tr").find(".library-position");                //所有库位信息
+            //如果有选中项，删除选中项，没有全部删除
             if (actives.length) {
-                if (actives.length == adds.length) {
-                    $(this).parents("tr").remove();
+                if (actives.index() == adds.length - 1) {
+                    actives.remove();
+                    $(this).parents("tr").find(".library-position.add").eq(adds.length - 2).find("li").css({"border-bottom": "none"});
                 } else {
-                    if (actives.index() == adds.length - 1) {
-                        actives.remove();
-                        $(this).parents("tr").find(".library-position.add").eq(adds.length - 2).find("li").css({"border-bottom": "none"});
-                    } else {
-                        actives.remove();
-                    }
+                    actives.remove();
                 }
+
             } else {
                 $(this).parents("tr").remove();
             }
