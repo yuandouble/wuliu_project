@@ -70,10 +70,16 @@ $(function(){
 //搜索模块类
 function search_block(){
 	search_model.apply(this,arguments);         //属性继承
-    //this.bindEvent();                                 //事件初始化;
+    this.init();				               //事件初始化;
 }
 
 search_block.prototype = new search_model();    //方法继承
+
+
+//初始化
+search_block.prototype.init=function(){
+	this.bindEvent();
+}
 
 //刷新页面列表数据
 search_block.prototype.refresh_page_list=function(){

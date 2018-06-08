@@ -28,7 +28,7 @@ function search_model(data){
     this.Input = dt.oInput || null;                   //表单输入框;
     this.Search_btn = dt.oSearch_btn || null;         //搜索按钮;
     this.list_box = dt.oList_box || null;             //下拉菜单;
-    this.one_demo = dt.demo || null;                  //下拉列表每一项的demo标签;
+    this.one_demo = dt.demo || "*";                  //下拉列表每一项的demo标签;
     this.demo_attr = dt.demo_attr || "index";         //设置下拉列表每一项的demo标签上的相对应的属性key
     this.url = dt.url || null;                        //模糊搜索请求的url;
     this.key = dt.key || "value";                     //模糊搜索，请求后端需要的字段,默认为value;
@@ -64,7 +64,8 @@ search_model.prototype.bindEvent=function(){
             _this.show_search_list();
         });
 
-         var aList = $(this.list_box+" "+this.one_demo);
+         var aList = $(this.list_box).find(this.one_demo);
+
          this.bind_hover(aList);  //绑定鼠标滑入滑出事件
       }
 
@@ -108,19 +109,17 @@ search_model.prototype.hide_search_list=function(){
 
 //下拉菜单位置设置
 search_model.prototype.set_position=function(){
-    console.log($(this.posi_box));
     var left = $(this.posi_box).offset().left,
         top = $(this.posi_box).offset().top+$(this.posi_box).height()+2;
     if(this.left && this.top){
         left = this.left;
         top = this.top;
     }
-    $(this).list_box({
+    $(this.list_box).css({
         "position":"absolute",
         "left":left+"px",
         "top":top+"px",
-        "width":$(this.posi_box).width()+"px",
-        "height":$(this.posi_box).height()+"px"
+        "width":$(this.posi_box).width()+"px"
     });    
 }
 
@@ -145,7 +144,7 @@ search_model.prototype.get_search_list=function(){
 search_model.prototype.insert_search_list=function(dt){
     this.search_dt(dt);   //下拉菜单数据填充
      //为下拉列表添加滑入滑出事件
-     var aList = $(this.list_box+" "+this.one_demo);
+     var aList = $(this.list_box).find(this.one_demo);
      if(aList.length>0){
          this.bind_hover();                //为下拉列表绑定鼠标滑入滑出效果
          this.show_search_list();          //展示下拉菜单
@@ -162,11 +161,15 @@ search_model.prototype.search_dt = function(dt){
 //搜索列表，绑定鼠标滑入滑出事件
 search_model.prototype.bind_hover=function(aList){
     var _this = this;
+    console.log("test123456");
+    console.log(aList.length);
     aList.hover(function(){
         $(_this.list_box).find(_this.one_demo).removeClass(_this.class_act);   //删除鼠标滑过的效果
         $(this).addClass(_this.class_act);
+        console.log("test hover");
      },function(){
         $(this).removeClass(_this.class_act);
+        console.log("test out");
      });
 }
 //清空搜索列表数据
