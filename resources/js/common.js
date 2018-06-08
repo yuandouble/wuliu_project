@@ -60,7 +60,7 @@ search_model.prototype.bindEvent=function(){
          });    
          $(this.Input).on("blur",function(){
             _this.hide_search_list();
-         })     
+         }); 
       }else{
         //点击按钮，展示下拉菜单
         $(this.Input).on("click",function(){
