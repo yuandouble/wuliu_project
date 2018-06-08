@@ -51,7 +51,7 @@ $(function(){
 });
 
 
-//搜索模块类
+//搜索模块类-------------------------------------------------------------------------------------------------
 function search_block(){
 	search_model.apply(this,arguments);         //属性继承
     this.init();				               //事件初始化;
@@ -76,12 +76,12 @@ search_block.prototype.search_dt=function(dt){
 };
 
 
+//安全教育材料维护列表页面主逻辑-----------------------------------------------------------------------------
+
 function safe_technology(){
 	dialog_basic.apply(this,arguments);      //属性继承
     this.title = ["新增客户","编辑客户"];    //数据
     this.edit_dt = {};                       //当前客户的相关数据
-    //用于测试
-	//this.insert_data();
 	//私有事件
 	this.Events();
 }
@@ -94,16 +94,6 @@ safe_technology.prototype.Events = function(){
 	var _this = this;
 
 	this.init();  //公有事件
-
-	//鼠标滑过下拉框，每一项有选中效果；
-    $("#customer_menu li").hover(function(){
-    	//鼠标滑入
-    	$(this).parent().find("li").removeClass("act");
-    	$(this).addClass("act");
-    },function(){
-        //鼠标滑出
-    	$(this).parent().find("li").removeClass("act");
-    });
 
     //列表页头全选功能
 	$("#technology_list thead").on("click","input:checkbox",function(e){
@@ -138,11 +128,6 @@ safe_technology.prototype.delete = function(aInput){
 }
 //刷新功能
 safe_technology.prototype.refresh = function(){
-
-}
-
-//插入搜索数据
-safe_technology.prototype.search_insert_list = function(){
 
 }
 
