@@ -60,10 +60,12 @@ $(function(){
    		  oList_box:$("#search_menu_list"),               //下拉菜单;
     	  demo:"li",                  					  //下拉列表每一项的demo标签;
     	  url:"",										  //模糊搜索请求的url;
-    	  key:"",										//模糊搜索，请求后端需要的字段
+    	  key:"",										  //模糊搜索，请求后端需要的字段
     });
 });
 
+
+//搜索模块类
 function search_block(){
 	search_model.apply(this,arguments);         //属性继承
 }
@@ -72,12 +74,12 @@ search_block.prototype = new search_model();    //方法继承
 
 //刷新页面列表数据
 search_block.prototype.refresh_page_list=function(){
-
+     
 };
 
 //填充搜索下拉菜单列表数据
-search_block.prototype.search_dt=function(){
-    
+search_block.prototype.search_dt=function(dt){
+      
 };
 
 
@@ -92,11 +94,10 @@ function safe_technology(){
 }
 
 //类方法的继承
-//common_frame.extend(dialog_basic,safe_technology);
 safe_technology.prototype = new dialog_basic();
 
 //其它事件绑定
-safe_technology.prototype.Events=function(){
+safe_technology.prototype.Events = function(){
 	var _this = this;
 
 	this.init();  //公有事件

@@ -115,7 +115,9 @@ search_model.prototype.set_position=function(){
     $(this).list_box({
         "position":"absolute",
         "left":left+"px",
-        "top":top+"px"
+        "top":top+"px",
+        "width":$(this.posi_box).width()+"px",
+        "height":$(this.posi_box).height()+"px"
     });    
 }
 
@@ -123,9 +125,11 @@ search_model.prototype.set_position=function(){
 search_model.prototype.get_search_list=function(){
     var _this = this,
         sValue = $(this.Input).val();
+    /*  
     if($(this.Input).attr("index")){
         sValue = $(this.Input).attr("index");
     }
+    */
     if(this.url){
         $.ajax({
            type:this.type,
@@ -142,7 +146,7 @@ search_model.prototype.get_search_list=function(){
 //搜索列表数据填充
 search_model.prototype.insert_search_list=function(dt){
 
-    this.search_dt();   //下拉菜单数据填充
+    this.search_dt(dt);   //下拉菜单数据填充
 
      //为下拉列表添加滑入滑出事件
      var aList = $(this.list_box+" "+this.one_demo);
@@ -157,7 +161,6 @@ search_model.prototype.insert_search_list=function(dt){
 
 //下拉菜单数据填充
 search_model.prototype.search_dt = function(dt){
-    
 }
 
 //搜索列表，绑定鼠标滑入滑出事件

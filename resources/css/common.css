@@ -81,3 +81,24 @@ input{outline:none;}
 	z-index: 5;
 	background: white;
 }
+.search_menu_list{
+	width: 200px; 
+	border: solid 1px #dbe3e9;
+	z-index: 5;
+	background: white;	
+	border-bottom:none;
+
+}
+.search_menu_list li{
+	border-bottom: solid 1px #dbe3e9;
+	height: 25px;
+	line-height: 25px;
+	padding-left:10px;
+	padding-right: 10px;
+	cursor: pointer;
+}
+
+.search_menu_list li.active{
+	background: blue;
+	color: white;
+}
